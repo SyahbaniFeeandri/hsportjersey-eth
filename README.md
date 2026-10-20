@@ -25,32 +25,62 @@
 
 ## 🏗️ 2. Arsitektur Sistem
 
-```
-                                  ┌────────────────────────┐
-                                  │   Pembeli / Pelanggan  │
-                                  └───────────┬────────────┘
-                                              │
-                      ┌───────────────────────┴───────────────────────┐
-                      │                                               │
-               (Interaksi Web)                                 (Transaksi ETH)
-                      │                                               │
-                      ▼                                               ▼
-         ┌───────────────────────────┐                  ┌───────────────────────────┐
-         │     Frontend Website      │                  │   Dompet Web3 MetaMask    │
-         │  (PHP, HTML5, Bootstrap 5)│                  └─────────────┬─────────────┘
-         └─────────────┬─────────────┘                                │
-                       │                                              │ RPC Call (7545)
-                       ▼                                              ▼
-         ┌───────────────────────────┐                  ┌───────────────────────────┐
-         │     Backend Server        │                  │     Ganache Blockchain    │
-         │ (PHP 8, Session, PDO API) │                  │     (Local Ethereum Node) │
-         └─────────────┬─────────────┘                  └─────────────┬─────────────┘
-                       │                                              │
-                       ▼                                              ▼
-         ┌───────────────────────────┐                  ┌───────────────────────────┐
-         │   Database MySQL          │◄──── Sync Data ──│  Smart Contract (Escrow)  │
-         │    (h_sport_db)           │  (Hash & Wallet) │     `HSportStore.sol`     │
-         └───────────────────────────┘                  └───────────────────────────┘
+```mermaid
+flowchart TB
+    %% Definisi Aktor & Domain
+    subgraph USERS["👤 PENGGUNA (ACTORS)"]
+        BUYER["🛒 Pembeli (Customer)"]
+        ADMIN["👨‍💼 Penjual / Admin Toko"]
+    end
+
+    %% Jalur Off-Chain (E-Commerce Web)
+    subgraph OFFCHAIN["🌐 OFF-CHAIN ARCHITECTURE (Web & Database)"]
+        direction TB
+        FRONTEND["🖥️ Frontend Website\n(PHP, HTML5, Bootstrap 5, JS)"]
+        BACKEND["⚙️ Backend Processing\n(PHP 8, Session, PDO)"]
+        API_BRIDGE["🔌 API Bridge Handler\n(api/blockchain-api.php)"]
+        DATABASE[("🗄️ Database Relasional MySQL\n(h_sport_db / orders, items, users)")]
+
+        FRONTEND -->|"1. Pilih Jersey & Checkout"| BACKEND
+        BACKEND -->|"2. Simpan Order (status: pending, unpaid)"| DATABASE
+        API_BRIDGE -->|"6. Sinkronisasi tx_hash, wallet & status='paid'"| DATABASE
+    end
+
+    %% Jalur On-Chain (Web3 & Blockchain Escrow)
+    subgraph ONCHAIN["⛓️ ON-CHAIN ARCHITECTURE (Ethereum Blockchain)"]
+        direction TB
+        METAMASK["🦊 Dompet Web3 (MetaMask)\n(Sign & Send Transaction)"]
+        GANACHE["⚡ Ganache Local Testnet\n(RPC: http://127.0.0.1:7545)"]
+        SMART_CONTRACT["📜 Smart Contract Escrow\n(HSportStore.sol)"]
+        ESCROW_VAULT[("🔒 Escrow Vault (ETH Locked)\n(Dana tertahan aman)")]
+        SELLER_WALLET["💰 Wallet Seller / Toko\n(0x... Owner Address)"]
+
+        METAMASK -->|"4. Kirim Transaksi & Gas (ETH)"| GANACHE
+        GANACHE -->|"5. Eksekusi createOrder()"| SMART_CONTRACT
+        SMART_CONTRACT -->|"Kunci Pembayaran"| ESCROW_VAULT
+        SMART_CONTRACT -.->|"Release Escrow otomatis\nsetelah confirmReceived()"| SELLER_WALLET
+    end
+
+    %% Hubungan Antar Jalur
+    BUYER -->|"Akses Katalog & Pesan"| FRONTEND
+    BUYER -->|"3. Otorisasi Pembayaran ETH"| METAMASK
+    METAMASK -.->|"Callback Receipt: tx_hash & wallet"| API_BRIDGE
+
+    ADMIN -->|"7. Input Resi & Update Shipped"| BACKEND
+    BUYER -->|"8. Konfirmasi Barang Diterima\n(confirmReceived)"| METAMASK
+
+    %% Styling & Theme
+    classDef actorStyle fill:#2563eb,stroke:#1d4ed8,stroke-width:2px,color:#ffffff;
+    classDef offchainStyle fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#f8fafc;
+    classDef onchainStyle fill:#1e1b4b,stroke:#8b5cf6,stroke-width:2px,color:#f8fafc;
+    classDef bridgeStyle fill:#065f46,stroke:#10b981,stroke-width:2px,color:#ffffff;
+    classDef dbStyle fill:#831843,stroke:#ec4899,stroke-width:2px,color:#ffffff;
+
+    class BUYER,ADMIN actorStyle;
+    class FRONTEND,BACKEND offchainStyle;
+    class METAMASK,GANACHE,SMART_CONTRACT,ESCROW_VAULT,SELLER_WALLET onchainStyle;
+    class API_BRIDGE bridgeStyle;
+    class DATABASE dbStyle;
 ```
 
 ### Siklus Status Pesanan (State Machine):
