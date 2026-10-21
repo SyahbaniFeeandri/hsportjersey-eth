@@ -339,23 +339,243 @@ Proyek ini telah dirancang untuk memenuhi standar 21 kasus uji terstruktur:
 
 ---
 
-## 👥 9. Tim Pengembang & Kontribusi
+## 👥 9. Tim Pengembang, Struktur Organisasi & Pembagian Peran
 
-Proyek ini dikembangkan oleh 9 anggota tim dengan pembagian tanggung jawab terstruktur:
-1. **Muhammad Feeandri Syahbani** — *Requirement, Scope & Technical Documentation Lead*
-2. **Yasmin Akmaliyah** — *Business Process & Acceptance Analyst*
-3. **Arby Putra** — *Solidity Developer I (Order Core Architecture)*
-4. **Agustina Elsi Bunga** — *Solidity Developer II (Payment, Escrow & State Logic)*
-5. **Muhammad Farrel** — *Blockchain Infrastructure & Deployment Engineer*
-6. **Luis** — *PHP/Laravel-Blockchain Integration Engineer*
-7. **Ihsanul Farrel** — *dApp UI/UX & Proof Visualization Designer*
-8. **Farelly De Rossi** — *Database & Parallel Processing Engineer*
-9. **Kenjiro B.H.G** — *QA, Security & Performance Benchmark Engineer*
+Proyek **H-Sport Financial dApp** dikembangkan secara kolaboratif oleh tim yang terdiri dari **9 mahasiswa** untuk mata kuliah *Financial Distributed and Parallel Computing*. Masing-masing anggota memegang tanggung jawab spesifik yang terbagi ke dalam 4 pilar domain utama:
 
-Rincian lengkap matriks deliverable setiap peran dapat dilihat pada dokumen:  
-📄 **[DOKUMENTASI_PROJECT_DAN_PERAN.md](docs/DOKUMENTASI_PROJECT_DAN_PERAN.md)**
+```mermaid
+flowchart TB
+    %% Level 1: Project Coordination
+    subgraph COORD["📋 1. PROJECT COORDINATION & BUSINESS PROCESS"]
+        FEEANDRI["<b>Muhammad Feeandri Syahbani</b><br/>Requirement, Scope & Documentation Lead"]
+        YASMIN["<b>Yasmin Akmaliyah</b><br/>Business Process & Acceptance Analyst"]
+    end
+
+    %% Level 2: Core Engineering Domains
+    subgraph BLOCKCHAIN["⛓️ 2. BLOCKCHAIN & SMART CONTRACT"]
+        FARREL_M["<b>Muhammad Farrel</b><br/>Blockchain Infra & Deployment"]
+        ARBY["<b>Arby Putra</b><br/>Solidity Dev I (Order Core)"]
+        AGUSTINA["<b>Agustina Elsi Bunga</b><br/>Solidity Dev II (Escrow & State Logic)"]
+    end
+
+    subgraph INTEGRATION["⚡ 3. INTEGRATION, PARALLEL & UI"]
+        LUIS["<b>Luis</b><br/>Backend & Blockchain Integration"]
+        FARELLY["<b>Farelly De Rossi</b><br/>Database & Parallel Processing"]
+        IHSANUL["<b>Ihsanul Farrel</b><br/>dApp UI/UX & Proof Visualization"]
+    end
+
+    %% Level 3: QA & Benchmark
+    subgraph QA["🛡️ 4. QUALITY ASSURANCE, SECURITY & BENCHMARK"]
+        KENJIRO["<b>Kenjiro B.H.G</b><br/>QA, Security & Performance Benchmark"]
+    end
+
+    COORD --> BLOCKCHAIN
+    COORD --> INTEGRATION
+    BLOCKCHAIN --> QA
+    INTEGRATION --> QA
+
+    %% Styling
+    classDef coordStyle fill:#1e3a8a,stroke:#3b82f6,stroke-width:2px,color:#ffffff;
+    classDef chainStyle fill:#4c1d95,stroke:#8b5cf6,stroke-width:2px,color:#ffffff;
+    classDef integStyle fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#ffffff;
+    classDef qaStyle fill:#831843,stroke:#ec4899,stroke-width:2px,color:#ffffff;
+
+    class FEEANDRI,YASMIN coordStyle;
+    class FARREL_M,ARBY,AGUSTINA chainStyle;
+    class LUIS,FARELLY,IHSANUL integStyle;
+    class KENJIRO qaStyle;
+```
+
+---
+
+### 📊 Tabel Ringkasan Peran & Deliverable Kunci
+
+| No | Nama Anggota | Peran (Role) | Domain Utama | Periode | Deliverable Kunci |
+|:---:|---|---|---|:---:|---|
+| **1** | **Muhammad Feeandri Syahbani** | Requirement, Scope & Documentation Lead | Project Coordination | W1 – W8 | Requirement Addendum, Scope Statement, On/Off-Chain Matrix, Traceability Matrix, Final Documentation |
+| **2** | **Yasmin Akmaliyah** | Business Process & Acceptance Analyst | Business & UAT | W1 – W8 | Business Process Map, Acceptance Criteria, UAT Test Scenarios, Requirement-to-Test Mapping, UX/Error Flow Handling |
+| **3** | **Arby Putra** | Solidity Developer I (Order Core) | Smart Contract | W3 – W7 | `HSportStore.sol` Core Architecture, Struct & Enum Data Structures, Access Control Modifiers, Unit Test SC-01 s.d SC-06 |
+| **4** | **Agustina Elsi Bunga** | Solidity Developer II (Payment & Escrow Logic) | Smart Contract | W3 – W7 | Financial Escrow Logic, State Machine Transition Rules, Blockchain Event Logging, Unit Test SC-07 s.d SC-12 |
+| **5** | **Muhammad Farrel** | Blockchain Infrastructure & Deployment Engineer | Infrastructure | W2 – W8 | Ganache Testnet & Hardhat Setup, Truffle Migration Script, Multi-Account Faucet Setup, ABI & Contract Address Tracking |
+| **6** | **Luis** | PHP/Backend-Blockchain Integration Engineer | Integration | W5 – W8 | Blockchain RPC Bridge Service, Receipt & Event Listener, DB Proof Persistence (`tx_hash`, `wallet`), Test Evidence INT-01 s.d INT-05 |
+| **7** | **Ihsanul Farrel** | dApp UI/UX & Proof Visualization Designer | Frontend / UI/UX | W5 – W8 | MetaMask Connect Wallet UI, Real-time Tx Status Visualizer, Blockchain Proof Explorer Page, Parallel Benchmark Dashboard UI |
+| **8** | **Farelly De Rossi** | Database & Parallel Processing Engineer | Parallel Computing | W5 – W8 | Database Audit & Queue Schema, Multi-worker Parallel Architecture, Partition/Reduce Aggregation Engine, Evidence PAR-01 s.d PAR-04 |
+| **9** | **Kenjiro B.H.G** | QA, Security & Performance Benchmark Engineer | QA & Benchmark | W3 – W8 | Smart Contract Security & Revert Audit, End-to-End Integration Test Report, Parallel Speedup/Throughput Benchmark, Bug Tracking & UAT Validation |
+
+---
+
+### 📅 Matriks Milestone Mingguan (8-Week Roadmap)
+
+| Minggu | Fokus Milestone | Lead Pelaksana | Anggota Pendukung | Deliverable Utama |
+|:---:|---|---|---|---|
+| **W1** | **Analisis Kebutuhan & Scope Freeze** | Feeandri & Yasmin | Farelly, Arby, Agustina | Requirement addendum, scope boundary, on/off-chain matrix, state diagram, rancangan workload paralel. |
+| **W2** | **Infrastruktur Blockchain & Lingkungan Uji** | Muhammad Farrel | Arby, Agustina, Luis | Ganache local node, MetaMask network configuration, Truffle/Hardhat setup, skrip ping testnet. |
+| **W3** | **Pengembangan Smart Contract V1 (Order Core)** | Arby Putra | Agustina, Farrel, Kenjiro | Struktur data `Order`, modifier `onlyOwner`/`onlyBuyer`, kompilasi ABI, eksekusi unit test SC-01 s.d SC-06. |
+| **W4** | **Pengembangan Smart Contract V2 (Escrow & State Logic)** | Agustina Elsi Bunga | Arby, Farrel, Kenjiro | Logika transfer escrow, transisi status order, emisi event Web3, eksekusi security revert test SC-07 s.d SC-12. |
+| **W5** | **Integrasi Backend PHP & Blockchain Web3** | Luis | Farrel, Ihsanul, Yasmin | RPC bridge API (`api/blockchain-api.php`), receipt listener, penyimpanan bukti transaksi ke MySQL (INT-01 s.d INT-05). |
+| **W6** | **Sistem Pemrosesan Paralel & Antrean Transaksi** | Farelly De Rossi | Ihsanul, Kenjiro | Worker queue, baseline sekuensial vs worker paralel, algoritma partition/reduce (PAR-01 s.d PAR-04). |
+| **W7** | **Pengujian Komprehensif, Benchmark & UAT** | Kenjiro B.H.G | Farelly, Ihsanul, Feeandri | Stress test throughput (TPS), grafik speedup paralel, pengujian keamanan ekstrim, validasi UAT end-to-end. |
+| **W8** | **Finalisasi, Dokumentasi & Rehearsal Demo** | Semua Anggota | Semua Anggota | Repositori bersih dan reproducible, dokumentasi lengkap README & Docs, video demonstrasi transaksi. |
+
+---
+
+### 🔍 Rincian Tugas & Tanggung Jawab Anggota
+
+<details>
+<summary><b>1. Muhammad Feeandri Syahbani — Requirement, Scope & Documentation Lead</b></summary>
+
+* **Fokus Utama:** Manajemen ruang lingkup proyek, konsistensi spesifikasi, dan koordinasi dokumentasi teknis.
+* **Tanggung Jawab:**
+  - Menetapkan batasan fitur yang masuk ke dalam ruang lingkup (*in-scope*) dan di luar proyek (*out-of-scope*).
+  - Merumuskan arsitektur pembagian data mana yang dikelola secara *on-chain* vs *off-chain*.
+  - Menyusun matriks keterlacakan (*traceability matrix*) dari kebutuhan pengguna hingga unit pengujian.
+  - Memastikan seluruh modul teknis terdokumentasi rapi dan dapat direproduksi oleh pihak luar (*reproducibility*).
+* **Deliverable Wajib:**
+  1. `Requirement Addendum` (Spesifikasi fungsional & non-fungsional dApp).
+  2. `Scope Statement` (Batasan sistem e-commerce Web3 & batasan simulasi Ganache).
+  3. `On/Off-Chain Matrix` (Pemetaan database MySQL vs Smart Contract storage).
+  4. `Traceability Matrix` (Korelasi kebutuhan, implementasi kode, dan test matrix).
+  5. `Final Documentation & README Master` (Dokumentasi komprehensif sistem).
+</details>
+
+<details>
+<summary><b>2. Yasmin Akmaliyah — Business Process & Acceptance Analyst</b></summary>
+
+* **Fokus Utama:** Analisis proses bisnis e-commerce finansial, kriteria penerimaan, dan skenario pengujian pengguna.
+* **Tanggung Jawab:**
+  - Memetakan alur transaksi dari pemesanan katalog, pembayaran escrow crypto, pengiriman resi, hingga pelepasan dana.
+  - Merumuskan kriteria keberhasilan (*acceptance criteria*) untuk setiap antarmuka dan API.
+  - Merancang skenario uji penerimaan pengguna (*User Acceptance Testing - UAT*) untuk persona Pembeli dan Admin Toko.
+  - Menganalisis penanganan alur galat (*error/exception flow*) pada interaksi Web3 (misal: user menolak tanda tangan MetaMask, saldo ETH tidak mencukupi, jaringan putus).
+* **Deliverable Wajib:**
+  1. `Business Process Map` (Diagram alur transaksi terdesentralisasi).
+  2. `Acceptance Criteria Matrix` (Tolok ukur keberhasilan setiap fitur).
+  3. `UAT Test Scenarios` (Panduan pengujian fungsional pengguna akhir).
+  4. `Requirement-to-Test Mapping` (Validasi kesesuaian implementasi dengan kebutuhan bisnis).
+  5. `Error Flow Handling Analysis` (Dokumentasi mitigasi error Web3/UX).
+</details>
+
+<details>
+<summary><b>3. Arby Putra — Solidity Developer I (Order Core Architecture)</b></summary>
+
+* **Fokus Utama:** Fondasi struktur data smart contract, arsitektur dasar order, dan proteksi hak akses.
+* **Tanggung Jawab:**
+  - Merancang dan mengompilasi kontrak pintar utama [HSportStore.sol](blockchain/contracts/HSportStore.sol).
+  - Menyusun struktur data utama: `struct Order`, `enum OrderStatus`, dan relasi `mapping(uint256 => Order)`.
+  - Mengimplementasikan modifier kendali akses: `onlyOwner`, `onlyBuyer`, serta validasi keberadaan order (`orderExists`).
+  - Mengembangkan dan memverifikasi modul unit testing smart contract tahap awal (Kasus Uji SC-01 s.d SC-06).
+* **Deliverable Wajib:**
+  1. `HSportStore.sol Core` (Kode kontrak modul order initialization & read functions).
+  2. `Data Structure Definitions` (`Order`, `OrderStatus`, mapping penyimpanan).
+  3. `Access Control Modifiers` (Modifier pembatasan hak eksekusi fungsi kritis).
+  4. `Unit Test Suite SC-01 s.d SC-06` (Pengujian inisialisasi, pembuatan order berbayar, dan proteksi hak akses).
+  5. `NatSpec Technical Comments` (Dokumentasi kode Solidity standar Ethereum NatSpec).
+</details>
+
+<details>
+<summary><b>4. Agustina Elsi Bunga — Solidity Developer II (Payment, Escrow & State Logic)</b></summary>
+
+* **Fokus Utama:** Logika finansial escrow, penguncian dan pencairan dana, serta transisi mesin status pesanan.
+* **Tanggung Jawab:**
+  - Mengembangkan mekanisme escrow pembayaran: dana ETH tertahan di kontrak dan otomatis dicairkan ke penjual setelah pembeli memanggil `confirmReceived()`.
+  - Mengatur mesin status pemesanan (*state machine*): `Created` ➔ `Paid` ➔ `Shipped` ➔ `Completed` / `Cancelled`.
+  - Mengimplementasikan sistem emisi event blockchain (`OrderCreated`, `OrderShipped`, `OrderCompleted`, `EscrowReleased`).
+  - Mengembangkan unit testing keamanan lanjutan dan revert handling (Kasus Uji SC-07 s.d SC-12).
+* **Deliverable Wajib:**
+  1. `Escrow & Payment Logic` (Logika penguncian saldo dan transfer ETH aman bebas reentrancy).
+  2. `State Transition Rules` (Validasi proteksi status yang ketat).
+  3. `Event Logging Architecture` (Emisi event real-time untuk ditangkap frontend/backend).
+  4. `Unit Test Suite SC-07 s.d SC-12` (Validasi pengiriman, pelepasan dana, pencegahan double release, dan revert proteksi).
+</details>
+
+<details>
+<summary><b>5. Muhammad Farrel — Blockchain Infrastructure & Deployment Engineer</b></summary>
+
+* **Fokus Utama:** Infrastruktur jaringan blockchain lokal, automasi deployment, dan manajemen artefak Web3.
+* **Tanggung Jawab:**
+  - Menyediakan dan mengonfigurasi node blockchain lokal menggunakan Ganache (RPC `127.0.0.1:7545`, Chain ID `1337`/`5777`).
+  - Menyusun berkas konfigurasi Truffle (`blockchain/truffle-config.js`) dan skrip deployment otomatis.
+  - Mengotomatisasi ekspor artefak kontrak (`contract_address.txt` dan `contract_abi.json`) ke direktori konfigurasi yang dapat diakses frontend.
+  - Mempersiapkan akun uji coba Ganache dengan saldo 100 ETH dan panduan konfigurasi MetaMask.
+* **Deliverable Wajib:**
+  1. `Ganache Local Node Environment` (Infrastruktur blockchain lokal yang stabil dan reproducible).
+  2. `Truffle Deployment Scripts` (Skrip migrasi otomatis `migrations/1_deploy_hsportstore.js`).
+  3. `Contract Artifact Automation` (Sinkronisasi otomatis ABI dan contract address ke web application).
+  4. `Network & MetaMask Configuration Guide` (Panduan setup jaringan dan import private key).
+</details>
+
+<details>
+<summary><b>6. Luis — PHP/Backend-Blockchain Integration Engineer</b></summary>
+
+* **Fokus Utama:** Komunikasi backend PHP ke node blockchain, penanganan callback receipt, dan persistensi database.
+* **Tanggung Jawab:**
+  - Membangun jembatan komunikasi (*bridge API*) di [api/blockchain-api.php](api/blockchain-api.php).
+  - Menyimpan bukti transaksi kriptografis (`tx_hash`, `wallet_address`, `block_number`) ke tabel database `orders`.
+  - Menyediakan mekanisme verifikasi konsistensi status transaksi antara off-chain (MySQL) dengan on-chain (Ganache).
+  - Mendokumentasikan dan memvalidasi seluruh skenario pengujian integrasi (Kasus Uji INT-01 s.d INT-05).
+* **Deliverable Wajib:**
+  1. `Blockchain Bridge API` (Endpoint REST/JSON untuk sinkronisasi bukti transaksi).
+  2. `Receipt Verification Engine` (Modul verifikasi status konfirmasi transaksi on-chain).
+  3. `Database Proof Persistence` (Skema dan query penyimpan hash bukti pembayaran permanen).
+  4. `Integration Test Evidence INT-01 s.d INT-05` (Laporan keberhasilan integrasi backend-blockchain).
+</details>
+
+<details>
+<summary><b>7. Ihsanul Farrel — dApp UI/UX & Proof Visualization Designer</b></summary>
+
+* **Fokus Utama:** Desain antarmuka dApp Web3 modern, visualisasi bukti transaksi blockchain, dan dashboard interaktif.
+* **Tanggung Jawab:**
+  - Merancang halaman pembayaran crypto modern [crypto-payment.php](crypto-payment.php) dengan status koneksi dompet MetaMask dinamis.
+  - Membangun komponen tampilan detail pesanan dengan visualisasi bukti blockchain (*hash badges, scanner link, timeline progress*).
+  - Merancang dashboard pemantauan verifikasi order dan status pelepasan dana escrow untuk sisi administrator.
+  - Mengembangkan tampilan visualisasi grafik perbandingan performa komputasi sekuensial vs paralel.
+* **Deliverable Wajib:**
+  1. `Web3 Connect Wallet Component` (Tombol koneksi dompet interaktif dengan status saldo ETH & proteksi jaringan).
+  2. `Modern Crypto Payment UI` (Halaman checkout crypto yang intuitif dan responsif).
+  3. `Blockchain Proof Explorer View` (Visualisasi transaksi transparan pada detail pesanan).
+  4. `Parallel Performance Dashboard UI` (Grafik visual komparasi metrik komputasi paralel).
+</details>
+
+<details>
+<summary><b>8. Farelly De Rossi — Database & Parallel Processing Engineer</b></summary>
+
+* **Fokus Utama:** Desain skema database relasional, antrean pemrosesan paralel, dan algoritma agregasi metrik.
+* **Tanggung Jawab:**
+  - Merancang arsitektur database pendukung transaksi keuangan, log audit, dan antrean kerja (*queue*).
+  - Mengembangkan modul verifikasi batch transaksi menggunakan pendekatan sekuensial baseline dan pemrosesan multi-worker paralel.
+  - Mengimplementasikan strategi partisi data (*partition/reduce*) untuk agregasi metrik volume keuangan berkecepatan tinggi.
+  - Memvalidasi ketahanan konkurensi dari *race condition* dan membuktikan efisiensi melalui pengujian PAR-01 s.d PAR-04.
+* **Deliverable Wajib:**
+  1. `Database Schema & Audit Structure` (Skema tabel `orders`, `order_items`, `users`, `reviews`).
+  2. `Parallel Worker & Queue Engine` (Arsitektur antrean pemrosesan transaksi paralel).
+  3. `Partition & Reduce Implementation` (Algoritma pembagian workload verifikasi batch).
+  4. `Parallel Test Evidence PAR-01 s.d PAR-04` (Hasil uji benchmark waktu eksekusi, throughput, dan speedup).
+</details>
+
+<details>
+<summary><b>9. Kenjiro B.H.G — QA, Security & Performance Benchmark Engineer</b></summary>
+
+* **Fokus Utama:** Penjaminan mutu menyeluruh (QA), audit keamanan smart contract, dan pengukuran benchmark sistem.
+* **Tanggung Jawab:**
+  - Memimpin pengujian sistem menyeluruh yang mencakup 21 kasus uji terstandarisasi (SC, INT, PAR).
+  - Melakukan audit keamanan smart contract terhadap potensi celah keamanan (reentrancy, unauthorized execution, invalid state transition).
+  - Mengukur performa komputasi paralel dan menghitung nilai *Speedup ($S = T_s / T_p$)*, efisiensi, dan throughput (TPS).
+  - Mengelola pelaporan *bug*, mitigasi kendala fungsional, dan memvalidasi bukti pelaksanaan UAT.
+* **Deliverable Wajib:**
+  1. `Smart Contract Audit & Test Report` (Hasil eksekusi 12 skenario unit test Solidity SC-01 s.d SC-12).
+  2. `Integration Test Report` (Validasi kelancaran 5 skenario integrasi INT-01 s.d INT-05).
+  3. `Parallel Benchmark Report` (Analisis metrik kecepatan, speedup, dan throughput sistem).
+  4. `Bug Tracking & UAT Sign-off` (Dokumentasi pelacakan bug dan pengesahan hasil uji penerimaan pengguna).
+</details>
+
+---
+
+Dokumentasi rincian teknis, matriks kebutuhan, dan skenario pengujian setiap peran dapat dipelajari lebih mendalam pada dokumen pendukung:  
+* 📄 **[DOKUMENTASI_PROJECT_DAN_PERAN.md](docs/DOKUMENTASI_PROJECT_DAN_PERAN.md)** — Dokumen lengkap peran anggota, matriks deliverable, dan 21 test matrix.  
+* 📘 **[PANDUAN_SETUP_DAN_OPERASIONAL.md](docs/PANDUAN_SETUP_DAN_OPERASIONAL.md)** — Panduan langkah demi langkah setup lingkungan lokal dan operasional dApp.
 
 ---
 
 ## 📄 10. Lisensi
 Hak Cipta © 2026 **H-Sport Jersey Team**. Dirilis di bawah lisensi [MIT License](LICENSE).
+
