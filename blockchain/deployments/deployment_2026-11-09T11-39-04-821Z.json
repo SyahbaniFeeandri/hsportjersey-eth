@@ -1,0 +1,12 @@
+{
+  "logged_at": "2026-11-09T11:39:04.821Z",
+  "contract": "HSportStore",
+  "compiler": "0.8.19+commit.7dd6d404.Emscripten.clang",
+  "network_id": "5777",
+  "chain_id": 1337,
+  "rpc_url": "http://127.0.0.1:7545",
+  "address": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+  "transaction_hash": "0xd6afaa67400673212a28b865432f7b45d6acb232b9ca1de375095d69894d4bb0",
+  "config_address": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+  "config_address_matches": true
+}

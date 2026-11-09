@@ -2,7 +2,7 @@
 ### E-Commerce Jersey Olahraga Terdesentralisasi Berbasis Ethereum Smart Contract & Parallel Computing
 
 [![Solidity](https://img.shields.io/badge/Solidity-^0.8.19-363636?logo=solidity)](https://soliditylang.org/)
-[![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php)](https://www.php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.1-777BB4?logo=php)](https://www.php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-MariaDB-4479A1?logo=mysql)](https://www.mysql.com/)
 [![Truffle](https://img.shields.io/badge/Truffle-Suite-5e464d?logo=truffle)](https://trufflesuite.com/)
 [![MetaMask](https://img.shields.io/badge/MetaMask-Web3-E2761B?logo=metamask)](https://metamask.io/)
@@ -154,6 +154,7 @@ project_jersey/
 ├── login.php                  # Halaman autentikasi login pengguna & admin
 ├── logout.php                 # Proses logout
 ├── migration_reviews.sql      # Migrasi tabel ulasan produk (reviews)
+├── migration_blockchain.sql   # Migrasi kolom bukti blockchain & tabel blockchain_transactions
 ├── order-detail.php           # Halaman detail pesanan pelanggan & receipt blockchain
 ├── orders.php                 # Daftar pesanan pelanggan & tombol konfirmasi terima
 ├── product-detail.php         # Detail spesifikasi jersey & pemilihan ukuran
@@ -186,9 +187,10 @@ Pastikan software berikut telah terpasang di komputer Anda:
 4. Import file SQL utama:
    - Pilih database `h_sport_db` ➔ klik tab **Import**.
    - Unggah berkas `h_sport_db (1).sql` ➔ klik **Import**.
-5. Jalankan migrasi tabel review:
+5. Jalankan migrasi tabel review dan kolom blockchain:
    - Klik tab **Import** atau tab **SQL**.
    - Eksekusi berkas `migration_reviews.sql`.
+   - Eksekusi berkas `migration_blockchain.sql`.
 6. Pastikan konfigurasi koneksi di file [config/database.php](config/database.php) sudah sesuai dengan kredensial database lokal Anda:
    ```php
    $host = 'localhost';
@@ -572,7 +574,10 @@ flowchart TB
 
 Dokumentasi rincian teknis, matriks kebutuhan, dan skenario pengujian setiap peran dapat dipelajari lebih mendalam pada dokumen pendukung:  
 * 📄 **[DOKUMENTASI_PROJECT_DAN_PERAN.md](docs/DOKUMENTASI_PROJECT_DAN_PERAN.md)** — Dokumen lengkap peran anggota, matriks deliverable, dan 21 test matrix.  
-* 📘 **[PANDUAN_SETUP_DAN_OPERASIONAL.md](docs/PANDUAN_SETUP_DAN_OPERASIONAL.md)** — Panduan langkah demi langkah setup lingkungan lokal dan operasional dApp.
+* 📘 **[PANDUAN_SETUP_DAN_OPERASIONAL.md](docs/PANDUAN_SETUP_DAN_OPERASIONAL.md)** — Panduan langkah demi langkah setup lingkungan lokal dan operasional dApp.  
+* 🗺️ **[ROADMAP_RINCI.md](docs/ROADMAP_RINCI.md)** — Roadmap 8 minggu dengan 112 issue per mahasiswa.  
+* 📊 **[GAP_ANALYSIS.md](docs/GAP_ANALYSIS.md)** — Status eksekusi setiap issue dan prioritas berikutnya.  
+* ✅ **[Week 1](docs/week1/README.md)** — Keputusan, scope, state machine, traceability, test plan, dan Git governance.
 
 ---
 

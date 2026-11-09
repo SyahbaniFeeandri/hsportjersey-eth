@@ -6,7 +6,9 @@
   "scripts": {
     "ganache:ping": "node scripts/checkGanache.js",
     "compile": "truffle compile",
-    "migrate": "truffle migrate --network ganache --reset"
+    "migrate": "truffle migrate --network ganache --reset",
+    "deploy:log": "node scripts/logDeployment.js",
+    "test": "set HSPORT_TEST=1&& truffle test --network ganache"
   },
   "keywords": [],
   "author": "",

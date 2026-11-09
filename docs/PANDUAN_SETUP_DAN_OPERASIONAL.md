@@ -24,11 +24,11 @@ Sebelum memulai, pastikan lingkungan kerja komputer lokal memenuhi spesifikasi b
 
 * **Sistem Operasi:** Windows 10/11, macOS, atau Linux Ubuntu 20.04+.
 * **Web Server Stack:** Laragon (Sangat direkomendasikan untuk Windows) atau XAMPP.
-  - PHP Versi: `8.0` atau `8.2+` (dengan ekstensi `pdo_mysql`, `mbstring`, `json`, `curl` aktif).
-  - Basis Data: MySQL 5.7+ atau MariaDB 10.4+.
+  - PHP Versi: `8.1.x` (diuji `8.1.10`; ekstensi `pdo_mysql`, `mbstring`, `json`, `curl`, `openssl` aktif).
+  - Basis Data: MySQL `8.0.x` (diuji `8.0.30`).
 * **Runtime & Package Manager:**
-  - Node.js versi `18.x LTS` atau `20.x LTS`.
-  - npm versi `9.x` atau `10.x`.
+  - Node.js versi `18.x` atau lebih baru (diuji `24.20.0`).
+  - npm versi `9.x` atau lebih baru (diuji `11.19.0`).
 * **Blockchain Testnet & Framework:**
   - **Truffle Ganache GUI** (unduh di https://trufflesuite.com/ganache/) atau `ganache-cli`.
   - Truffle CLI (`^5.11.5`) — telah terpasang di folder `blockchain/node_modules`.
@@ -51,6 +51,8 @@ Sebelum memulai, pastikan lingkungan kerja komputer lokal memenuhi spesifikasi b
    - Klik **Go** / **Import**.
 6. Masuk kembali ke tab **Import** atau tab **SQL**, jalankan file:
    - `migration_reviews.sql` (berisi tabel ulasan dan rating produk).
+   - `migration_blockchain.sql` (berisi kolom bukti blockchain dan tabel `blockchain_transactions`).
+   - `migration_parallel.sql` (berisi tabel antrean paralel: `job_batches`, `verification_jobs`, `checkpoints`, `worker_logs`).
 7. Periksa file konfigurasi koneksi di `config/database.php`. Pastikan parameter sesuai:
    ```php
    $host = 'localhost';
@@ -68,9 +70,19 @@ Sebelum memulai, pastikan lingkungan kerja komputer lokal memenuhi spesifikasi b
 3. Pastikan konfigurasi server Ganache sebagai berikut:
    - **RPC Server:** `HTTP://127.0.0.1:7545`
    - **Port:** `7545`
-   - **Network ID:** `5777` (atau diset otomatis)
+   - **Chain ID:** `1337`
+   - **Network ID:** `5777`
 4. Ganache akan menyediakan 10 akun uji coba, masing-masing memiliki saldo awal sebesar **100.00 ETH**.
 5. **Catatan:** Jangan tutup aplikasi Ganache selama Anda menguji transaksi pembayaran kripto.
+
+**Alternatif CLI (disarankan agar reproducible):**
+
+```powershell
+cd c:\laragon\www\project_jersey\blockchain
+npx ganache --server.port 7545 --chain.chainId 1337 --chain.networkId 5777 --wallet.deterministic --wallet.totalAccounts 10
+```
+
+Dengan mode deterministik, akun #0 selalu menjadi owner/deployer, akun #1 buyer, dan akun #2 operator.
 
 ---
 
@@ -94,7 +106,7 @@ Pada direktori proyek terdapat folder `blockchain/` yang berisi kode Solidity da
    *Output yang diharapkan:*
    ```text
    Ganache connected: http://127.0.0.1:7545
-   Chain ID: 1337 (atau 5777)
+   Chain ID: 1337
    Block number: 0
    Accounts: 10
    First account: 0x...
@@ -108,7 +120,13 @@ Pada direktori proyek terdapat folder `blockchain/` yang berisi kode Solidity da
    - Menyebarkan kontrak `HSportStore.sol`.
    - Mengambil alamat kontrak hasil *deploy* dan menyimpannya ke `blockchain/config/contract_address.txt`.
    - Menyimpan *Application Binary Interface* (ABI) ke `blockchain/config/contract_abi.json`.
-6. Pastikan kedua file di `blockchain/config/` telah terisi dengan data yang valid.
+6. Catat deployment (waktu, network ID, chain ID, address, tx hash):
+   ```powershell
+   node scripts/logDeployment.js
+   ```
+   Hasilnya tersimpan di `blockchain/deployments/DEPLOYMENTS.md`.
+7. Salin `.env.example` menjadi `.env` di root proyek, lalu isi `CONTRACT_ADDRESS` dan kredensial lokal. **Jangan commit `.env`.**
+8. Pastikan kedua file di `blockchain/config/` telah terisi dengan data yang valid.
 
 ---
 

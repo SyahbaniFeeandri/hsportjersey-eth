@@ -3,6 +3,13 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = async function (deployer) {
+  // Saat `truffle test`, migration tidak perlu deploy dan tidak boleh
+  // menimpa config/contract_address.txt dengan alamat instance test.
+  if (process.env.HSPORT_TEST === "1") {
+    console.log("HSPORT_TEST=1: lewati deploy migration (mode test).");
+    return;
+  }
+
   await deployer.deploy(HSportStore);
   const instance = await HSportStore.deployed();
 
