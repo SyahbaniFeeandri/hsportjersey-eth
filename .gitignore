@@ -24,6 +24,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Evidence logs are part of the deliverable
+!docs/week2/evidence/*.log
+!docs/evidence/**/*.log
+
 # Environment files (if any created later)
 .env
 .env.local

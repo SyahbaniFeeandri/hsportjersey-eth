@@ -10,6 +10,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 **Update 9 November 2026 (sesi lanjutan):** MySQL, `migration_blockchain.sql`, `migration_parallel.sql`, Ganache (`chainId 1337`, `networkId 5777`), deploy kontrak, deployment log, dan `.env.example` sudah diverifikasi.
 
+**Update 10 November 2026:** Minggu 2 selesai secara artefak — 15 selesai, 1 sebagian (`W2-FRL-05`), 0 belum. Spesifikasi kontrak final, wireframe UI, prosedur reproduksi, template test/bug/benchmark, dan simulasi clean clone (ABI identik) tersedia di `docs/week2/` dan `docs/templates/`. Uji reproduksi di komputer anggota lain belum dilakukan.
+
 ## Legenda Status
 
 | Status | Arti |
@@ -22,9 +24,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 31 | 27.7% |
+| Selesai | 33 | 29.5% |
 | Sebagian | 12 | 10.7% |
-| Belum | 69 | 61.6% |
+| Belum | 67 | 59.8% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -32,7 +34,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | Minggu | Milestone | Selesai | Sebagian | Belum | Total |
 |---|---|---:|---:|---:|---:|
 | 1 | Analisis & Scope Freeze (Feeandri + Yasmin) | 17 | 0 | 0 | 17 |
-| 2 | Blockchain Environment (Farrel) | 13 | 1 | 2 | 16 |
+| 2 | Blockchain Environment (Farrel) | 15 | 1 | 0 | 16 |
 | 3 | Smart Contract V1 (Arby) | 1 | 2 | 9 | 12 |
 | 4 | Smart Contract V2 (Agustina) | 0 | 2 | 10 | 12 |
 | 5 | Integrasi PHP–Blockchain (Luis) | 0 | 3 | 12 | 15 |
@@ -70,7 +72,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 2 — Blockchain Environment (Farrel)
 
-**Status:** 13 selesai, 1 sebagian, 2 belum dari 16 issue.
+**Status:** 15 selesai, 1 sebagian, 0 belum dari 16 issue.
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
@@ -78,18 +80,18 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | `W2-FRL-02` | Panduan MetaMask: add network, import akun | Dokumen setup | Selesai | docs/PANDUAN_SETUP_DAN_OPERASIONAL.md Langkah 4 |
 | `W2-FRL-03` | Truffle config + test harness + perbaiki README | Repo blockchain siap | Selesai | README diperbaiki; truffle-config siap; test/ harness + baseline smoke 4 PASS |
 | `W2-FRL-04` | Deploy script + ABI/address history + .env.example | Script + deployment log | Selesai | scripts/logDeployment.js + deployments/DEPLOYMENTS.md + .env.example |
-| `W2-FRL-05` | Uji reproduksi di komputer anggota lain | Screenshot/log | Belum | - |
-| `W2-ARB-02` | Finalkan struct/enum/mapping/modifier | Spesifikasi kontrak | Selesai | Target interface final di docs/week1/04 bagian 3 |
+| `W2-FRL-05` | Uji reproduksi di komputer anggota lain | Screenshot/log | Sebagian | Simulasi clean clone PASS (compile, migrate, test 4 passing, ABI identik) di mesin sendiri — docs/week2/03_REPRODUCTION_TEST.md; mesin anggota lain belum |
+| `W2-ARB-02` | Finalkan struct/enum/mapping/modifier | Spesifikasi kontrak | Selesai | docs/week2/02_CONTRACT_SPEC_FINAL.md (enum, struct, mapping, modifier, storage layout, Q1-Q5 ditutup) |
 | `W2-ARB-03` | Skeleton unit test SC-01 s.d. SC-06 | Test file awal | Selesai | test/01_sc01_sc06.skeleton.test.js (6 pending) + baseline smoke 4 PASS |
-| `W2-AGU-02` | Finalkan transition table + event list | Dokumen state & event | Selesai | docs/week1/01 bagian 4 + 04 event list |
-| `W2-AGU-03` | Revert rules matrix | Matriks revert | Selesai | docs/week1/01 bagian 5 (R01-R16) |
+| `W2-AGU-02` | Finalkan transition table + event list | Dokumen state & event | Selesai | docs/week2/02 bagian 7 & 9 (9 event final, T01-T15) |
+| `W2-AGU-03` | Revert rules matrix | Matriks revert | Selesai | docs/week2/02 bagian 12 (R01-R20) + docs/week1/01 bagian 5 |
 | `W2-LUI-02` | Desain service read/write/receipt/verification | Dokumen desain service | Selesai | docs/week1/05 bagian B |
 | `W2-LUI-03` | Daftar field DB proof + index | Draft migration | Selesai | migration_blockchain.sql sudah dijalankan; kolom & tabel terverifikasi |
 | `W2-FDR-03` | Finalkan schema queue/verification + index | Migration | Selesai | migration_parallel.sql sudah dijalankan; 4 tabel + view terverifikasi |
 | `W2-FEE-06` | Update traceability dengan 21 test case | Traceability v0.2 | Selesai | docs/week1/03_TRACEABILITY_MATRIX.md |
 | `W2-YAS-05` | Requirement-to-test mapping v1 | Matriks REQ-Test | Selesai | docs/week1/02 bagian 6 + 03 bagian 2-3 |
-| `W2-IHS-02` | Wireframe wallet, tx status, proof page, dashboard | Mockup | Belum | - |
-| `W2-KEN-02` | Template test report, bug report, benchmark sheet | Template | Sebagian | Format bug report ada di 07 bagian 9; benchmark sheet belum |
+| `W2-IHS-02` | Wireframe wallet, tx status, proof page, dashboard | Mockup | Selesai | docs/week2/01_UI_WIREFRAMES.md (wallet, 7 state tx, proof, verification, performance) |
+| `W2-KEN-02` | Template test report, bug report, benchmark sheet | Template | Selesai | docs/templates/TEST_REPORT_TEMPLATE.md, BUG_REPORT_TEMPLATE.md, BENCHMARK_SHEET.csv |
 
 ### Minggu 3 — Smart Contract V1 (Arby)
 
@@ -230,22 +232,23 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 |---|---|---|---|---|
 | ✅ B1 | MySQL di `localhost:3306` — **selesai** | `migration_blockchain.sql` dan `migration_parallel.sql` sudah dijalankan; kolom/tabel terverifikasi | — | Farrel |
 | ✅ B2 | Ganache port 7545 — **selesai** | chainId 1337, networkId 5777, deploy sukses di `0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab` | — | Farrel |
-| B3 | Tidak ada `blockchain/test/` | 0/21 test dijalankan | Buat harness Truffle + SC-01 s.d. SC-06 | Arby/Kenjiro |
+| ✅ B3 | Tidak ada `blockchain/test/` — **selesai** | Harness Truffle + smoke 4 PASS + skeleton SC-01..SC-06 tersedia | Aktifkan SC-01..SC-06 di M3 | Arby/Kenjiro |
 | B4 | PHP 8.1.10 tidak di PATH; Composer tidak ada | Setup integrasi kurang reproducible | Pakai path absolut + JSON-RPC cURL | Farrel/Luis |
 | B5 | Kontrak masih 4 state | W3–W4 belum bisa mulai | Implement target interface, freeze akhir M3 | Arby/Agustina |
 | B6 | Integrasi masih client-side | Proof tidak lengkap dan tidak tervalidasi backend | Bangun service backend di M5 | Luis |
+| B7 | Reproduksi baru diuji di mesin sendiri | Exit gate M2 belum tertutup penuh | Jadwalkan clean clone di komputer anggota lain | Farrel |
 
 ## 4. Prioritas 10 Aksi Berikutnya
 
-1. Nyalakan MySQL lalu jalankan `migration_blockchain.sql` dan `migration_parallel.sql`.
-2. Nyalakan Ganache, catat chain ID/network ID, dan buat deployment log.
-3. Buat `blockchain/test/` + harness Truffle; tulis SC-01 s.d. SC-06.
-4. Refactor kontrak ke interface target dan freeze di akhir Minggu 3.
-5. Selesaikan SC-07 s.d. SC-12 + security/revert test.
-6. Bangun service backend read/write + receipt/event reader + verification.
-7. Selesaikan INT-01 s.d. INT-05 dengan bukti tx hash dan block number.
-8. Bangun queue/worker paralel + sequential baseline; jalankan PAR-01/PAR-02.
-9. Jalankan benchmark PAR-03/PAR-04, lalu regression 21 test.
+1. Implementasi kontrak V1 sesuai `docs/week2/02_CONTRACT_SPEC_FINAL.md` (enum 8 state, hash, operator, ABI lengkap).
+2. Aktifkan SC-01 s.d. SC-06 dan capai 6/6 PASS.
+3. Arsipkan `contract_abi.v1.json` dan freeze interface di akhir Minggu 3.
+4. Jadwalkan uji clean clone di komputer anggota lain untuk menutup `W2-FRL-05`.
+5. Implementasi V2: `recordPayment`, `updateOrderStatus`, `cancelOrder`, refund.
+6. Selesaikan SC-07 s.d. SC-12 + security/revert test.
+7. Bangun service backend read/write + receipt/event reader + verification.
+8. Selesaikan INT-01 s.d. INT-05 dengan bukti tx hash dan block number.
+9. Bangun queue/worker paralel + sequential baseline; jalankan PAR-01 s.d. PAR-04.
 10. Final report, weekly log, code freeze, dan demo end-to-end.
 
 ## 5. Catatan Eksekusi
@@ -253,8 +256,11 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 - Minggu 1 selesai: 17/17 issue memiliki artefak di `docs/week1/` + `migration_parallel.sql` + PR template.
 - **Database:** MySQL 8.0.30 aktif; `migration_blockchain.sql` dan `migration_parallel.sql` berhasil dijalankan.
 - **Blockchain:** Ganache 7.9.1 aktif di `127.0.0.1:7545` (chainId 1337, networkId 5777); `HSportStore` dideploy di `0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab`; log di `blockchain/deployments/`.
-- `Progress Tracker.docx` sudah di-re-baseline: Milestone 1 = Selesai 100%; milestone lain memakai progress berbasis issue.
+- **Minggu 2:** `docs/week2/README.md` menjadi indeks; baseline environment, wireframe UI, spesifikasi kontrak final, dan prosedur reproduksi tersedia.
+- **Reproduksi:** clean clone `npm ci → compile → migrate → npm test` PASS; ABI SHA-256 identik (`FC5622FE...9D6252`); address clean clone `0x5b1869D9A4C187F2EAa108f3062412ecf0526b24`; bukti di `docs/week2/evidence/reproduction_clean_clone.log`.
+- **Template:** `docs/templates/TEST_REPORT_TEMPLATE.md`, `BUG_REPORT_TEMPLATE.md`, `BENCHMARK_SHEET.csv`.
+- `Progress Tracker.docx` sudah di-re-baseline: Milestone 1 = Selesai 100%; Milestone 2 = 97%.
 - `blockchain/README.md` sudah diperbaiki dari Hardhat ke Truffle.
-- Kontrak saat ini masih `HSportStore` 4 state; target interface ada di `docs/week1/04_CONTRACT_AND_PARALLEL_DESIGN.md`.
+- Kontrak saat ini masih `HSportStore` 4 state; target final ada di `docs/week2/02_CONTRACT_SPEC_FINAL.md`.
 - **Test harness:** `blockchain/test/` sudah ada; baseline smoke 4 PASS, skeleton SC-01..SC-06 6 pending. Belum ada test SC yang diaktifkan; 0/21 test wajib PASS.
 - PHP 8.1.10 tidak ada di PATH; Composer tidak terpasang; integrasi direncanakan memakai JSON-RPC cURL.

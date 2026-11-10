@@ -5,8 +5,9 @@
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
 **Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) — 31 selesai, 12 sebagian, 69 belum dari 112 issue.
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) — 33 selesai, 12 sebagian, 67 belum dari 112 issue.
 **Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) — 17/17 issue selesai.
+**Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) — 15 selesai, 1 sebagian (`W2-FRL-05`).
 
 ---
 
@@ -39,7 +40,7 @@ Tracker mencatat seluruh milestone 0%, tetapi repo sudah memiliki sebagian imple
 | Environment blockchain | Sebagian | `truffle-config.js`, `config/contract_address.txt`, `config/contract_abi.json`, `scripts/checkGanache.js` |
 | Integrasi Web3 | Sebagian (client-side) | `crypto-payment.php`, `orders.php`, `admin/orders.php`, `api/blockchain-api.php` |
 | Backend read/receipt/event/verification | Belum | API hanya menyimpan `tx_hash` dan `wallet_address` |
-| 21 test case otomatis | Belum | Tidak ada folder test di `blockchain/` |
+| 21 test case otomatis | Harness ada, 0/21 aktif | `blockchain/test/` (smoke 4 PASS, skeleton 6 pending) |
 | Parallel processing (queue/worker/partition) | Belum | Baru disebut di dokumen |
 | Benchmark & dashboard performa | Belum | — |
 | Dokumentasi & tracker | Ada, tetapi status belum akurat | Tracker masih 0% untuk semua milestone |
@@ -50,7 +51,7 @@ Tracker mencatat seluruh milestone 0%, tetapi repo sudah memiliki sebagian imple
 2. ✅ Nama integration engineer dikunci: **Luis** (Sahrul tidak dipakai lagi).
 3. ✅ Stack dikunci: **PHP native** (bukan Laravel).
 4. ✅ `blockchain/README.md` sudah memakai **Truffle** (bukan Hardhat).
-5. ⏳ `migration_blockchain.sql` sudah ada, tetapi belum dijalankan karena MySQL mati saat audit.
+5. ✅ `migration_blockchain.sql` dan `migration_parallel.sql` sudah dijalankan dan diverifikasi di MySQL 8.0.30.
 6. ✅ Kontrak tetap `HSportStore` (extend), target interface didokumentasikan di `docs/week1/04_CONTRACT_AND_PARALLEL_DESIGN.md`.
 
 ---
@@ -103,29 +104,30 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 2 — Blockchain Environment
 
-**Status saat ini:** Berjalan — 13 selesai, 1 sebagian, 2 belum dari 16 issue. MySQL, migration, Ganache, deploy, deployment log, `.env.example`, dan harness test sudah terverifikasi; uji reproduksi dan wireframe belum.
+**Status saat ini:** Selesai (artefak) — 15 selesai, 1 sebagian, 0 belum dari 16 issue. Spesifikasi kontrak final, wireframe, template, dan simulasi clean clone (ABI identik) tersedia; uji di komputer anggota lain belum.
 **Lead:** Farrel · **Pendukung:** Arby, Agustina, Luis · **Target:** 22%
 
 | PIC | Issue | Output / Evidence |
 |---|---|---|
-| FRL | `W2-FRL-01` Finalkan Ganache: chain ID, akun, RPC 7545, snapshot | Config + panduan |
-| FRL | `W2-FRL-02` Panduan MetaMask: add network, import akun | Dokumen setup |
-| FRL | `W2-FRL-03` Truffle config + test harness + perbaiki README | Repo blockchain siap |
-| FRL | `W2-FRL-04` Deploy script + ABI/address history + `.env.example` | Script + deployment log |
-| FRL | `W2-FRL-05` Uji reproduksi di komputer anggota lain | Screenshot/log |
-| ARB | `W2-ARB-02` Finalkan struct/enum/mapping/modifier | Spesifikasi kontrak |
-| ARB | `W2-ARB-03` Skeleton unit test SC-01 s.d. SC-06 | Test file awal |
-| AGU | `W2-AGU-02` Finalkan transition table + event list | Dokumen state & event |
-| AGU | `W2-AGU-03` Revert rules matrix | Matriks revert |
-| LUI | `W2-LUI-02` Desain service read/write/receipt/verification | Dokumen desain service |
-| LUI | `W2-LUI-03` Daftar field DB proof + index | Draft migration |
-| FDR | `W2-FDR-03` Finalkan schema queue/verification + index | Migration |
-| FEE | `W2-FEE-06` Update traceability dengan 21 test case | Traceability v0.2 |
-| YAS | `W2-YAS-05` Requirement-to-test mapping v1 | Matriks REQ–Test |
-| IHS | `W2-IHS-02` Wireframe wallet, tx status, proof page, dashboard | Mockup |
-| KEN | `W2-KEN-02` Template test report, bug report, benchmark sheet | Template |
+| FRL | `W2-FRL-01` Finalkan Ganache: chain ID, akun, RPC 7545, snapshot | `docs/week2/00_ENVIRONMENT_BASELINE.md` |
+| FRL | `W2-FRL-02` Panduan MetaMask: add network, import akun | `docs/PANDUAN_SETUP_DAN_OPERASIONAL.md` Langkah 4 |
+| FRL | `W2-FRL-03` Truffle config + test harness + perbaiki README | `blockchain/test/`, baseline smoke 4 PASS |
+| FRL | `W2-FRL-04` Deploy script + ABI/address history + `.env.example` | `blockchain/scripts/logDeployment.js`, `blockchain/deployments/` |
+| FRL | `W2-FRL-05` Uji reproduksi di komputer anggota lain | Sebagian: clean clone PASS di mesin sendiri + `docs/week2/evidence/reproduction_clean_clone.log` |
+| ARB | `W2-ARB-02` Finalkan struct/enum/mapping/modifier | `docs/week2/02_CONTRACT_SPEC_FINAL.md` |
+| ARB | `W2-ARB-03` Skeleton unit test SC-01 s.d. SC-06 | `blockchain/test/01_sc01_sc06.skeleton.test.js` |
+| AGU | `W2-AGU-02` Finalkan transition table + event list | `docs/week2/02` bagian 7 & 9 |
+| AGU | `W2-AGU-03` Revert rules matrix | `docs/week2/02` bagian 12 (R01–R20) |
+| LUI | `W2-LUI-02` Desain service read/write/receipt/verification | `docs/week1/05` bagian B |
+| LUI | `W2-LUI-03` Daftar field DB proof + index | `migration_blockchain.sql` (sudah dijalankan) |
+| FDR | `W2-FDR-03` Finalkan schema queue/verification + index | `migration_parallel.sql` (sudah dijalankan) |
+| FEE | `W2-FEE-06` Update traceability dengan 21 test case | `docs/week1/03_TRACEABILITY_MATRIX.md` |
+| YAS | `W2-YAS-05` Requirement-to-test mapping v1 | `docs/week1/02` bagian 6 + `03` |
+| IHS | `W2-IHS-02` Wireframe wallet, tx status, proof page, dashboard | `docs/week2/01_UI_WIREFRAMES.md` |
+| KEN | `W2-KEN-02` Template test report, bug report, benchmark sheet | `docs/templates/` |
 
 **Exit gate:** clean clone → compile → deploy berhasil di mesin anggota lain; ABI/address konsisten.
+**Status gate:** ABI konsisten dan clean clone PASS di mesin sendiri; uji di mesin anggota lain **belum** (`W2-FRL-05` sebagian).
 
 ---
 
