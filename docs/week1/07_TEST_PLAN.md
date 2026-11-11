@@ -257,7 +257,7 @@ contract("HSportStore", (accounts) => {
 | Expected | Revert `Not operator`; revert `Not buyer`; revert `Not owner`; revert `Cannot remove owner` |
 | Evidence | Output revert |
 | Owner / Validator | Arby + Agustina / Kenjiro |
-| Status | Not Started |
+| Status | PASS (11 Nov 2026) |
 
 #### SC-08 — `recordPayment` valid + double payment
 
@@ -269,7 +269,7 @@ contract("HSportStore", (accounts) => {
 | Expected | Status `Paid`; `paymentRecorded == true`; event `PaymentRecorded`; panggilan kedua revert `Payment already recorded` (atau `Invalid state transition`) |
 | Evidence | Tx hash + event + output revert |
 | Owner / Validator | Agustina / Kenjiro |
-| Status | Not Started |
+| Status | PASS (11 Nov 2026) |
 
 #### SC-09 — Transisi valid & `shipOrder`
 
@@ -281,7 +281,7 @@ contract("HSportStore", (accounts) => {
 | Expected | Status berurutan `InProduction → ReadyToShip → Shipped`; `updatedAt` berubah; event `OrderStatusUpdated` (dengan old/new) dan `OrderShipped` |
 | Evidence | Tx hash tiap langkah + event |
 | Owner / Validator | Agustina / Kenjiro |
-| Status | Not Started |
+| Status | PASS (11 Nov 2026) |
 
 #### SC-10 — Transisi tidak sah
 
@@ -293,7 +293,7 @@ contract("HSportStore", (accounts) => {
 | Expected | Semua revert `Invalid state transition` / `Not ready to ship`; state tidak berubah |
 | Evidence | Output revert |
 | Owner / Validator | Agustina / Kenjiro |
-| Status | Not Started |
+| Status | PASS (11 Nov 2026) |
 
 #### SC-11 — `cancelOrder` valid, unauthorized, terminal
 
@@ -305,7 +305,7 @@ contract("HSportStore", (accounts) => {
 | Expected | Order 1 `Cancelled` + refund; buyer cancel order 2 revert `Not authorized to cancel`; operator cancel order 2 `Cancelled` + refund; order 3 revert `Invalid state transition` / `Order is final` |
 | Evidence | Tx hash + event `OrderCancelled`/`EscrowRefunded` + revert |
 | Owner / Validator | Agustina / Kenjiro |
-| Status | Not Started |
+| Status | PASS (11 Nov 2026) |
 
 #### SC-12 — `confirmReceived`, release escrow, double release
 
@@ -314,10 +314,10 @@ contract("HSportStore", (accounts) => {
 | Requirement | REQ-07, REQ-08 |
 | Precondition | Order ID 1 `Shipped`; saldo seller dicatat |
 | Steps | 1) Buyer `confirmReceived(1)`. 2) Cek saldo seller. 3) `confirmReceived(1)` lagi. 4) `confirmReceived` pada order yang belum `Shipped`. |
-| Expected | Status `Completed`; `escrow.released == true`; saldo seller naik `amount`; event `OrderCompleted` + `EscrowReleased`; panggilan kedua revert `Already released`/`Order is final`; order belum shipped revert `Not shipped yet` |
+| Expected | Status `Completed`; `escrow.released == true`; saldo seller naik `amount`; event `OrderCompleted` + `EscrowReleased`; panggilan kedua revert `Not shipped yet` (guard status dievaluasi sebelum guard released — lihat R-01 di docs/week3/04_REVIEW_NOTES.md); order belum shipped revert `Not shipped yet` |
 | Evidence | Tx hash + saldo before/after + event + revert |
 | Owner / Validator | Agustina / Kenjiro |
-| Status | Not Started |
+| Status | PASS (11 Nov 2026) |
 
 ### 7.2 Integrasi (INT-01 s.d. INT-05)
 
