@@ -838,7 +838,7 @@ $colorMap = [
                                         </div>
                                         <div class="col-12 mt-2">
                                             <small class="d-block text-muted">Metode Eksekusi</small>
-                                            <code class="font-mono text-warning">HSportStore.createOrder(string _orderNumber, uint256 _amount)</code>
+                                            <code class="font-mono text-warning">HSportStore.createOrder(bytes32 _externalOrderHash, string _orderNumber, uint256 _amount)</code>
                                         </div>
                                     </div>
                                 </div>
@@ -1390,15 +1390,24 @@ $colorMap = [
                 // Hitung amount wei
                 const amountWei = web3.utils.toWei(calculatedEth.toFixed(18), 'ether');
 
+                // Hash kanonik order: keccak256(abi.encode(orderNumber, buyer, amount))
+                // Harus sama dengan formula di blockchain/scripts/orderHash.js dan test SC.
+                const externalOrderHash = web3.utils.soliditySha3(
+                    { type: 'string', value: orderNumber },
+                    { type: 'address', value: userAccount },
+                    { type: 'uint256', value: amountWei }
+                );
+
                 // Encode createOrder data
                 const encodedData = web3.eth.abi.encodeFunctionCall({
                     name: 'createOrder',
                     type: 'function',
                     inputs: [
+                        { type: 'bytes32', name: '_externalOrderHash' },
                         { type: 'string', name: '_orderNumber' },
                         { type: 'uint256', name: '_amount' }
                     ]
-                }, [orderNumber, amountWei]);
+                }, [externalOrderHash, orderNumber, amountWei]);
 
                 // Kirim transaksi ke Ganache
                 const tx = await web3.eth.sendTransaction({
