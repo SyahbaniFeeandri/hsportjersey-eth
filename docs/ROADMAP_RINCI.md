@@ -5,10 +5,11 @@
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
 **Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 44 selesai, 11 sebagian, 57 belum dari 112 issue.
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 54 selesai, 9 sebagian, 49 belum dari 112 issue.
 **Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) - 17/17 issue selesai.
 **Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 15 selesai, 1 sebagian (`W2-FRL-05`).
 **Artefak Minggu 3:** lihat [docs/week3/README.md](week3/README.md) - 12/12 issue selesai (exit gate teknis terpenuhi).
+**Artefak Minggu 4:** lihat [docs/week4/README.md](week4/README.md) - 10 selesai, 1 sebagian (`W4-IHS-04`), 1 belum (`W4-FDR-05`); 12/12 SC PASS.
 
 ---
 
@@ -159,7 +160,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 4 — Smart Contract V2
 
-**Status saat ini:** Sebagian — 0 selesai, 3 sebagian, 9 belum dari 12 issue.
+**Status saat ini:** Berjalan — 10 selesai, 1 sebagian, 1 belum dari 12 issue (**88%**). Exit gate kontrak terpenuhi; sisa UI cancel dan UAT browser menjadi carry-over M5.
 **Lead:** Agustina · **Pendukung:** Arby, Farrel, Kenjiro · **Target:** 52%
 
 | PIC | Issue | Output / Evidence |
@@ -177,7 +178,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 | FEE | `W4-FEE-09` Update traceability + dokumentasi kontrak | Dokumen |
 | YAS | `W4-YAS-08` UAT scenario payment/status/cancel | Skenario UAT |
 
-**Exit gate:** 12/12 SC PASS, security test selesai, ABI/address v2 dipublikasikan.
+**Exit gate:** 12/12 SC PASS, security test selesai, ABI/address v2 dipublikasikan. **Tercapai 11 November 2026:** kontrak V2 `0x2f3e…bE10`, 16 passing (12 SC + 4 smoke), security review tanpa Critical/High/Medium.
 
 ---
 

@@ -14,6 +14,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 **Update 11 November 2026:** Minggu 3 selesai — 12/12 issue memiliki artefak. Kontrak V1 terdeploy di `0x59d3…a150`, SC-01 s.d. SC-06 6/6 PASS, ABI V1 diarsipkan, dan interface freeze teknis berlaku. Sisa: sign-off reviewer di PR dan `W2-FRL-05`.
 
+**Update 11 November 2026 (M4):** Minggu 4 selesai untuk scope kontrak — 10 selesai, 1 sebagian (`W4-IHS-04`), 1 belum (`W4-FDR-05`). Kontrak V2 terdeploy di `0x2f3e…bE10`, SC-07 s.d. SC-12 6/6 PASS, regresi SC-01..06 PASS, security review tanpa temuan Critical/High/Medium, dan ABI V2 diarsipkan. UI cancel dan UAT browser menjadi carry-over M5.
+
 ## Legenda Status
 
 | Status | Arti |
@@ -26,9 +28,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 44 | 39.3% |
-| Sebagian | 11 | 9.8% |
-| Belum | 57 | 50.9% |
+| Selesai | 54 | 48.2% |
+| Sebagian | 9 | 8.0% |
+| Belum | 49 | 43.8% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -38,7 +40,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | 1 | Analisis & Scope Freeze (Feeandri + Yasmin) | 17 | 0 | 0 | 17 |
 | 2 | Blockchain Environment (Farrel) | 15 | 1 | 0 | 16 |
 | 3 | Smart Contract V1 (Arby) | 12 | 0 | 0 | 12 |
-| 4 | Smart Contract V2 (Agustina) | 0 | 3 | 9 | 12 |
+| 4 | Smart Contract V2 (Agustina) | 10 | 1 | 1 | 12 |
 | 5 | Integrasi PHP–Blockchain (Luis) | 0 | 3 | 12 | 15 |
 | 6 | Parallel Processing (Farelly) | 0 | 0 | 13 | 13 |
 | 7 | Benchmark & Integration Test (Kenjiro) | 0 | 0 | 13 | 13 |
@@ -116,22 +118,22 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 4 — Smart Contract V2 (Agustina)
 
-**Status:** 0 selesai, 3 sebagian, 9 belum dari 12 issue.
+**Status:** 10 selesai, 1 sebagian, 1 belum dari 12 issue.
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
-| `W4-AGU-06` | recordPayment, updateOrderStatus, cancelOrder, operator management | Kontrak V2 | Sebagian | `recordPayment`, `updateOrderStatus`, `addOperator`, `removeOperator` sudah ada di V1; `cancelOrder` + refund belum |
-| `W4-AGU-07` | Event lengkap + revert rules + security check | Event & revert | Sebagian | 9 event dideklarasikan; 8 dipancarkan di V1; event cancel menunggu V2; security review V1 selesai (`04_REVIEW_NOTES.md`) |
-| `W4-AGU-08` | Unit test SC-07 s.d. SC-12 | 6/6 PASS | Belum | - |
-| `W4-ARB-08` | Review V2 + regresi SC-01 s.d. SC-06 | Regression PASS | Belum | - |
-| `W4-FRL-07` | Deploy V2 + update ABI/address history | Address v2 | Belum | V2 belum ada |
-| `W4-FRL-08` | Cek kompatibilitas frontend dengan interface V2 | Catatan kompatibilitas | Belum | - |
-| `W4-KEN-04` | Security/revert test independen + review SC-07 s.d. SC-12 | Security report | Belum | - |
-| `W4-LUI-05` | Sesuaikan service dengan ABI V2 | Service update | Belum | - |
-| `W4-IHS-04` | Implement wallet connect + tx status UI (mock) | UI berjalan | Sebagian | Wallet connect + modal tx ada di crypto-payment.php; belum general/proof |
-| `W4-FDR-05` | Sequential baseline CLI dengan data mock | Baseline script | Belum | - |
-| `W4-FEE-09` | Update traceability + dokumentasi kontrak | Dokumen | Belum | - |
-| `W4-YAS-08` | UAT scenario payment/status/cancel | Skenario UAT | Belum | - |
+| `W4-AGU-06` | recordPayment, updateOrderStatus, cancelOrder, operator management | Kontrak V2 | Selesai | `cancelOrder` + refund di V2; `docs/week4/00_CONTRACT_V2.md` |
+| `W4-AGU-07` | Event lengkap + revert rules + security check | Event & revert | Selesai | 9 event dipancarkan di V2; `docs/week4/02_SECURITY_REVIEW.md` |
+| `W4-AGU-08` | Unit test SC-07 s.d. SC-12 | 6/6 PASS | Selesai | `blockchain/test/02_sc07_sc12.test.js`; `docs/week4/evidence/sc07_sc12_test.log` (16 passing) |
+| `W4-ARB-08` | Review V2 + regresi SC-01 s.d. SC-06 | Regression PASS | Selesai | Regresi 6/6 PASS pada V2; `docs/week4/01_TEST_REPORT_V2.md` §2 |
+| `W4-FRL-07` | Deploy V2 + update ABI/address history | Address v2 | Selesai | `0x2f3e…bE10`; `docs/week4/03_DEPLOYMENT_V2.md`; ABI V2 diarsipkan |
+| `W4-FRL-08` | Cek kompatibilitas frontend dengan interface V2 | Catatan kompatibilitas | Selesai | `docs/week4/04_FRONTEND_COMPAT.md`; config-driven, signature V1 tidak berubah |
+| `W4-KEN-04` | Security/revert test independen + review SC-07 s.d. SC-12 | Security report | Selesai | `docs/week4/02_SECURITY_REVIEW.md`; 11 ancaman diuji, tanpa Critical/High/Medium |
+| `W4-LUI-05` | Sesuaikan service dengan ABI V2 | Service update | Selesai | `blockchain/scripts/read_contract.php` membaca V2; `docs/week4/03_DEPLOYMENT_V2.md` §2 |
+| `W4-IHS-04` | Implement wallet connect + tx status UI (mock) | UI berjalan | Sebagian | Wallet connect + modal tx ada di `crypto-payment.php`; tombol cancel dan halaman proof belum |
+| `W4-FDR-05` | Sequential baseline CLI dengan data mock | Baseline script | Belum | Di luar scope M4; dimulai di M6 |
+| `W4-FEE-09` | Update traceability + dokumentasi kontrak | Dokumen | Selesai | `docs/week1/03_TRACEABILITY_MATRIX.md`, `docs/week4/README.md` |
+| `W4-YAS-08` | UAT scenario payment/status/cancel | Skenario UAT | Selesai | `docs/week4/05_UAT_CANCEL.md`; UAT-09..12 dipetakan ke SC-11/SC-12 |
 
 ### Minggu 5 — Integrasi PHP–Blockchain (Luis)
 
