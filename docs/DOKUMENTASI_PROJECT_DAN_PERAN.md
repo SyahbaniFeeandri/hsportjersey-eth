@@ -97,15 +97,15 @@ Proyek ini dikerjakan oleh 9 orang dengan pembagian peran yang terdefinisi secar
 * **Peran (Role):** Solidity Developer I - Order Core
 * **Periode Keterlibatan:** Minggu 3 – 4 (Dukungan aktif s.d. Minggu 7)
 * **Tanggung Jawab:**
-  - Merancang arsitektur inti dari Smart Contract (`HSportOrder.sol` / `HSportStore.sol`).
+  - Merancang arsitektur inti dari Smart Contract (`HSportStore.sol`, di-extend sesuai keputusan D2).
   - Mengembangkan struktur data utama (`struct`, `enum`, `mapping`) untuk pesanan dan pembeli.
   - Mengimplementasikan kendali akses dasar (`access control`, `modifier`).
   - Menulis pengujian unit contract untuk modul order core (SC-01 s.d. SC-06).
 * **Deliverable Wajib:**
-  1. **HSportOrder.sol Core:** Kode smart contract modul pembuatan dan pembacaan order.
+  1. **HSportStore.sol Core:** Kode smart contract modul pembuatan dan pembacaan order (extend, bukan file baru).
   2. **Data Structure:** Definisi `Order`, `OrderStatus`, relasi mapping id pemesanan ke alamat wallet pembeli.
   3. **Access Control Dasar:** Modifier proteksi fungsi (`onlyOwner`, `onlyBuyer`, `orderExists`).
-  4. **Unit Test SC-01 s.d. SC-06:** Test script otomatis menggunakan Hardhat/Truffle untuk validasi fungsi dasar order.
+  4. **Unit Test SC-01 s.d. SC-06:** Test script otomatis menggunakan Truffle untuk validasi fungsi dasar order.
   5. **Function Documentation:** Komentar & spesifikasi teknis NatSpec untuk setiap fungsi smart contract order core.
 
 ---
@@ -115,7 +115,7 @@ Proyek ini dikerjakan oleh 9 orang dengan pembagian peran yang terdefinisi secar
 * **Periode Keterlibatan:** Minggu 3 – 4 (Dukungan aktif s.d. Minggu 7)
 * **Tanggung Jawab:**
   - Mengembangkan logika finansial escrow, penerimaan pembayaran cryptocurrency, dan pelepasan dana otomatis.
-  - Mengatur mesin status pemesanan (*state machine*): `Created` -> `Paid` -> `Shipped` -> `Completed` / `Cancelled`.
+  - Mengatur mesin status pemesanan (*state machine*): `Created` -> `AwaitingPayment` -> `Paid` -> `InProduction` -> `ReadyToShip` -> `Shipped` -> `Completed` / `Cancelled`.
   - Mengimplementasikan *event logging* blockchain dan aturan validasi keamanan finansial.
   - Menulis pengujian unit contract lanjutan (SC-07 s.d. SC-12).
 * **Deliverable Wajib:**
@@ -123,7 +123,7 @@ Proyek ini dikerjakan oleh 9 orang dengan pembagian peran yang terdefinisi secar
   2. **State Transition Rules:** Validasi transisi status yang ketat (mencegah manipulasi status jika belum bayar / belum dikirim).
   3. **Event Implementation:** Emisi event blockchain (`OrderCreated`, `OrderShipped`, `OrderCompleted`, `EscrowReleased`).
   4. **Operator Management:** Pengelolaan role khusus (operator/seller/admin) untuk memperbarui status pengiriman.
-  5. **Unit Test SC-07 s.d. SC-12:** Test script Hardhat/Truffle untuk skenario pembayaran, refund, security revert, dan release escrow.
+  5. **Unit Test SC-07 s.d. SC-12:** Test script Truffle untuk skenario pembayaran, refund, security revert, dan release escrow.
 
 ---
 
@@ -131,22 +131,22 @@ Proyek ini dikerjakan oleh 9 orang dengan pembagian peran yang terdefinisi secar
 * **Peran (Role):** Blockchain Infrastructure & Deployment Engineer
 * **Periode Keterlibatan:** Minggu 2 – 8
 * **Tanggung Jawab:**
-  - Mempersiapkan dan mengonfigurasi infrastruktur blockchain lokal (Ganache testnet, Hardhat node).
+  - Mempersiapkan dan mengonfigurasi infrastruktur blockchain lokal (Ganache testnet lokal, RPC 7545).
   - Menyediakan konfigurasi RPC, akun uji coba, faucet ETH lokal, dan integrasi MetaMask.
   - Menyusun skrip deployment otomatis smart contract dan mengelola arsip ABI serta alamat contract address antar-environment.
 * **Deliverable Wajib:**
   1. **Ganache / MetaMask Setup:** Panduan dan automasi environment node blockchain lokal dengan multi-account test.
-  2. **Hardhat Config:** Berkas konfigurasi network, compiler solidity, optimizer, dan gas reporter.
+  2. **Truffle Config:** Berkas konfigurasi network, compiler solidity, optimizer, dan gas reporter.
   3. **Deploy Script:** Skrip migrasi/deployment smart contract yang *reproducible* ke jaringan uji.
   4. **ABI / Address History:** Pencatatan versi contract artifacts (ABI) dan histori alamat contract saat dideploy ulang.
 
 ---
 
 ### 6. Luis
-* **Peran (Role):** Laravel-Blockchain Integration Engineer
+* **Peran (Role):** PHP–Blockchain Integration Engineer
 * **Periode Keterlibatan:** Minggu 5 – 7 (Demo Minggu 8)
 * **Tanggung Jawab:**
-  - Membangun jembatan komunikasi (*bridge*) antara aplikasi backend (Laravel/PHP) dengan Ethereum node.
+  - Membangun jembatan komunikasi (*bridge*) antara aplikasi backend (PHP native) dengan Ethereum node.
   - Menyediakan *service* untuk membaca transaksi (*read*) dan menulis bukti ke blockchain (*write*).
   - Membaca transaction receipt dan event listener untuk verifikasi status on-chain.
   - Menyimpan bukti kriptografis transaksi (*tx_hash*, block number, wallet address) ke database.
@@ -218,11 +218,11 @@ Proyek ini dikerjakan oleh 9 orang dengan pembagian peran yang terdefinisi secar
 | Minggu | Milestone | Lead | Pendukung Utama | Deliverable Kunci |
 |---|---|---|---|---|
 | **1** | **Analisis & Scope Freeze** | Feeandri + Yasmin | Farelly, Arby, Agustina | Requirement addendum, scope statement, on/off-chain matrix, state diagram, parallel workload design, Git repository setup. |
-| **2** | **Blockchain Environment** | Muhammad Farrel | Arby, Agustina, Luis | Ganache node setup, MetaMask network config, Hardhat framework config, RPC endpoints, initial test deployment, contract address mapping. |
+| **2** | **Blockchain Environment** | Muhammad Farrel | Arby, Agustina, Luis | Ganache node setup, MetaMask network config, Truffle framework config, RPC endpoints, initial test deployment, contract address mapping. |
 | **3** | **Smart Contract V1** | Arby Putra | Agustina, Farrel, Kenjiro | Core data structures (`enum`, `struct`, `mapping`, `modifier`), fungsi `createOrder`/`getOrder`, ABI export, unit test awal (SC-01 s.d SC-06). |
 | **4** | **Smart Contract V2** | Agustina Elsi Bunga | Arby, Farrel, Kenjiro | Business logic payment escrow, transisi status order, refund/cancel, operator authorization, event emission, security revert test (SC-07 s.d SC-12). |
-| **5** | **Laravel-Blockchain Integration** | Luis | Farrel, Ihsanul, Yasmin | Integrasi READ+WRITE ke RPC node, wallet address binding, transaction hash & receipt verification, persistensi bukti transaksi ke DB (INT-01 s.d INT-05). |
-| **6** | **Parallel Processing** | Farelly De Rossi | Sahrul, Ihsanul, Kenjiro | Arsitektur Job/Queue, implementasi pemrosesan sekuensial baseline, arsitektur multi-worker paralel, algoritma verifikasi partition/reduce (PAR-01 s.d PAR-04). |
+| **5** | **PHP–Blockchain Integration** | Luis | Farrel, Ihsanul, Yasmin | Integrasi READ+WRITE ke RPC node, wallet address binding, transaction hash & receipt verification, persistensi bukti transaksi ke DB (INT-01 s.d INT-05). |
+| **6** | **Parallel Processing** | Farelly De Rossi | Luis, Ihsanul, Kenjiro | Arsitektur Job/Queue, implementasi pemrosesan sekuensial baseline, arsitektur multi-worker paralel, algoritma verifikasi partition/reduce (PAR-01 s.d PAR-04). |
 | **7** | **Benchmark & Integration Test** | Kenjiro B.H.G | Farelly, Ihsanul, Feeandri | Pengujian performa beban tinggi, analisis metrik speedup/efficiency/throughput, visualisasi grafik performa, pelaporan bug, verifikasi UAT lengkap. |
 | **8** | **Finalisasi & Demo** | Semua Anggota | Semua Anggota | Reproducible repository, dokumentasi README & final report, rehearsal presentasi, dan demonstrasi sistem end-to-end terintegrasi. |
 
@@ -263,7 +263,7 @@ Sistem diwajibkan lolos 21 skenario pengujian terstandarisasi yang dibagi ke dal
 
 ## 5. Ringkasan Teknis On-Chain vs Off-Chain
 
-| Komponen | On-Chain (Ethereum Smart Contract) | Off-Chain (Laravel/PHP & MySQL Database) |
+| Komponen | On-Chain (Ethereum Smart Contract) | Off-Chain (PHP native & MySQL Database) |
 |---|---|---|
 | **Penyimpanan Data** | Order ID, Wallet Buyer, Total Amount (Wei), Status Order, Timestamp, Payment Escrow State. | Katalog produk, foto jersey, detail spesifikasi, alamat pengiriman fisik, data kontak, cart, audit log. |
 | **Logika Bisnis** | Kunci dana pembeli, validasi nilai pembayaran, transfer dana ke penjual saat konfirmasi selesai, emisi event. | Checkout belanja, manajemen inventaris stok, antrean verifikasi paralel, tampilan UI/UX, dashboard reporting. |

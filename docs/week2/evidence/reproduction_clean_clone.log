@@ -1,0 +1,156 @@
+﻿=== CLEAN CLONE REPRODUCTION 2026-11-10T16:05:04.2831719+07:00 ===
+REPO: C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain
+=== truffle version ===
+Truffle v5.11.5 (core: 5.11.5)
+Ganache v7.9.1
+Solidity - 0.8.19 (solc-js)
+Node v24.20.0
+Web3.js v1.10.0
+=== npm run compile ===
+
+> blockchain@1.0.0 compile
+> truffle compile
+
+
+Compiling your contracts...
+===========================
+> Compiling .\contracts\HSportStore.sol
+> Artifacts written to C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\build\contracts
+> Compiled successfully using:
+   - solc: 0.8.19+commit.7dd6d404.Emscripten.clang
+=== npm run migrate ===
+
+> blockchain@1.0.0 migrate
+> truffle migrate --network ganache --reset
+
+node.exe : This version of ┬╡WS is not compatible with your Node.js build:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (This version of... Node.js build::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+Error: Cannot find module '../binaries/uws_win32_x64_137.node'
+Require stack:
+- C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\ganache\node_modules\@tr
+ufflesuite\uws-js-unofficial\src\uws.js
+- 
+C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\ganache\dist\node\core.js
+- C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\truffle\build\migrate.bu
+ndled.js
+- 
+C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\original-require\index.js
+- C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\truffle\build\cli.bundle
+d.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+
+Compiling your contracts...
+===========================
+> Compiling .\contracts\HSportStore.sol
+> Artifacts written to C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\build\contracts
+> Compiled successfully using:
+   - solc: 0.8.19+commit.7dd6d404.Emscripten.clang
+
+
+Starting migrations...
+======================
+> Network name:    'ganache'
+> Network id:      5777
+> Block gas limit: 30000000 (0x1c9c380)
+
+
+1_deploy_hsportstore.js
+=======================
+
+   Deploying 'HSportStore'
+   -----------------------
+   > transaction hash:    0x13d5b895b2fefb2ff0442acb6d877f2bd95a1edf8998b7bb48916b9b61ee2841
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x5b1869D9A4C187F2EAa108f3062412ecf0526b24
+   > block number:        2
+   > block timestamp:     1794301512
+   > account:             0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
+   > balance:             999.99421799546414749
+   > gas used:            869871 (0xd45ef)
+   > gas price:           3.27196781 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00284618991085251 ETH
+
+HSportStore deployed to: 0x5b1869D9A4C187F2EAa108f3062412ecf0526b24
+Address and ABI saved to config/
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.00284618991085251 ETH
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.00284618991085251 ETH
+
+
+=== logDeployment ===
+Deployment tercatat: C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\deployments\deployment_2026-11-10T09-05-12-646Z.json
+Address: 0x5b1869D9A4C187F2EAa108f3062412ecf0526b24
+Network ID: 5777 | Chain ID: 1337
+=== npm test ===
+
+> blockchain@1.0.0 test
+> set HSPORT_TEST=1&& truffle test --network ganache
+
+node.exe : This version of ┬╡WS is not compatible with your Node.js build:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (This version of... Node.js build::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+Error: Cannot find module '../binaries/uws_win32_x64_137.node'
+Require stack:
+- C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\ganache\node_modules\@tr
+ufflesuite\uws-js-unofficial\src\uws.js
+- 
+C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\ganache\dist\node\core.js
+- C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\truffle\build\test.bundl
+ed.js
+- 
+C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\original-require\index.js
+- C:\Users\Feeandri\AppData\Local\Temp\opencode\hsport_clean_test\repo\blockchain\node_modules\truffle\build\cli.bundle
+d.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+Using network 'ganache'.
+
+
+Compiling your contracts...
+===========================
+> Compiling .\contracts\HSportStore.sol
+> Artifacts written to C:\Users\Feeandri\AppData\Local\Temp\test--9356-wEdSfr9eXZfO
+> Compiled successfully using:
+   - solc: 0.8.19+commit.7dd6d404.Emscripten.clang
+HSPORT_TEST=1: lewati deploy migration (mode test).
+
+
+  Contract: HSportStore ΓÇö baseline smoke (V0, bukan 21 test)
+    Γ£ö SMOKE-01: owner adalah deployer
+    Γ£ö SMOKE-02: createOrder valid mengunci escrow dan memancarkan event (94ms)
+    Γ£ö SMOKE-03: createOrder amount 0 revert (132ms)
+    Γ£ö SMOKE-04: createOrder dengan msg.value tidak sesuai revert
+
+  Contract: HSportStore ΓÇö SC-01 s.d. SC-06 (skeleton)
+    - SC-01: inisialisasi contract, owner, dan akses owner
+    - SC-02: createOrder valid ΓÇö escrow, state Created, event
+    - SC-03: createOrder amount tidak valid revert
+    - SC-04: duplicate externalOrderHash revert
+    - SC-05: getOrder ID valid mengembalikan data benar
+    - SC-06: getOrder ID tidak ada revert
+
+
+  4 passing (523ms)
+  6 pending
+
