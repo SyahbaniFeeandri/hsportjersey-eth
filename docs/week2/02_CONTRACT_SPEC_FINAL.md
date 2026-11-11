@@ -400,6 +400,7 @@ Pesan revert **wajib identik** karena diuji otomatis. Jangan mengubah teks setel
 | R18 | operator sudah aktif | `addOperator` | `Operator already active` | SC-07 |
 | R19 | operator tidak aktif | `removeOperator` | `Operator not active` | SC-07 |
 | R20 | fungsi belum diimplementasi di V1 | `recordPayment`, `cancelOrder` (V1 saja) | `Not implemented` | — |
+| R21 | `reason` lebih dari 64 byte | `cancelOrder` | `Reason too long` | SC-11 |
 
 > R20 tidak dipakai pada V1 aktual (happy path diimplementasikan). Baris dipertahankan sebagai jejak keputusan; tidak ada pesan ini di kontrak.
 
@@ -434,7 +435,7 @@ Angka ini **perkiraan desain**, bukan hasil pengukuran. Gas aktual dicatat Mingg
 |---|---|---|---|
 | V0 | Kontrak 4 state saat ini | Sudah (10 Nov 2026) | `config/archive/contract_abi.v0.json` |
 | V1 | ABI **lengkap untuk alur inti** (18 entri: 12 fungsi eksplisit + 6 auto-getter) dan 9 event; happy path `createOrder` → `recordPayment` → `updateOrderStatus` → `shipOrder` → `confirmReceived` sudah berfungsi; `cancelOrder`/refund belum ada | Sudah (11 Nov 2026) | `config/archive/contract_abi.v1.json` |
-| V2 | Tambah `cancelOrder` + refund dan pemancaran `OrderCancelled`/`EscrowRefunded` | M4 | `config/contract_abi.json` |
+| V2 | Tambah `cancelOrder` + refund dan pemancaran `OrderCancelled`/`EscrowRefunded` | Sudah (11 Nov 2026) — `0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10` | `config/archive/contract_abi.v2.json` |
 
 **Deviasi dari rencana awal:** dokumen ini semula merencanakan V1 berisi stub `Not implemented` untuk `recordPayment` dan `cancelOrder`. Implementasi aktual (11 November 2026) memilih **happy path penuh** dan hanya menunda cancel/refund ke V2. Konsekuensi:
 
