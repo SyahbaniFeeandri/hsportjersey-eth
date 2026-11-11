@@ -116,7 +116,7 @@ Auto-getter publik (ikut ABI, bukan bagian interface bisnis): `owner()`, `orderC
 - [x] SC-01 s.d. SC-06 PASS (6/6).
 - [ ] Persetujuan tertulis Arby + Agustina + Luis + Kenjiro.
 
-> Item terakhir menunggu tanda tangan reviewer di PR. Freeze teknis sudah berlaku; perubahan hanya boleh lewat PR baru dengan catatan perubahan ABI.
+> Item terakhir menunggu tanda tangan reviewer di PR [#6](https://github.com/SyahbaniFeeandri/hsportjersey-eth/pull/6). Freeze teknis sudah berlaku; perubahan hanya boleh lewat PR baru dengan catatan perubahan ABI.
 
 ---
 

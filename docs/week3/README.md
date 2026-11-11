@@ -153,6 +153,7 @@ Catatan: Ganache deterministic menghasilkan address kontrak yang sama selama non
 
 - Repo: <https://github.com/SyahbaniFeeandri/hsportjersey-eth>
 - PR M2: <https://github.com/SyahbaniFeeandri/hsportjersey-eth/pull/5>
+- PR M3 (stacked): <https://github.com/SyahbaniFeeandri/hsportjersey-eth/pull/6>
 - Spesifikasi kontrak: [`../week2/02_CONTRACT_SPEC_FINAL.md`](../week2/02_CONTRACT_SPEC_FINAL.md)
 - Traceability: [`../week1/03_TRACEABILITY_MATRIX.md`](../week1/03_TRACEABILITY_MATRIX.md)
 - Roadmap: [`../ROADMAP_RINCI.md`](../ROADMAP_RINCI.md)
