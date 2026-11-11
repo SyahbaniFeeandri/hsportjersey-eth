@@ -210,7 +210,7 @@ sequenceDiagram
 | **UAT-09** | Pembeli cancel di `Created` | Pembeli | Order `Created`, escrow terisi | `cancelOrder` | Status `Cancelled`; escrow refund; event `OrderCancelled` | SC-11 | Not Started |
 | **UAT-10** | Pihak luar cancel | Pihak luar | Order `Paid` | `cancelOrder` dari akun luar | Revert `Not authorized to cancel` | SC-11 | Not Started |
 | **UAT-11** | Konfirmasi terima & release | Pembeli | Order `Shipped` | `confirmReceived` | Status `Completed`; saldo seller naik; event release | SC-12 | Not Started |
-| **UAT-12** | Release ganda ditolak | Pembeli | Order sudah `Completed` | `confirmReceived` lagi | Revert `Already released` / `Order is final` | SC-12 | Not Started |
+| **UAT-12** | Release ganda ditolak | Pembeli | Order sudah `Completed` | `confirmReceived` lagi | Revert `Not shipped yet` (lihat R-01) | SC-12 | Not Started |
 | **UAT-13** | Admin verifikasi DB vs chain | Admin | Order punya proof lengkap | Klik verifikasi / jalankan worker | Hasil `VERIFIED` bila cocok; `MISMATCH` bila data diubah | INT-05 | Not Started |
 | **UAT-14** | Pembeli lihat proof | Pembeli | Order punya tx hash | Buka halaman proof | Tx hash, block, contract, status on-chain tampil | REQ-12 | Not Started |
 | **UAT-15** | Parallel = sequential | QA | Dataset 1.000 order | Jalankan sequential lalu parallel 4 worker | Agregasi identik; waktu tercatat | PAR-01, PAR-02 | Not Started |

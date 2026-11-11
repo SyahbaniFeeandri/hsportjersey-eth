@@ -55,7 +55,7 @@ enum OrderStatus {
 | 10 | `confirmReceived(uint256)` | nonpayable | ✅ |
 | 11 | `addOperator(address)` | nonpayable | ✅ |
 | 12 | `removeOperator(address)` | nonpayable | ✅ |
-| 13 | `cancelOrder(uint256,string)` | nonpayable | ⏳ V2 |
+| 13 | `cancelOrder(uint256,string)` | nonpayable | ✅ V2 (11 Nov 2026) |
 
 Auto-getter publik (ikut ABI, bukan bagian interface bisnis): `owner()`, `orderCount()`, `orders(uint256)`, `escrows(uint256)`, `orderIdByHash(bytes32)`, `operators(address)`.
 
@@ -72,8 +72,8 @@ Auto-getter publik (ikut ABI, bukan bagian interface bisnis): `owner()`, `orderC
 | 5 | `OrderCompleted(uint256 indexed,address indexed)` | ✅ |
 | 6 | `EscrowReleased(uint256 indexed,address indexed,uint256)` | ✅ |
 | 7 | `OperatorUpdated(address indexed,bool)` | ✅ |
-| 8 | `OrderCancelled(uint256 indexed,address indexed,string)` | ⏳ V2 |
-| 9 | `EscrowRefunded(uint256 indexed,address indexed,uint256)` | ⏳ V2 |
+| 8 | `OrderCancelled(uint256 indexed,address indexed,string)` | ✅ V2 |
+| 9 | `EscrowRefunded(uint256 indexed,address indexed,uint256)` | ✅ V2 |
 
 ---
 
@@ -100,6 +100,7 @@ Auto-getter publik (ikut ABI, bukan bagian interface bisnis): `owner()`, `orderC
 | `Already released` | `confirmReceived` | SC-12 (M4) |
 | `Order is final` | `updateOrderStatus`, `cancelOrder` (V2) | SC-10/SC-11 |
 | `Not authorized to cancel` | `cancelOrder` | SC-11 (M4) |
+| `Reason too long` | `cancelOrder` | SC-11 (M4) |
 
 ---
 
@@ -108,19 +109,20 @@ Auto-getter publik (ikut ABI, bukan bagian interface bisnis): `owner()`, `orderC
 - [x] Enum 8 state final dan urutannya tidak berubah.
 - [x] Struct `Order` dan `PaymentEscrow` final.
 - [x] 12 signature fungsi V1 final.
-- [x] Signature `cancelOrder` final di dokumen (implementasi V2).
+- [x] Signature `cancelOrder` final di dokumen (terimplementasi V2).
 - [x] 9 event final.
 - [x] Pesan revert final dan unik.
 - [x] ABI V0 diarsipkan (`config/archive/contract_abi.v0.json`).
 - [x] ABI V1 diarsipkan (`config/archive/contract_abi.v1.json`).
-- [x] SC-01 s.d. SC-06 PASS (6/6).
+- [x] ABI V2 diarsipkan (`config/archive/contract_abi.v2.json`).
+- [x] SC-01 s.d. SC-12 PASS (12/12).
 - [ ] Persetujuan tertulis Arby + Agustina + Luis + Kenjiro.
 
 > Item terakhir menunggu tanda tangan reviewer di PR [#6](https://github.com/SyahbaniFeeandri/hsportjersey-eth/pull/6). Freeze teknis sudah berlaku; perubahan hanya boleh lewat PR baru dengan catatan perubahan ABI.
 
 ---
 
-## 7. Delta V2 yang Direncanakan (Aditif)
+## 7. Delta V2 (Terimplementasi 11 November 2026)
 
 | Elemen | Perubahan | Dampak ABI |
 |---|---|---|

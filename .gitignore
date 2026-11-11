@@ -27,6 +27,7 @@ yarn-error.log*
 # Evidence logs are part of the deliverable
 !docs/week2/evidence/*.log
 !docs/week3/evidence/*.log
+!docs/week4/evidence/*.log
 !docs/evidence/**/*.log
 
 # Environment files (if any created later)
