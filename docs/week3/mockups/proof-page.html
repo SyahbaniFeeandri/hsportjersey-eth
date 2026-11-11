@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H-Sport · Mockup Bukti Blockchain (W3-IHS-03)</title>
+<style>
+  :root {
+    --success: #16A34A;
+    --warning: #F59E0B;
+    --danger: #DC2626;
+    --neutral: #6B7280;
+    --ink: #111827;
+    --line: #E5E7EB;
+    --bg: #F3F4F6;
+    --card: #FFFFFF;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 24px 16px 48px; }
+  .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .brand { font-weight: 800; letter-spacing: .3px; }
+  .brand span { color: var(--success); }
+  .back { color: var(--neutral); text-decoration: none; font-size: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+  .order-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+  .order-head h1 { font-size: 20px; margin: 0 0 4px; }
+  .muted { color: var(--neutral); font-size: 13px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 700; }
+  .badge.ok { background: #DCFCE7; color: var(--success); }
+  .badge.warn { background: #FEF3C7; color: #92400E; }
+  .badge.bad { background: #FEE2E2; color: var(--danger); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .field { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .field .k { font-size: 12px; color: var(--neutral); text-transform: uppercase; letter-spacing: .4px; }
+  .field .v { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; margin-top: 6px; word-break: break-all; }
+  .copy { border: 0; background: transparent; color: var(--neutral); cursor: pointer; font-size: 12px; padding: 0 4px; }
+  h2 { font-size: 15px; margin: 0 0 16px; text-transform: uppercase; letter-spacing: .6px; color: var(--neutral); }
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .timeline li { position: relative; padding: 0 0 16px 8px; font-size: 14px; }
+  .timeline li::before { content: ""; position: absolute; left: -22px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--success); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--success); }
+  .timeline li.pending::before { background: #fff; box-shadow: 0 0 0 2px var(--neutral); }
+  .timeline li.pending { color: var(--neutral); }
+  .timeline .meta { color: var(--neutral); font-size: 12px; margin-left: 6px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .btn { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 10px 16px; font-size: 14px; cursor: pointer; }
+  .btn.primary { background: var(--success); border-color: var(--success); color: #fff; font-weight: 600; }
+  .tx-states { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .state { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .state .name { font-size: 12px; color: var(--neutral); font-family: ui-monospace, monospace; }
+  .state .msg { font-size: 14px; margin-top: 6px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .note { font-size: 12px; color: var(--neutral); margin-top: 12px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .split { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">H-SPORT <span>FINANCIAL</span> dAPP</div>
+    <a class="back" href="#">← Kembali ke pesanan</a>
+  </div>
+
+  <section class="card">
+    <div class="order-head">
+      <div>
+        <h1>Order #INV-2026-0042</h1>
+        <div class="muted">10 Nov 2026 · Total Rp 450.000 · Status Shipped · Pembeli 0x90F8…c9C1</div>
+      </div>
+      <span class="badge ok">✓ VERIFIED</span>
+    </div>
+    <div class="note">Terakhir dicek 10 Nov 2026 09:15 · verifikasi ulang membandingkan 6 field DB dengan on-chain.</div>
+  </section>
+
+  <section class="card">
+    <h2>Bukti Transaksi</h2>
+    <div class="grid">
+      <div class="field"><div class="k">Tx Hash</div><div class="v">0x13d5…2841 <button class="copy">salin</button></div></div>
+      <div class="field"><div class="k">Block Number</div><div class="v">2</div></div>
+      <div class="field"><div class="k">Contract</div><div class="v">0x59d3…a150 <button class="copy">salin</button></div></div>
+      <div class="field"><div class="k">Wallet</div><div class="v">0x90F8…c9C1 <button class="copy">salin</button></div></div>
+      <div class="field"><div class="k">On-chain Order ID</div><div class="v">1</div></div>
+      <div class="field"><div class="k">External Order Hash</div><div class="v">0x10e4…ff86 <button class="copy">salin</button></div></div>
+    </div>
+  </section>
+
+  <div class="split">
+    <section class="card">
+      <h2>Timeline</h2>
+      <ul class="timeline">
+        <li>OrderCreated <span class="meta">block 2 · 10 Nov 08:55</span></li>
+        <li>PaymentRecorded <span class="meta">block 3 · 10 Nov 09:01</span></li>
+        <li>OrderStatusUpdated → InProduction <span class="meta">block 4 · 10 Nov 09:05</span></li>
+        <li>OrderShipped <span class="meta">block 5 · 10 Nov 09:10</span></li>
+        <li class="pending">OrderCompleted <span class="meta">menunggu konfirmasi pembeli</span></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Status Transaksi</h2>
+      <div class="tx-states">
+        <div class="state"><div class="name">awaiting-approval</div><div class="msg">🦊 Konfirmasi transaksi di MetaMask</div></div>
+        <div class="state"><div class="name">pending</div><div class="msg"><span class="dot" style="background:#F59E0B"></span>Menunggu konfirmasi block</div></div>
+        <div class="state"><div class="name">confirmed</div><div class="msg"><span class="dot" style="background:#16A34A"></span>Transaksi berhasil</div></div>
+        <div class="state"><div class="name">reverted</div><div class="msg"><span class="dot" style="background:#DC2626"></span>Order ini sudah pernah dicatat.</div></div>
+        <div class="state"><div class="name">failed</div><div class="msg"><span class="dot" style="background:#DC2626"></span>Transaksi gagal · Coba lagi</div></div>
+        <div class="state"><div class="name">timeout</div><div class="msg"><span class="dot" style="background:#6B7280"></span>Belum terkonfirmasi setelah 60 detik</div></div>
+      </div>
+      <div class="note">Revert dipetakan ke bahasa Indonesia; tidak ada stack trace yang ditampilkan ke pengguna.</div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>Aksi</h2>
+    <div class="actions">
+      <button class="btn primary">Verifikasi Ulang</button>
+      <button class="btn">Buka Tx di Explorer</button>
+    </div>
+    <div class="note">Mockup statis untuk W3-IHS-03. Data contoh; implementasi PHP di Minggu 5.</div>
+  </section>
+</div>
+</body>
+</html>
