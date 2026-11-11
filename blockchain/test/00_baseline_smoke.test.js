@@ -2,21 +2,27 @@ const HSportStore = artifacts.require("HSportStore");
 const { expectRevert } = require("./helpers/expectRevert");
 
 /**
- * Baseline smoke test untuk kontrak V0 (4 state).
+ * Baseline smoke test untuk kontrak V1 (8 state).
  *
- * Ini BUKAN bagian dari 21 test wajib. Tujuannya hanya memastikan
- * harness Truffle berjalan dan perilaku dasar kontrak saat ini terverifikasi.
- * Test SC-01 s.d. SC-12 yang sebenarnya akan ditulis setelah kontrak
- * di-extend ke interface target (Minggu 3-4).
+ * Ini BUKAN bagian dari 21 test wajib. Tujuannya memastikan harness Truffle
+ * berjalan dan perilaku dasar kontrak V1 terverifikasi. Test SC-01 s.d. SC-06
+ * ada di 01_sc01_sc06.test.js.
  */
-contract("HSportStore — baseline smoke (V0, bukan 21 test)", (accounts) => {
+contract("HSportStore — baseline smoke (V1, bukan 21 test)", (accounts) => {
   const [owner, buyer] = accounts;
   const AMOUNT = web3.utils.toWei("1", "ether");
+  const ORDER_NUMBER = "ORDER-SMOKE-001";
 
   let store;
+  let hash;
 
   beforeEach(async () => {
     store = await HSportStore.new({ from: owner });
+    hash = web3.utils.soliditySha3(
+      { type: "string", value: ORDER_NUMBER },
+      { type: "address", value: buyer },
+      { type: "uint256", value: AMOUNT }
+    );
   });
 
   it("SMOKE-01: owner adalah deployer", async () => {
@@ -25,17 +31,18 @@ contract("HSportStore — baseline smoke (V0, bukan 21 test)", (accounts) => {
   });
 
   it("SMOKE-02: createOrder valid mengunci escrow dan memancarkan event", async () => {
-    const receipt = await store.createOrder("ORDER-SMOKE-001", AMOUNT, {
+    const receipt = await store.createOrder(hash, ORDER_NUMBER, AMOUNT, {
       from: buyer,
       value: AMOUNT,
     });
 
     assert.equal((await store.orderCount()).toString(), "1", "orderCount harus 1");
 
-    const order = await store.getOrderInfo(1);
+    const order = await store.getOrder(1);
     assert.equal(order.buyer, buyer, "buyer harus sesuai");
     assert.equal(order.totalAmount.toString(), AMOUNT, "amount harus sesuai");
-    assert.equal(order.orderNumber, "ORDER-SMOKE-001", "orderNumber harus sesuai");
+    assert.equal(order.orderNumber, ORDER_NUMBER, "orderNumber harus sesuai");
+    assert.equal(order.externalOrderHash, hash, "hash harus sesuai");
 
     const escrow = await store.escrows(1);
     assert.equal(escrow.amount.toString(), AMOUNT, "escrow amount harus sesuai");
@@ -48,7 +55,7 @@ contract("HSportStore — baseline smoke (V0, bukan 21 test)", (accounts) => {
 
   it("SMOKE-03: createOrder amount 0 revert", async () => {
     await expectRevert(
-      store.createOrder("ORDER-SMOKE-002", 0, { from: buyer, value: 0 }),
+      store.createOrder(hash, "ORDER-SMOKE-002", 0, { from: buyer, value: 0 }),
       "Amount must be > 0"
     );
     assert.equal((await store.orderCount()).toString(), "0", "orderCount tidak bertambah");
@@ -57,7 +64,7 @@ contract("HSportStore — baseline smoke (V0, bukan 21 test)", (accounts) => {
   it("SMOKE-04: createOrder dengan msg.value tidak sesuai revert", async () => {
     const half = web3.utils.toWei("0.5", "ether");
     await expectRevert(
-      store.createOrder("ORDER-SMOKE-003", AMOUNT, { from: buyer, value: half }),
+      store.createOrder(hash, "ORDER-SMOKE-003", AMOUNT, { from: buyer, value: half }),
       "Incorrect amount"
     );
   });

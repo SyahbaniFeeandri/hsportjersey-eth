@@ -5,9 +5,10 @@
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
 **Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) — 33 selesai, 12 sebagian, 67 belum dari 112 issue.
-**Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) — 17/17 issue selesai.
-**Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) — 15 selesai, 1 sebagian (`W2-FRL-05`).
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 44 selesai, 11 sebagian, 57 belum dari 112 issue.
+**Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) - 17/17 issue selesai.
+**Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 15 selesai, 1 sebagian (`W2-FRL-05`).
+**Artefak Minggu 3:** lihat [docs/week3/README.md](week3/README.md) - 12/12 issue selesai (exit gate teknis terpenuhi).
 
 ---
 
@@ -133,7 +134,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 3 — Smart Contract V1
 
-**Status saat ini:** Sebagian — 1 selesai, 2 sebagian, 9 belum dari 12 issue.
+**Status saat ini:** **Selesai** — 12 selesai, 0 sebagian, 0 belum dari 12 issue. [Artefak M3](week3/README.md); sign-off reviewer menunggu PR.
 **Lead:** Arby · **Pendukung:** Agustina, Farrel, Kenjiro · **Target:** 38%
 
 | PIC | Issue | Output / Evidence |
@@ -152,12 +153,13 @@ Target progress kumulatif mengikuti dashboard tracker:
 | IHS | `W3-IHS-03` Mockup proof page + komponen tx status | Mockup |
 
 **Exit gate:** kontrak V1 compile & deploy, 6/6 SC PASS, **interface kontrak freeze**.
+**Status gate:** terpenuhi 11 November 2026 (compile, deploy `0x59d3…a150`, 6/6 SC PASS, freeze teknis). Sign-off reviewer di PR masih terbuka.
 
 ---
 
 ### Minggu 4 — Smart Contract V2
 
-**Status saat ini:** Sebagian — 0 selesai, 2 sebagian, 10 belum dari 12 issue.
+**Status saat ini:** Sebagian — 0 selesai, 3 sebagian, 9 belum dari 12 issue.
 **Lead:** Agustina · **Pendukung:** Arby, Farrel, Kenjiro · **Target:** 52%
 
 | PIC | Issue | Output / Evidence |

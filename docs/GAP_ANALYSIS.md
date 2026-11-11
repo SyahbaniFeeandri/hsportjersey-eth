@@ -12,6 +12,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 **Update 10 November 2026:** Minggu 2 selesai secara artefak — 15 selesai, 1 sebagian (`W2-FRL-05`), 0 belum. Spesifikasi kontrak final, wireframe UI, prosedur reproduksi, template test/bug/benchmark, dan simulasi clean clone (ABI identik) tersedia di `docs/week2/` dan `docs/templates/`. Uji reproduksi di komputer anggota lain belum dilakukan.
 
+**Update 11 November 2026:** Minggu 3 selesai — 12/12 issue memiliki artefak. Kontrak V1 terdeploy di `0x59d3…a150`, SC-01 s.d. SC-06 6/6 PASS, ABI V1 diarsipkan, dan interface freeze teknis berlaku. Sisa: sign-off reviewer di PR dan `W2-FRL-05`.
+
 ## Legenda Status
 
 | Status | Arti |
@@ -24,9 +26,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 33 | 29.5% |
-| Sebagian | 12 | 10.7% |
-| Belum | 67 | 59.8% |
+| Selesai | 44 | 39.3% |
+| Sebagian | 11 | 9.8% |
+| Belum | 57 | 50.9% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -35,8 +37,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 |---|---|---:|---:|---:|---:|
 | 1 | Analisis & Scope Freeze (Feeandri + Yasmin) | 17 | 0 | 0 | 17 |
 | 2 | Blockchain Environment (Farrel) | 15 | 1 | 0 | 16 |
-| 3 | Smart Contract V1 (Arby) | 1 | 2 | 9 | 12 |
-| 4 | Smart Contract V2 (Agustina) | 0 | 2 | 10 | 12 |
+| 3 | Smart Contract V1 (Arby) | 12 | 0 | 0 | 12 |
+| 4 | Smart Contract V2 (Agustina) | 0 | 3 | 9 | 12 |
 | 5 | Integrasi PHP–Blockchain (Luis) | 0 | 3 | 12 | 15 |
 | 6 | Parallel Processing (Farelly) | 0 | 0 | 13 | 13 |
 | 7 | Benchmark & Integration Test (Kenjiro) | 0 | 0 | 13 | 13 |
@@ -95,31 +97,31 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 3 — Smart Contract V1 (Arby)
 
-**Status:** 1 selesai, 2 sebagian, 9 belum dari 12 issue.
+**Status:** 12 selesai, 0 sebagian, 0 belum dari 12 issue. Exit gate teknis terpenuhi; sign-off reviewer menunggu PR.
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
-| `W3-ARB-04` | Implement enum 8 state, struct + externalOrderHash, mapping, modifier | Kontrak V1 | Belum | Kontrak masih 4 state, tanpa externalOrderHash |
-| `W3-ARB-05` | createOrder, getOrder, isOperator, duplicate hash, amount > 0 | Fungsi kontrak | Sebagian | createOrder/getOrderInfo/amount>0 ada; isOperator/duplicate hash belum |
-| `W3-ARB-06` | NatSpec + unit test SC-01 s.d. SC-06 | 6/6 PASS | Belum | Tidak ada folder test |
-| `W3-ARB-07` | Export ABI + catat address v1 | ABI/address | Selesai | config/contract_abi.json + config/contract_address.txt |
-| `W3-AGU-04` | Review V1 + siapkan skenario SC-07 s.d. SC-12 | Review + test plan V2 | Belum | - |
-| `W3-FRL-06` | Deploy V1 ke Ganache + deployment log | Address v1 | Sebagian | Sudah pernah deploy; deployment log belum ada |
-| `W3-KEN-03` | Review & jalankan ulang SC-01 s.d. SC-06, bug report | Test report V1 | Belum | - |
-| `W3-FEE-08` | Update on/off-chain matrix + traceability kontrak | Dokumen update | Belum | - |
-| `W3-YAS-07` | Review acceptance criteria kontrak core | Catatan review | Belum | - |
-| `W3-LUI-04` | Prototipe contract instance read-only | Service read-only | Belum | Frontend Web3 bukan service backend |
-| `W3-FDR-04` | Finalkan migration schema paralel | Migration | Belum | - |
-| `W3-IHS-03` | Mockup proof page + komponen tx status | Mockup | Belum | - |
+| `W3-ARB-04` | Implement enum 8 state, struct + externalOrderHash, mapping, modifier | Kontrak V1 | Selesai | `blockchain/contracts/HSportStore.sol`; enum 8 state, `orderIdByHash`, `operators`, `onlyOperator`, `notFinal` |
+| `W3-ARB-05` | createOrder, getOrder, isOperator, duplicate hash, amount > 0 | Fungsi kontrak | Selesai | 18 fungsi ABI (12 eksplisit + 6 auto-getter); diuji SC-02..SC-06 |
+| `W3-ARB-06` | NatSpec + unit test SC-01 s.d. SC-06 | 6/6 PASS | Selesai | `blockchain/test/01_sc01_sc06.test.js`; 10 passing (6 SC + 4 smoke) |
+| `W3-ARB-07` | Export ABI + catat address v1 | ABI/address | Selesai | `config/contract_abi.json`, `config/archive/contract_abi.v0.json`, `contract_abi.v1.json`, `config/contract_address.txt` |
+| `W3-AGU-04` | Review V1 + siapkan skenario SC-07 s.d. SC-12 | Review + test plan V2 | Selesai | `docs/week3/04_REVIEW_NOTES.md` (temuan R-01..R-07 + 6 skenario M4) |
+| `W3-FRL-06` | Deploy V1 ke Ganache + deployment log | Address v1 | Selesai | `0x59d3631c86BbE35EF041872d502F218A39FBa150`; `deployments/deployment_2026-11-11T03-59-13-663Z.json` + `DEPLOYMENTS.md` |
+| `W3-KEN-03` | Review & jalankan ulang SC-01 s.d. SC-06, bug report | Test report V1 | Selesai | `docs/week3/02_TEST_REPORT_V1.md` + `evidence/sc01_sc06_test.log` |
+| `W3-FEE-08` | Update on/off-chain matrix + traceability kontrak | Dokumen update | Selesai | `docs/week1/03_TRACEABILITY_MATRIX.md`, `docs/week2/02_CONTRACT_SPEC_FINAL.md` §14 |
+| `W3-YAS-07` | Review acceptance criteria kontrak core | Catatan review | Selesai | `docs/week3/04_REVIEW_NOTES.md` §2 (AC-01..AC-11) |
+| `W3-LUI-04` | Prototipe contract instance read-only | Service read-only | Selesai | `blockchain/scripts/read_contract.php` + `orderHash.js`; `docs/week3/03_READONLY_PROTOTYPE.md` |
+| `W3-FDR-04` | Finalkan migration schema paralel | Migration | Selesai | `migration_parallel.sql`; 4 tabel + view terpasang di MySQL 8.0.30; `docs/week3/05_PARALLEL_SCHEMA_FINAL.md` |
+| `W3-IHS-03` | Mockup proof page + komponen tx status | Mockup | Selesai | `docs/week3/mockups/proof-page.html` (6 status transaksi) |
 
 ### Minggu 4 — Smart Contract V2 (Agustina)
 
-**Status:** 0 selesai, 2 sebagian, 10 belum dari 12 issue.
+**Status:** 0 selesai, 3 sebagian, 9 belum dari 12 issue.
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
-| `W4-AGU-06` | recordPayment, updateOrderStatus, cancelOrder, operator management | Kontrak V2 | Belum | Kontrak existing hanya shipOrder/confirmReceived |
-| `W4-AGU-07` | Event lengkap + revert rules + security check | Event & revert | Sebagian | 4 event escrow ada; event target & security check belum |
+| `W4-AGU-06` | recordPayment, updateOrderStatus, cancelOrder, operator management | Kontrak V2 | Sebagian | `recordPayment`, `updateOrderStatus`, `addOperator`, `removeOperator` sudah ada di V1; `cancelOrder` + refund belum |
+| `W4-AGU-07` | Event lengkap + revert rules + security check | Event & revert | Sebagian | 9 event dideklarasikan; 8 dipancarkan di V1; event cancel menunggu V2; security review V1 selesai (`04_REVIEW_NOTES.md`) |
 | `W4-AGU-08` | Unit test SC-07 s.d. SC-12 | 6/6 PASS | Belum | - |
 | `W4-ARB-08` | Review V2 + regresi SC-01 s.d. SC-06 | Regression PASS | Belum | - |
 | `W4-FRL-07` | Deploy V2 + update ABI/address history | Address v2 | Belum | V2 belum ada |

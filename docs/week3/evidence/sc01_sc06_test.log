@@ -1,0 +1,46 @@
+
+> blockchain@1.0.0 test
+> set HSPORT_TEST=1&& truffle test --network ganache
+
+node.exe : This version of µWS is not compatible with your Node.js build:
+ 
+
+Error: Cannot find module '../binaries/uws_win32_x64_137.node'
+Require stack:
+- C:\laragon\www\project_jersey\blockchain\node_modules\ganache\node_modules\@trufflesuite\uws-js-unofficial\src\uws.js
+- C:\laragon\www\project_jersey\blockchain\node_modules\ganache\dist\node\core.js
+- C:\laragon\www\project_jersey\blockchain\node_modules\truffle\build\test.bundled.js
+- C:\laragon\www\project_jersey\blockchain\node_modules\original-require\index.js
+- C:\laragon\www\project_jersey\blockchain\node_modules\truffle\build\cli.bundled.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+Using network 'ganache'.
+
+
+Compiling your contracts...
+===========================
+> Compiling .\contracts\HSportStore.sol
+> Artifacts written to C:\Users\Feeandri\AppData\Local\Temp\test--4732-gjHIA17l9mQP
+> Compiled successfully using:
+   - solc: 0.8.19+commit.7dd6d404.Emscripten.clang
+HSPORT_TEST=1: lewati deploy migration (mode test).
+
+
+  Contract: HSportStore — baseline smoke (V1, bukan 21 test)
+    ✔ SMOKE-01: owner adalah deployer
+    ✔ SMOKE-02: createOrder valid mengunci escrow dan memancarkan event (135ms)
+    ✔ SMOKE-03: createOrder amount 0 revert (222ms)
+    ✔ SMOKE-04: createOrder dengan msg.value tidak sesuai revert
+
+  Contract: HSportStore — SC-01 s.d. SC-06 (V1)
+    ✔ SC-01: inisialisasi contract, owner, dan akses owner (209ms)
+    ✔ SC-02: createOrder valid — escrow, state Created, event (165ms)
+    ✔ SC-03: createOrder amount tidak valid revert
+    ✔ SC-04: duplicate externalOrderHash revert (172ms)
+    ✔ SC-05: getOrder ID valid mengembalikan data benar (156ms)
+    ✔ SC-06: getOrder ID tidak ada revert (55ms)
+
+
+  10 passing (2s)
+
