@@ -4,8 +4,10 @@
 **Issue terkait:** `W1-FEE-03`, `W1-AGU-01`, `W1-YAS-04`
 **Pemilik:** Muhammad Feeandri Syahbani, Agustina Elsi Bunga
 **Reviewer:** Yasmin Akmaliyah, Arby Putra, Kenjiro B.H.G.
-**Status:** Final v1.0
-**Tanggal:** 9 November 2026
+**Status:** Final v1.1 — diverifikasi terhadap kontrak V1
+**Tanggal:** 9 November 2026 (revisi 11 November 2026)
+
+> **Revisi M3:** state machine, tabel transisi, dan daftar event sudah dicocokkan dengan `HSportStore` V1 yang terdeploy. Transisi `cancelOrder` (T09–T11) belum diimplementasikan di V1 dan tetap menjadi target V2. Detail implementasi: [`../week3/00_CONTRACT_V1.md`](../week3/00_CONTRACT_V1.md).
 
 ---
 

@@ -401,7 +401,7 @@ Pesan revert **wajib identik** karena diuji otomatis. Jangan mengubah teks setel
 | R19 | operator tidak aktif | `removeOperator` | `Operator not active` | SC-07 |
 | R20 | fungsi belum diimplementasi di V1 | `recordPayment`, `cancelOrder` (V1 saja) | `Not implemented` | — |
 
-> R20 bersifat sementara dan **dihapus di V2 tanpa mengubah ABI**.
+> R20 tidak dipakai pada V1 aktual (happy path diimplementasikan). Baris dipertahankan sebagai jejak keputusan; tidak ada pesan ini di kontrak.
 
 ---
 
@@ -409,7 +409,7 @@ Pesan revert **wajib identik** karena diuji otomatis. Jangan mengubah teks setel
 
 | Operasi | Perkiraan | Catatan |
 |---|---|---|
-| Deploy | ~870.000 gas (V0) | Naik ±20–30% karena fungsi dan event baru |
+| Deploy | **1.560.496 gas (aktual V1)** | Naik dari V0 karena fungsi dan event baru; tercatat di deployment log |
 | `createOrder` | ~150.000 gas | Termasuk 2 penulisan struct + 2 mapping |
 | `recordPayment` | ~50.000 gas | 2 field berubah |
 | `updateOrderStatus` | ~35.000 gas | 1 field + event |
@@ -432,11 +432,17 @@ Angka ini **perkiraan desain**, bukan hasil pengukuran. Gas aktual dicatat Mingg
 
 | Versi | Isi | Deploy | ABI file |
 |---|---|---|---|
-| V0 | Kontrak 4 state saat ini | Sudah (10 Nov 2026) | `contract_abi.json` (sekarang) |
-| V1 | ABI **lengkap** (13 fungsi, 9 event); `recordPayment`/`cancelOrder` masih revert `Not implemented` | Akhir M3 | `contract_abi.v1.json` |
-| V2 | Implementasi penuh `recordPayment`, `updateOrderStatus`, `cancelOrder`, refund | M4 | `contract_abi.json` |
+| V0 | Kontrak 4 state saat ini | Sudah (10 Nov 2026) | `config/archive/contract_abi.v0.json` |
+| V1 | ABI **lengkap untuk alur inti** (18 entri: 12 fungsi eksplisit + 6 auto-getter) dan 9 event; happy path `createOrder` → `recordPayment` → `updateOrderStatus` → `shipOrder` → `confirmReceived` sudah berfungsi; `cancelOrder`/refund belum ada | Sudah (11 Nov 2026) | `config/archive/contract_abi.v1.json` |
+| V2 | Tambah `cancelOrder` + refund dan pemancaran `OrderCancelled`/`EscrowRefunded` | M4 | `config/contract_abi.json` |
 
-**Mengapa V1 sudah memuat ABI lengkap?** Agar pembekuan interface di akhir Minggu 3 bermakna: frontend dan backend dapat dikembangkan terhadap ABI yang tidak akan berubah. Yang berubah dari V1 ke V2 hanya isi fungsi, bukan signature.
+**Deviasi dari rencana awal:** dokumen ini semula merencanakan V1 berisi stub `Not implemented` untuk `recordPayment` dan `cancelOrder`. Implementasi aktual (11 November 2026) memilih **happy path penuh** dan hanya menunda cancel/refund ke V2. Konsekuensi:
+
+1. Pesan revert `Not implemented` (R20) tidak dipakai dan dihapus dari kontrak.
+2. ABI V1 sudah memuat signature `cancelOrder`? **Tidak** — fungsi itu baru ditambahkan di V2. Signature-nya tetap dibekukan di §8 agar penambahan V2 aditif.
+3. Interface freeze V1 mencakup 12 fungsi eksplisit yang benar-benar ada dan 9 event; V2 hanya menambah, tidak mengubah.
+
+**Mengapa interface tetap bermakna beku?** Frontend dan backend M5 dapat dikembangkan terhadap 12 fungsi V1 tanpa risiko signature berubah. Penambahan `cancelOrder` di V2 bersifat aditif dan sudah diketahui sejak M3.
 
 **Aturan pembekuan:**
 
