@@ -278,6 +278,14 @@ try {
             ]);
             break;
     }
+} catch (HSport\Services\BlockchainException $e) {
+    http_response_code(503);
+    echo json_encode([
+        'success' => false,
+        'error' => 'RPC_UNAVAILABLE',
+        'message' => $e->getMessage(),
+        'hint' => 'Pastikan Ganache berjalan di RPC_URL dan chain ID 1337.',
+    ]);
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode([

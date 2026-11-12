@@ -126,5 +126,37 @@ class BlockchainClient
         $res = $this->request('eth_getTransactionReceipt', [$txHash]);
         return is_array($res) ? $res : null;
     }
+
+    /**
+     * Daftar akun yang di-unlock oleh node (Ganache).
+     *
+     * @return array<int,string>
+     */
+    public function accounts(): array
+    {
+        $res = $this->request('eth_accounts', []);
+        return is_array($res) ? array_values(array_map('strval', $res)) : [];
+    }
+
+    /**
+     * Mengirim transaksi (write path) melalui akun yang sudah di-unlock node.
+     * Untuk lingkungan produksi, penandatanganan dilakukan di wallet pengguna.
+     */
+    public function sendTransaction(string $from, string $to, string $data, string $valueHex = '0x0', string $gasHex = '0x7a120'): string
+    {
+        $result = $this->request('eth_sendTransaction', [[
+            'from' => $from,
+            'to' => $to,
+            'data' => $data,
+            'value' => $valueHex,
+            'gas' => $gasHex,
+        ]]);
+
+        if (!is_string($result) || $result === '') {
+            throw new BlockchainException('Node tidak mengembalikan tx hash untuk transaksi yang dikirim.');
+        }
+
+        return $result;
+    }
 }
 

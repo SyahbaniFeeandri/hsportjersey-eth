@@ -175,6 +175,73 @@ class ContractService
         ];
     }
 
+    /**
+     * Menulis order baru ke smart contract (createOrder) dari backend.
+     * Dipakai oleh INT-02 (checkout -> chain) dan skrip operasional.
+     *
+     * @return string tx hash
+     */
+    public function createOrder(
+        string $externalOrderHash,
+        string $orderNumber,
+        string $amountWei,
+        string $from
+    ): string {
+        $hash = strtolower((string)preg_replace('/^0x/', '', $externalOrderHash));
+        if (strlen($hash) !== 64 || !ctype_xdigit($hash)) {
+            throw new BlockchainException('externalOrderHash harus 32 byte (64 karakter hex).');
+        }
+        if ($orderNumber === '' || strlen($orderNumber) > 64) {
+            throw new BlockchainException('orderNumber wajib diisi dan maksimal 64 byte.');
+        }
+        if (bccomp($amountWei, '0', 0) !== 1) {
+            throw new BlockchainException('amountWei harus lebih besar dari 0.');
+        }
+
+        // Head ABI: bytes32 hash (slot 0), offset string 0x60 (slot 1), uint256 amount (slot 2).
+        $data = self::SELECTOR_CREATE_ORDER
+            . $hash
+            . $this->decToHexWord('96')
+            . $this->decToHexWord($amountWei)
+            . $this->encodeStringTail($orderNumber);
+
+        $valueHex = '0x' . $this->decToHex($amountWei);
+
+        return $this->client->sendTransaction($from, $this->contractAddress, $data, $valueHex);
+    }
+
+    private function encodeStringTail(string $value): string
+    {
+        $bytes = strlen($value);
+        $hex = bin2hex($value);
+        $paddedLength = (int)ceil($bytes / 32) * 32;
+        $hex = str_pad($hex, $paddedLength * 2, '0', STR_PAD_RIGHT);
+
+        return $this->decToHexWord((string)$bytes) . $hex;
+    }
+
+    private function decToHexWord(string $decimal): string
+    {
+        return str_pad($this->decToHex($decimal), 64, '0', STR_PAD_LEFT);
+    }
+
+    private function decToHex(string $decimal): string
+    {
+        if ($decimal === '' || $decimal === '0') {
+            return '0';
+        }
+
+        $hex = '';
+        $value = $decimal;
+        while (bccomp($value, '0', 0) === 1) {
+            $remainder = (int)bcmod($value, '16');
+            $hex = dechex($remainder) . $hex;
+            $value = bcdiv($value, '16', 0);
+        }
+
+        return $hex === '' ? '0' : $hex;
+    }
+
     private function decodeAddress(string $hex): string
     {
         $clean = preg_replace('/^0x/', '', $hex);

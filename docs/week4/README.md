@@ -3,7 +3,8 @@
 **Milestone:** M4 — Smart Contract V2
 **Periode:** 11 November 2026
 **Branch:** `feature/W4-AGU-06-contract-v2`
-**Kontrak aktif:** `0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10` (Ganache, chain ID 1337)
+**Kontrak aktif:** `0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab` (Ganache, chain ID 1337; di-deploy ulang setelah reset 12 November 2026 untuk M5)
+**Kontrak historis M4:** `0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10`
 **Status milestone:** **Selesai** — seluruh 12/12 issue M4 tuntas: scope kontrak (12/12 SC PASS, security review, deploy V2, ABI V2), UI cancel on-chain (`W4-IHS-04`), dan sequential baseline CLI data mock (`W4-FDR-05`). UAT browser manual tetap dicatat sebagai bukti lanjutan di M5.
 
 ---

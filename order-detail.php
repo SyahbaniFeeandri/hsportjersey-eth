@@ -254,6 +254,13 @@ if ($cancel_event && !empty($cancel_event['payload'])) {
                             <?php echo $order['payment_status'] == 'paid' ? '✅ Lunas' : '❌ Belum Dibayar'; ?>
                         </span>
                     </p>
+                    <?php if (!empty($order['tx_hash']) || !empty($order['blockchain_order_id'])): ?>
+                    <hr>
+                    <a href="blockchain-proof.php?order_id=<?php echo (int)$order['id']; ?>"
+                       class="btn btn-outline-primary w-100 fw-semibold">
+                        <i class="fas fa-link me-2"></i>Lihat Bukti Blockchain
+                    </a>
+                    <?php endif; ?>
                 </div>
                 
                 <div class="info-box">

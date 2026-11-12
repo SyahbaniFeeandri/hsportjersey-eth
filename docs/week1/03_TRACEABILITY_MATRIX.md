@@ -27,7 +27,7 @@
 
 | REQ | Requirement (ringkas) | Existing implementation | Target implementation | Test | UAT | Owner | Milestone | Status impl. |
 |---|---|---|---|---|---|---|---|---|
-| **REQ-01** | Checkout membuat order off-chain + on-chain yang terhubung | `cart.php`, `checkout.php`, `crypto-payment.php` (client-side) | Service create order + simpan `blockchain_order_id` | INT-02 | UAT-01 | Luis, Arby | M3, M5 | Sebagian |
+| **REQ-01** | Checkout membuat order off-chain + on-chain yang terhubung | `cart.php`, `checkout.php`, `crypto-payment.php` (client-side) | Service create order + simpan `blockchain_order_id` | INT-02 | UAT-01 | Luis, Arby | M3, M5 | Selesai |
 | **REQ-02** | `createOrder` validasi amount > 0 dan lock escrow | `HSportStore.createOrder` V1: `amount > 0`, `msg.value == amount`, escrow terkunci | Tambah `externalOrderHash`, state `Created`, escrow konsisten | SC-02, SC-03 | UAT-01, UAT-02 | Arby | M3 | Selesai |
 | **REQ-03** | Tolak `externalOrderHash` duplikat | `orderIdByHash` + guard duplikat | `orderIdByHash`, guard duplikat | SC-04 | UAT-03 | Arby | M3 | Selesai |
 | **REQ-04** | Hanya operator yang boleh catat pembayaran; double payment ditolak | `recordPayment`, `operators`, `paymentRecorded` | `recordPayment`, `operators`, `paymentRecorded` | SC-07, SC-08 | UAT-04, UAT-05, UAT-06 | Agustina | M4 | Selesai |
@@ -35,10 +35,10 @@
 | **REQ-06** | Cancel oleh aktor berwenang; aktor lain ditolak | `cancelOrder` V2: buyer untuk `Created`/`AwaitingPayment`, operator/owner untuk `Paid`–`ReadyToShip`, `Shipped` ditolak | `cancelOrder` + aturan per state | SC-11 | UAT-09, UAT-10 | Agustina | M4 | Selesai |
 | **REQ-07** | Konfirmasi terima merilis escrow tepat sekali | `confirmReceived` V1: guard state Shipped + `released` + transfer ke owner | Pertahankan + proteksi double release + event | SC-12 | UAT-11, UAT-12 | Agustina | M4 | Selesai |
 | **REQ-08** | Event lengkap setiap perubahan state | 9 event dideklarasikan; seluruhnya dipancarkan di V2 | Tambah `PaymentRecorded`, `OrderStatusUpdated`, `OrderCancelled`, `OperatorUpdated`, `EscrowRefunded` | SC-02, SC-08, SC-09, SC-11, SC-12 | UAT-04, UAT-07, UAT-09, UAT-11 | Agustina | M3–M4 | Selesai |
-| **REQ-09** | Simpan proof transaksi lengkap | `tx_hash`, `wallet_address` di DB/client; `migration_blockchain.sql` | Service simpan `block_number`, `contract_address`, `blockchain_order_id`, `external_order_hash` | INT-01, INT-03, INT-04 | UAT-01, UAT-04 | Luis | M5 | Sebagian |
-| **REQ-10** | Verifikasi DB vs chain `VERIFIED`/`MISMATCH` | — | Verification service + tabel `blockchain_transactions` | INT-05 | UAT-13 | Luis | M5 | Belum |
+| **REQ-09** | Simpan proof transaksi lengkap | `tx_hash`, `wallet_address` di DB/client; `migration_blockchain.sql` | Service simpan `block_number`, `contract_address`, `blockchain_order_id`, `external_order_hash` | INT-01, INT-03, INT-04 | UAT-01, UAT-04 | Luis | M5 | Selesai |
+| **REQ-10** | Verifikasi DB vs chain `VERIFIED`/`MISMATCH` | — | Verification service + tabel `blockchain_transactions` | INT-05 | UAT-13 | Luis | M5 | Selesai |
 | **REQ-11** | Admin lihat status verifikasi + retry | `admin/orders.php`, `admin/payments.php` (belum ada verifikasi) | Kolom verifikasi + aksi retry | INT-05 | UAT-13 | Ihsanul, Luis | M5 | Sebagian |
-| **REQ-12** | Halaman proof blockchain pembeli | — | `order-proof.php` + komponen tx status | — (manual) | UAT-14 | Ihsanul | M5 | Belum |
+| **REQ-12** | Halaman proof blockchain pembeli | — | `blockchain-proof.php` + komponen tx status | — (manual) | UAT-14 | Ihsanul | M5 | Selesai |
 | **REQ-13** | Sequential & parallel menghasilkan hasil identik | — | Worker, queue, partition/reduce | PAR-01, PAR-02 | UAT-15 | Farelly | M6 | Belum |
 | **REQ-14** | Ukur execution time, speedup, efficiency, throughput | — | Benchmark script + grafik + dashboard | PAR-03, PAR-04 | UAT-16 | Kenjiro, Farelly | M7 | Belum |
 | **REQ-15** | Reproducible + kontribusi tertelusur | `README.md`, panduan setup, Git repo | Deploy log, `.env.example`, weekly log, tag rilis | — (manual) | UAT-17 | Feeandri, semua | M2, M8 | Sebagian |
@@ -47,9 +47,9 @@
 
 | Status | Jumlah | REQ |
 |---|---:|---|
-| Selesai | 7 | REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08 |
-| Sebagian | 4 | REQ-01, REQ-09, REQ-11, REQ-15 |
-| Belum | 4 | REQ-10, REQ-12, REQ-13, REQ-14 |
+| Selesai | 11 | REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08, REQ-09, REQ-10, REQ-12 |
+| Sebagian | 2 | REQ-11, REQ-15 |
+| Belum | 2 | REQ-13, REQ-14 |
 | **Total** | **15** | |
 
 ---
@@ -77,11 +77,11 @@
 
 | Test | Nama | Requirement | Dev owner | Validator | Milestone | Status |
 |---|---|---|---|---|---|---|
-| **INT-01** | Koneksi RPC backend ke node | REQ-09 | Luis + Farrel | Kenjiro | M5 | Not Started |
-| **INT-02** | Checkout DB + `createOrder` on-chain terhubung | REQ-01, REQ-09 | Luis | Kenjiro | M5 | Not Started |
-| **INT-03** | Ambil tx hash, receipt, block number | REQ-09 | Luis | Kenjiro | M5 | Not Started |
-| **INT-04** | Simpan proof lengkap ke DB | REQ-09 | Luis | Kenjiro | M5 | Not Started |
-| **INT-05** | Verifikasi DB vs chain `VERIFIED`/`MISMATCH` | REQ-10, REQ-11 | Luis | Kenjiro | M5 | Not Started |
+| **INT-01** | Koneksi RPC backend ke node | REQ-09 | Luis + Farrel | Kenjiro | M5 | **PASS** |
+| **INT-02** | Checkout DB + `createOrder` on-chain terhubung | REQ-01, REQ-09 | Luis | Kenjiro | M5 | **PASS** |
+| **INT-03** | Ambil tx hash, receipt, block number | REQ-09 | Luis | Kenjiro | M5 | **PASS** |
+| **INT-04** | Simpan proof lengkap ke DB | REQ-09 | Luis | Kenjiro | M5 | **PASS** |
+| **INT-05** | Verifikasi DB vs chain `VERIFIED`/`MISMATCH` | REQ-10, REQ-11 | Luis | Kenjiro | M5 | **PASS** |
 
 ### 3.3 Parallel & Benchmark (PAR-01 s.d. PAR-04)
 
@@ -100,16 +100,18 @@
 |---|---:|---:|
 | Requirement total | 15 | — |
 | Requirement Must | 14 | — |
-| Requirement dengan minimal 1 test otomatis | 9 | 14 |
+| Requirement dengan minimal 1 test otomatis | 11 | 14 |
 | Requirement dengan test otomatis **atau** UAT | 15 | 15 |
 | Requirement tanpa verifikasi apa pun | 0 | 0 |
 | Test total | 21 | 21 |
 | Test dengan requirement | 21 | 21 |
-| Test PASS | 12 | 21 |
+| Test PASS | 17 | 21 |
 | Orphan test (tanpa REQ) | 0 | 0 |
 | Orphan requirement Must (tanpa test) | 0 (REQ-12/15 punya UAT manual) | 0 |
 
-> **Catatan M4 (11 November 2026):** SC-01 s.d. SC-12 PASS (12/12) terhadap kontrak V2. `cancelOrder` + refund terbukti lewat SC-11; regresi V1 bersih. Requirement yang sudah punya test otomatis PASS: REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08, REQ-10. Sisa 9 test (INT-01..05, PAR-01..04) menunggu M5–M7.
+> **Catatan M5 (12 November 2026):** INT-01 s.d. INT-05 PASS (5/5) terhadap Ganache + MySQL nyata. Alur checkout DB → `createOrder` → receipt → proof → verifikasi terbukti end-to-end. Requirement otomatis PASS bertambah: REQ-01, REQ-09, REQ-10, dan REQ-12 (halaman bukti). Sisa 4 test menunggu M6–M7 (PAR-01..PAR-04). REQ-11 (retry admin) masih sebagian.
+>
+> **Catatan M4 (11 November 2026):** SC-01 s.d. SC-12 PASS (12/12) terhadap kontrak V2. `cancelOrder` + refund terbukti lewat SC-11; regresi V1 bersih.
 >
 > **Catatan:** REQ-12 dan REQ-15 diverifikasi lewat UAT manual, bukan test otomatis. Ini disengaja karena keduanya bersifat UI/reproducibility, bukan logika kontrak.
 

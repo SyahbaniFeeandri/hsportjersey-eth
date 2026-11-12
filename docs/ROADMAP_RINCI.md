@@ -5,11 +5,12 @@
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
 **Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 57 selesai, 7 sebagian, 48 belum dari 112 issue.
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 72 selesai, 4 sebagian, 36 belum dari 112 issue.
 **Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) - 17/17 issue selesai.
 **Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 16/16 issue selesai (`W2-FRL-05` clean clone di komputer anggota lain PASS).
 **Artefak Minggu 3:** lihat [docs/week3/README.md](week3/README.md) - 12/12 issue selesai (exit gate teknis terpenuhi).
 **Artefak Minggu 4:** lihat [docs/week4/README.md](week4/README.md) - 12/12 issue selesai (kontrak V2, UI cancel on-chain, sequential baseline CLI).
+**Artefak Minggu 5:** lihat [docs/week5/README.md](week5/README.md) - 15/15 issue selesai (5/5 INT PASS, proof page, worker skeleton).
 
 ---
 
@@ -184,28 +185,28 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 5 — Integrasi PHP–Blockchain
 
-**Status saat ini:** Sebagian — 0 selesai, 3 sebagian, 12 belum dari 15 issue.
+**Status saat ini:** **Selesai** — 15 selesai, 0 sebagian, 0 belum dari 15 issue (100%). Exit gate checkout → chain → DB → read-back terbukti dan INT-01..05 PASS (5/5).
 **Lead:** Luis · **Pendukung:** Farrel, Ihsanul, Yasmin · **Target:** 68%
 
 | PIC | Issue | Output / Evidence |
 |---|---|---|
-| LUI | `W5-LUI-06` Contract instance read/write dari backend | Service |
-| LUI | `W5-LUI-07` Receipt & event parser | Parser |
-| LUI | `W5-LUI-08` Persist proof: `tx_hash`, `block_number`, `contract_address`, wallet, `blockchain_order_id` | DB proof |
-| LUI | `W5-LUI-09` Verification service `VERIFIED`/`MISMATCH` | Service verifikasi |
-| LUI | `W5-LUI-10` Error handling: RPC down, wrong network, revert, order not found | Error handler |
-| LUI | `W5-LUI-11` INT-01 s.d. INT-05 evidence | 5/5 PASS |
-| FRL | `W5-FRL-09` Dukungan RPC/network + troubleshooting | Log dukungan |
-| IHS | `W5-IHS-05` Wallet UI + tx status: approval, pending, success, failed | UI |
-| IHS | `W5-IHS-06` Blockchain proof page | Halaman proof |
-| YAS | `W5-YAS-09` Review error/UX flow + UAT integrasi | Catatan UX |
-| FEE | `W5-FEE-10` Traceability REQ → implementasi → test | Traceability v1 |
-| FDR | `W5-FDR-06` Finalisasi schema + queue config + worker skeleton | Worker skeleton |
-| KEN | `W5-KEN-05` Integration test independen INT-01 s.d. INT-05 | Test report |
-| ARB | `W5-ARB-09` Support bug fixing kontrak | Fix |
-| AGU | `W5-AGU-09` Support bug fixing kontrak | Fix |
+| LUI | `W5-LUI-06` Contract instance read/write dari backend | Selesai: `BlockchainClient` + `ContractService::createOrder` |
+| LUI | `W5-LUI-07` Receipt & event parser | Selesai: `ReceiptService` (9 event) |
+| LUI | `W5-LUI-08` Persist proof: `tx_hash`, `block_number`, `contract_address`, wallet, `blockchain_order_id` | Selesai: `ProofRepository::persistProof` (INT-04) |
+| LUI | `W5-LUI-09` Verification service `VERIFIED`/`MISMATCH` | Selesai: `VerificationService` (INT-05) |
+| LUI | `W5-LUI-10` Error handling: RPC down, wrong network, revert, order not found | Selesai: `docs/week5/03_ERROR_HANDLING_UX.md` |
+| LUI | `W5-LUI-11` INT-01 s.d. INT-05 evidence | Selesai: 5/5 PASS (`docs/week5/evidence/`) |
+| FRL | `W5-FRL-09` Dukungan RPC/network + troubleshooting | Selesai: `docs/week5/04_RPC_TROUBLESHOOTING.md` |
+| IHS | `W5-IHS-05` Wallet UI + tx status: approval, pending, success, failed | Selesai: `crypto-payment.php`, `order-detail.php` |
+| IHS | `W5-IHS-06` Blockchain proof page | Selesai: `blockchain-proof.php` |
+| YAS | `W5-YAS-09` Review error/UX flow + UAT integrasi | Selesai: `docs/week5/03_ERROR_HANDLING_UX.md` §4 |
+| FEE | `W5-FEE-10` Traceability REQ → implementasi → test | Selesai: traceability INT PASS + REQ diperbarui |
+| FDR | `W5-FDR-06` Finalisasi schema + queue config + worker skeleton | Selesai: `config/parallel.php`, `workers/verify_worker.php` |
+| KEN | `W5-KEN-05` Integration test independen INT-01 s.d. INT-05 | Selesai: `docs/week5/01_INTEGRATION_TEST_REPORT.md` §5 |
+| ARB | `W5-ARB-09` Support bug fixing kontrak | Selesai: log dukungan, tidak ada bug kontrak |
+| AGU | `W5-AGU-09` Support bug fixing kontrak | Selesai: log dukungan, tidak ada bug kontrak |
 
-**Exit gate:** checkout → chain → DB → read-back berhasil; 5/5 INT PASS.
+**Exit gate:** checkout → chain → DB → read-back berhasil; 5/5 INT PASS. **Terpenuhi 12 November 2026:** INT-01..05 ALL PASS terhadap kontrak `0xe78A…a8Ab` (Ganache reset + deploy ulang), proof tersimpan di `orders` + `blockchain_transactions`, halaman bukti dan worker skeleton tersedia.
 
 ---
 

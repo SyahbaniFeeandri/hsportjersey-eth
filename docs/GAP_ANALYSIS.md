@@ -14,6 +14,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 **Update 11 November 2026:** Minggu 3 selesai — 12/12 issue memiliki artefak. Kontrak V1 terdeploy di `0x59d3…a150`, SC-01 s.d. SC-06 6/6 PASS, ABI V1 diarsipkan, dan interface freeze teknis berlaku.
 
+> **Update 12 November 2026 (M5):** Minggu 5 berstatus **Selesai** — 15/15 issue, INT-01..05 PASS (5/5), backend read/write + persist proof + verification service, halaman bukti blockchain, worker skeleton, dan traceability diperbarui.
+
 **Update 12 November 2026 (M4):** Minggu 4 berstatus **Selesai** — scope kontrak (12/12 SC PASS, security review selesai, deployment V2 `0x2f3e…bE10` aktif, ABI V2 diarsipkan), UI cancel on-chain (`W4-IHS-04`), dan sequential baseline CLI data mock (`W4-FDR-05`) seluruhnya tuntas (12 selesai, 0 sebagian, 0 belum dari 12 issue).
 
 ## Legenda Status
@@ -28,9 +30,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 57 | 50.9% |
-| Sebagian | 7 | 6.3% |
-| Belum | 48 | 42.9% |
+| Selesai | 72 | 64.3% |
+| Sebagian | 4 | 3.6% |
+| Belum | 36 | 32.1% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -41,7 +43,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | 2 | Blockchain Environment (Farrel) | 16 | 0 | 0 | 16 |
 | 3 | Smart Contract V1 (Arby) | 12 | 0 | 0 | 12 |
 | 4 | Smart Contract V2 (Agustina) | 12 | 0 | 0 | 12 |
-| 5 | Integrasi PHP–Blockchain (Luis) | 0 | 3 | 12 | 15 |
+| 5 | Integrasi PHP–Blockchain (Luis) | 15 | 0 | 0 | 15 |
 | 6 | Parallel Processing (Farelly) | 0 | 0 | 13 | 13 |
 | 7 | Benchmark & Integration Test (Kenjiro) | 0 | 0 | 13 | 13 |
 | 8 | Finalisasi & Demo (semua) | 0 | 4 | 10 | 14 |
@@ -137,25 +139,25 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 5 — Integrasi PHP–Blockchain (Luis)
 
-**Status:** 0 selesai, 3 sebagian, 12 belum dari 15 issue.
+**Status:** Selesai — 15 selesai, 0 sebagian, 0 belum dari 15 issue (5/5 INT PASS, proof page, worker skeleton, dan error handling terdokumentasi).
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
-| `W5-LUI-06` | Contract instance read/write dari backend | Service | Belum | - |
-| `W5-LUI-07` | Receipt & event parser | Parser | Belum | - |
-| `W5-LUI-08` | Persist proof: tx_hash, block_number, contract_address, wallet, blockchain_order_id | DB proof | Sebagian | tx_hash + wallet_address disimpan; field lain belum |
-| `W5-LUI-09` | Verification service VERIFIED/MISMATCH | Service verifikasi | Belum | - |
-| `W5-LUI-10` | Error handling: RPC down, wrong network, revert, order not found | Error handler | Sebagian | Frontend menangani sebagian error; backend belum |
-| `W5-LUI-11` | INT-01 s.d. INT-05 evidence | 5/5 PASS | Belum | 0/5 |
-| `W5-FRL-09` | Dukungan RPC/network + troubleshooting | Log dukungan | Belum | - |
-| `W5-IHS-05` | Wallet UI + tx status: approval, pending, success, failed | UI | Sebagian | Modal tx di crypto-payment.php sudah ada; belum menyeluruh |
-| `W5-IHS-06` | Blockchain proof page | Halaman proof | Belum | - |
-| `W5-YAS-09` | Review error/UX flow + UAT integrasi | Catatan UX | Belum | - |
-| `W5-FEE-10` | Traceability REQ ke implementasi ke test | Traceability v1 | Belum | - |
-| `W5-FDR-06` | Finalisasi schema + queue config + worker skeleton | Worker skeleton | Belum | - |
-| `W5-KEN-05` | Integration test independen INT-01 s.d. INT-05 | Test report | Belum | - |
-| `W5-ARB-09` | Support bug fixing kontrak | Fix | Belum | Baru relevan setelah INT |
-| `W5-AGU-09` | Support bug fixing kontrak | Fix | Belum | Baru relevan setelah INT |
+| `W5-LUI-06` | Contract instance read/write dari backend | Service | Selesai | `api/services/BlockchainClient.php` + `ContractService::createOrder()` |
+| `W5-LUI-07` | Receipt & event parser | Parser | Selesai | `api/services/ReceiptService.php` (9 event) |
+| `W5-LUI-08` | Persist proof: tx_hash, block_number, contract_address, wallet, blockchain_order_id | DB proof | Selesai | `ProofRepository::persistProof()`; INT-04 PASS |
+| `W5-LUI-09` | Verification service VERIFIED/MISMATCH | Service verifikasi | Selesai | `VerificationService`; INT-05 PASS |
+| `W5-LUI-10` | Error handling: RPC down, wrong network, revert, order not found | Error handler | Selesai | `docs/week5/03_ERROR_HANDLING_UX.md`; API 503 `RPC_UNAVAILABLE` |
+| `W5-LUI-11` | INT-01 s.d. INT-05 evidence | 5/5 PASS | Selesai | `docs/week5/evidence/int01_int05_test.log`; 5/5 PASS |
+| `W5-FRL-09` | Dukungan RPC/network + troubleshooting | Log dukungan | Selesai | `docs/week5/04_RPC_TROUBLESHOOTING.md` |
+| `W5-IHS-05` | Wallet UI + tx status: approval, pending, success, failed | UI | Selesai | `crypto-payment.php`, `order-detail.php`; matriks status di `03_ERROR_HANDLING_UX.md` |
+| `W5-IHS-06` | Blockchain proof page | Halaman proof | Selesai | `blockchain-proof.php`; `docs/week5/02_PROOF_PAGE.md` |
+| `W5-YAS-09` | Review error/UX flow + UAT integrasi | Catatan UX | Selesai | `docs/week5/03_ERROR_HANDLING_UX.md` §4 (8 skenario UAT) |
+| `W5-FEE-10` | Traceability REQ ke implementasi ke test | Traceability v1 | Selesai | `docs/week1/03_TRACEABILITY_MATRIX.md` (INT PASS, REQ diperbarui) |
+| `W5-FDR-06` | Finalisasi schema + queue config + worker skeleton | Worker skeleton | Selesai | `config/parallel.php`, `workers/verify_worker.php`; `docs/week5/05_WORKER_SKELETON.md` |
+| `W5-KEN-05` | Integration test independen INT-01 s.d. INT-05 | Test report | Selesai | `docs/week5/01_INTEGRATION_TEST_REPORT.md` §5 |
+| `W5-ARB-09` | Support bug fixing kontrak | Fix | Selesai | `docs/week5/06_CONTRACT_SUPPORT.md` (tidak ada bug kontrak) |
+| `W5-AGU-09` | Support bug fixing kontrak | Fix | Selesai | `docs/week5/06_CONTRACT_SUPPORT.md` (tidak ada bug kontrak) |
 
 ### Minggu 6 — Parallel Processing (Farelly)
 
@@ -259,12 +261,12 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 - Minggu 1 selesai: 17/17 issue memiliki artefak di `docs/week1/` + `migration_parallel.sql` + PR template.
 - **Database:** MySQL 8.0.30 aktif; `migration_blockchain.sql` dan `migration_parallel.sql` berhasil dijalankan.
-- **Blockchain:** Ganache 7.9.1 aktif di `127.0.0.1:7545` (chainId 1337, networkId 5777); `HSportStore` dideploy di `0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab`; log di `blockchain/deployments/`.
+- **Blockchain:** Ganache aktif di `127.0.0.1:7545` (chainId 1337, networkId 5777); per 12 November 2026 Ganache di-reset dan `HSportStore` V2 dideploy ulang di `0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab`; address historis M4 `0x2f3e…bE10`; log di `blockchain/deployments/`.
 - **Minggu 2:** `docs/week2/README.md` menjadi indeks; baseline environment, wireframe UI, spesifikasi kontrak final, dan prosedur reproduksi tersedia.
 - **Reproduksi:** clean clone `npm ci → compile → migrate → npm test` PASS; ABI SHA-256 identik (`FC5622FE...9D6252`); address clean clone `0x5b1869D9A4C187F2EAa108f3062412ecf0526b24`; bukti di `docs/week2/evidence/reproduction_clean_clone.log`.
 - **Template:** `docs/templates/TEST_REPORT_TEMPLATE.md`, `BUG_REPORT_TEMPLATE.md`, `BENCHMARK_SHEET.csv`.
 - `Progress Tracker.docx` sudah di-re-baseline: Milestone 1 = Selesai 100%; Milestone 2 = 97%.
 - `blockchain/README.md` sudah diperbaiki dari Hardhat ke Truffle.
-- Kontrak saat ini masih `HSportStore` 4 state; target final ada di `docs/week2/02_CONTRACT_SPEC_FINAL.md`.
-- **Test harness:** `blockchain/test/` sudah ada; baseline smoke 4 PASS, skeleton SC-01..SC-06 6 pending. Belum ada test SC yang diaktifkan; 0/21 test wajib PASS.
+- Kontrak saat ini `HSportStore` V2 dengan 8 state, `cancelOrder`, dan refund escrow; spesifikasi final di `docs/week2/02_CONTRACT_SPEC_FINAL.md`.
+- **Test harness:** 17/21 test PASS (12 SC + 5 INT). PAR-01..PAR-04 menunggu M6–M7.
 - PHP 8.1.10 tidak ada di PATH; Composer tidak terpasang; integrasi direncanakan memakai JSON-RPC cURL.
