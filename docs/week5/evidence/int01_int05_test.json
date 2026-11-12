@@ -1,0 +1,33 @@
+{
+    "executed_at": "2026-11-11T10:13:23+00:00",
+    "total": 5,
+    "passed": 4,
+    "all_pass": false,
+    "tests": {
+        "INT-01": {
+            "name": "Koneksi RPC Backend ke Ganache Node",
+            "status": "PASS",
+            "detail": "RPC: http:\/\/127.0.0.1:7545 | Chain ID: 1337 (Expected 1337) | Block: #226 | Contract: 0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10 (Bytecode verified)"
+        },
+        "INT-02": {
+            "name": "Sinkronisasi Order DB Lokal dengan Smart Contract",
+            "status": "PASS",
+            "detail": "DB Order #32 (INV-INT-1794392003) terhubung ke on-chain order ID #1 (Buyer: 0xffcf8fdee72ac11b5c542428b35eef5769c409f0, Status: Created)"
+        },
+        "INT-03": {
+            "name": "Pengambilan Transaction Hash, Receipt & Status Blockchain",
+            "status": "PASS",
+            "detail": "Tx Hash: 0x5b18d347ba2561276890faa3bdcdd204a502721fd6e83d1895d1f13e2aad90ef | Status: CONFIRMED | Block: #225 | Gas Used: 1816066 | Contract: "
+        },
+        "INT-04": {
+            "name": "Penyimpanan Bukti Kriptografis (Tx Hash, Block, Wallet) ke DB",
+            "status": "PASS",
+            "detail": "Proof tersimpan di `orders` (ID: 32, Tx: 0x5b18d347..., Block: 225) & dicatat di `blockchain_transactions` (1 baris)"
+        },
+        "INT-05": {
+            "name": "Verifikasi Konsistensi Data Status DB vs Smart Contract",
+            "status": "FAIL",
+            "detail": "Exception: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'INV-TEST-001' for key 'orders.order_number'"
+        }
+    }
+}
