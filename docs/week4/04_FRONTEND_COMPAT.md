@@ -3,7 +3,7 @@
 **Issue:** `W4-FRL-08`, `W4-IHS-04`
 **Pemilik:** Farrelly De Rossi, Ihsanul
 **Reviewer:** Luis, Arby, Kenjiro
-**Status:** V1 tetap kompatibel; UI cancel **belum dibuat**
+**Status:** V1 tetap kompatibel; UI cancel **sudah dibuat** (lihat `07_CANCEL_UI.md`)
 **Tanggal:** 11 November 2026
 
 ---
@@ -18,7 +18,7 @@ Kontrak V2 bersifat **aditif**: seluruh signature, struct, enum, dan event V1 di
 | `getOrder` / `getOrderStatus` | ✅ Tidak berubah |
 | `recordPayment` / `updateOrderStatus` / `shipOrder` | ✅ Tidak berubah |
 | `confirmReceived` | ✅ Tidak berubah |
-| `cancelOrder` | ⚠️ Tersedia di kontrak; **belum ada tombol/form di UI** |
+| `cancelOrder` | ✅ Tersedia di kontrak **dan UI** (`order-detail.php`) |
 | ABI aktif | 29 entri (V2) |
 | Address aktif | `0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10` |
 
@@ -72,16 +72,20 @@ Address V1 tetap tercatat sebagai historis di [`03_DEPLOYMENT_V2.md`](03_DEPLOYM
 - Pemanggilan `createOrder` dan pembacaan status order.
 - Event yang didengarkan untuk alur bayar.
 
-### 4.2 Yang belum ada
+### 4.2 Implementasi UI cancel (sudah tersedia)
 
-UI pembatalan order **belum diimplementasikan** (`W4-IHS-04` masih sebagian). Agar fitur cancel dapat dipakai pengguna, frontend perlu:
+UI pembatalan order tersedia di `order-detail.php` dan mencakup:
 
-1. Menampilkan tombol **Batalkan Order** hanya untuk state yang diizinkan:
+1. Tombol **Batalkan Order** tampil hanya untuk order kripto yang terhubung ke kontrak dan belum final.
+2. Otorisasi dibaca dari **state on-chain** (`getOrder`), bukan hanya status DB:
    - `Created` / `AwaitingPayment` → pembeli atau operator,
-   - `Paid` / `InProduction` / `ReadyToShip` → operator.
-2. Mengirim `cancelOrder(orderId, reason)` dengan `reason` ≤ 64 byte.
-3. Menampilkan event `OrderCancelled` dan `EscrowRefunded` beserta tx hash.
-4. Menyembunyikan tombol untuk `Shipped`, `Completed`, dan `Cancelled`.
+   - `Paid` / `InProduction` / `ReadyToShip` → operator,
+   - `Shipped` / `Completed` / `Cancelled` → tidak dapat dibatalkan.
+3. Mengirim `cancelOrder(orderId, reason)` dengan validasi `reason` ≤ 64 byte.
+4. Menampilkan event `OrderCancelled` dan `EscrowRefunded` beserta tx hash.
+5. Menyimpan bukti cancel ke `blockchain_transactions` melalui API `cancel_order`.
+
+Detail lengkap: [`07_CANCEL_UI.md`](07_CANCEL_UI.md).
 
 ### 4.3 Batasan input reason
 
@@ -105,15 +109,15 @@ Jika tidak dicek, transaksi akan revert dengan `Reason too long`.
 | `createOrder` | ✅ | ✅ | Signature sama |
 | Baca status order | ✅ | ✅ | Enum sama |
 | `confirmReceived` | ✅ | ✅ | Perilaku sama |
-| `cancelOrder` | ❌ tidak ada | ✅ kontrak | UI belum ada |
-| Event `OrderCancelled` / `EscrowRefunded` | ❌ | ✅ | Butuh listener baru bila UI dibuat |
+| `cancelOrder` | ❌ tidak ada | ✅ kontrak + UI |
+| Event `OrderCancelled` / `EscrowRefunded` | ❌ | ✅ ditampilkan setelah transaksi |
 
 ---
 
-## 6. Rekomendasi untuk M5
+## 6. Rekomendasi Lanjutan (M5)
 
-1. Buat komponen UI cancel beserta validasi state dan panjang reason.
-2. Tambahkan listener event `OrderCancelled`/`EscrowRefunded` pada halaman detail order.
+1. Eksekusi UAT browser dan ambil screenshot (UI tersedia).
+2. Arahkan cancel order kripto di halaman admin ke jalur on-chain agar escrow direfund.
 3. Simpan `tx_hash` cancel ke DB agar proof dan verifikasi (INT-05) mencakup refund.
 4. Tandai order V1 lama sebagai historis; address aktif sudah V2 sehingga order V1 tidak terbaca lewat config saat ini.
 5. Uji end-to-end di browser setelah UI cancel tersedia (lihat [`05_UAT_CANCEL.md`](05_UAT_CANCEL.md)).
@@ -122,7 +126,7 @@ Jika tidak dicek, transaksi akan revert dengan `Reason too long`.
 
 ## 7. Kesimpulan
 
-Frontend existing **kompatibel penuh** dengan V2 karena perubahan bersifat aditif dan config sudah menunjuk kontrak baru. Satu-satunya kekurangan adalah belum adanya UI untuk memanggil `cancelOrder`; ini dicatat sebagai pekerjaan M5 dan tidak menghalangi exit gate kontrak M4.
+Frontend existing **kompatibel penuh** dengan V2 karena perubahan bersifat aditif dan config sudah menunjuk kontrak baru. UI cancel on-chain kini tersedia di `order-detail.php`, telah melewati smoke test statis 12/12, dan siap diuji end-to-end di browser.
 
 ---
 

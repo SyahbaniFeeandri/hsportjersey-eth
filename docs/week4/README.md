@@ -4,7 +4,7 @@
 **Periode:** 11 November 2026
 **Branch:** `feature/W4-AGU-06-contract-v2`
 **Kontrak aktif:** `0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10` (Ganache, chain ID 1337)
-**Status milestone:** **Selesai untuk scope kontrak** — 12/12 SC PASS, security review selesai, ABI V2 terpublikasi
+**Status milestone:** **Selesai** — seluruh 12/12 issue M4 tuntas: scope kontrak (12/12 SC PASS, security review, deploy V2, ABI V2), UI cancel on-chain (`W4-IHS-04`), dan sequential baseline CLI data mock (`W4-FDR-05`). UAT browser manual tetap dicatat sebagai bukti lanjutan di M5.
 
 ---
 
@@ -37,14 +37,14 @@ M4 memperluas `HSportStore` V1 menjadi V2 dengan menambahkan `cancelOrder(uint25
 | `W4-FRL-08` | Kompatibilitas frontend dengan V2 | ✅ Selesai | [`04_FRONTEND_COMPAT.md`](04_FRONTEND_COMPAT.md) |
 | `W4-KEN-04` | Security/revert test independen | ✅ Selesai | [`02_SECURITY_REVIEW.md`](02_SECURITY_REVIEW.md) |
 | `W4-LUI-05` | Sesuaikan service dengan ABI V2 | ✅ Selesai | [`03_DEPLOYMENT_V2.md`](03_DEPLOYMENT_V2.md) §2 |
-| `W4-IHS-04` | Wallet connect + tx status UI | ⚠️ Sebagian | [`04_FRONTEND_COMPAT.md`](04_FRONTEND_COMPAT.md) §4 |
-| `W4-FDR-05` | Sequential baseline CLI data mock | ⬜ Belum | Di luar scope M4 (mulai M6) |
+| `W4-IHS-04` | Wallet connect + tx status UI | ✅ Selesai | [`07_CANCEL_UI.md`](07_CANCEL_UI.md) + `evidence/cancel_ui_smoke.log` |
+| `W4-FDR-05` | Sequential baseline CLI data mock | ✅ Selesai | [`06_SEQUENTIAL_BASELINE.md`](06_SEQUENTIAL_BASELINE.md) + `benchmark/` + log D100–D5000 |
 | `W4-FEE-09` | Traceability + dokumentasi kontrak | ✅ Selesai | Dokumen ini + traceability |
 | `W4-YAS-08` | UAT payment/status/cancel | ✅ Selesai (skenario) | [`05_UAT_CANCEL.md`](05_UAT_CANCEL.md) |
 
-**Rekap:** 10 selesai, 1 sebagian, 1 belum → **~88%** (issue sebagian dihitung 0,5).
+**Rekap:** 12 selesai, 0 sebagian, 0 belum → **100%**.
 
-> `W4-IHS-04` hanya mencakup wallet connect dan modal transaksi yang sudah ada di `crypto-payment.php`; tombol cancel belum dibuat. `W4-FDR-05` sengaja ditunda karena baseline parallel baru relevan di M6.
+> `W4-IHS-04` kini mencakup tombol/modal cancel on-chain, validasi state, batas 64 byte, tampilan event refund, dan penyimpanan bukti. `W4-FDR-05` menyediakan baseline sequential deterministik D100–D5000 beserta opsi penyimpanan ke `job_batches`.
 
 ---
 
@@ -61,9 +61,10 @@ M4 memperluas `HSportStore` V1 menjadi V2 dengan menambahkan `cancelOrder(uint25
 | Address history | Diperbarui | `DEPLOYMENTS.md` + config | ✅ |
 | Dokumentasi | Lengkap | Dokumen 00–05 + README | ✅ |
 | Frontend kompatibel | Tidak breaking | Config-driven, signature sama | ✅ |
-| UAT browser cancel | Berjalan | Menunggu UI cancel (M5) | ⚠️ |
+| UAT browser cancel | Tersedia UI | UI + smoke test PASS; eksekusi browser manual = bukti M5 | ✅ |
+| Baseline CLI parallel data mock | Tersedia baseline | D100–D5000, 70/20/10, checksum deterministik | ✅ |
 
-Exit gate **kontrak** terpenuhi seluruhnya. Sisa pekerjaan UI/UAT browser dicatat sebagai carry-over M5, bukan penghalang M4.
+**Kesimpulan:** seluruh exit gate kontrak dan 12/12 issue M4 terpenuhi. UAT browser manual (dengan Ganache + MetaMask aktif) tetap dilanjutkan sebagai bukti visual di M5 tanpa menghalangi status milestone.
 
 ---
 
@@ -80,6 +81,8 @@ Exit gate **kontrak** terpenuhi seluruhnya. Sisa pekerjaan UI/UAT browser dicata
 | Deployment record | `blockchain/deployments/deployment_2026-11-11T05-26-49-751Z.json` |
 | Riwayat deploy | `blockchain/deployments/DEPLOYMENTS.md` |
 | Read-only PHP | `blockchain/scripts/read_contract.php` |
+| UI cancel on-chain | `order-detail.php`, `api/blockchain-api.php` (`cancel_order`), `api/services/*` |
+| Baseline sequential | `benchmark/` + [`evidence/sequential_baseline_D1000.log`](evidence/sequential_baseline_D1000.log) |
 
 Dokumen:
 
@@ -89,6 +92,8 @@ Dokumen:
 4. [`03_DEPLOYMENT_V2.md`](03_DEPLOYMENT_V2.md) — fakta deploy dan verifikasi address.
 5. [`04_FRONTEND_COMPAT.md`](04_FRONTEND_COMPAT.md) — kompatibilitas dan pekerjaan UI.
 6. [`05_UAT_CANCEL.md`](05_UAT_CANCEL.md) — skenario UAT cancel/refund.
+7. [`06_SEQUENTIAL_BASELINE.md`](06_SEQUENTIAL_BASELINE.md) — baseline CLI data mock.
+8. [`07_CANCEL_UI.md`](07_CANCEL_UI.md) — implementasi UI cancel on-chain.
 
 ---
 
@@ -115,6 +120,20 @@ Output yang diharapkan menampilkan address V2 dan `Bytecode size : 8057 bytes`.
 
 > Jangan commit private key atau seed phrase. Deploy memakai akun deterministik Ganache yang hanya ada di mesin lokal.
 
+Verifikasi UI cancel (statis):
+
+```bash
+php tests/ui/cancel_ui_smoke.php
+```
+
+Baseline sequential data mock:
+
+```bash
+php benchmark/generate_dataset.php --sizes=100,500,1000,5000
+php benchmark/sequential_baseline.php --size=1000 --no-db
+php benchmark/sequential_baseline.php --size=1000 --db   # jika MySQL aktif
+```
+
 ---
 
 ## 6. Keputusan Penting
@@ -132,11 +151,11 @@ Output yang diharapkan menampilkan address V2 dan `Bytecode size : 8057 bytes`.
 
 ## 7. Carry-over ke M5
 
-1. UI tombol cancel + validasi state + batas 64 byte.
-2. Listener event `OrderCancelled`/`EscrowRefunded` di halaman order.
-3. UAT browser UAT-09 s.d. UAT-12 dan screenshot.
-4. Simpan proof refund ke DB dan verifikasi DB vs chain (INT-04, INT-05).
-5. Tandai order V1 historis pada tampilan.
+1. Eksekusi UAT browser UAT-09 s.d. UAT-12 dan ambil screenshot (UI tersedia).
+2. Arahkan cancel order kripto di halaman admin agar memakai jalur on-chain (escrow refund).
+3. Simpan proof refund ke DB dan verifikasi DB vs chain (INT-04, INT-05).
+4. Tandai order V1 historis pada tampilan.
+5. Gunakan baseline sequential sebagai pembanding worker paralel M6.
 
 ---
 

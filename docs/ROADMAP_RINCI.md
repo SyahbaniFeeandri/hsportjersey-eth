@@ -5,11 +5,11 @@
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
 **Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 54 selesai, 9 sebagian, 49 belum dari 112 issue.
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 57 selesai, 7 sebagian, 48 belum dari 112 issue.
 **Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) - 17/17 issue selesai.
-**Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 15 selesai, 1 sebagian (`W2-FRL-05`).
+**Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 16/16 issue selesai (`W2-FRL-05` clean clone di komputer anggota lain PASS).
 **Artefak Minggu 3:** lihat [docs/week3/README.md](week3/README.md) - 12/12 issue selesai (exit gate teknis terpenuhi).
-**Artefak Minggu 4:** lihat [docs/week4/README.md](week4/README.md) - 10 selesai, 1 sebagian (`W4-IHS-04`), 1 belum (`W4-FDR-05`); 12/12 SC PASS.
+**Artefak Minggu 4:** lihat [docs/week4/README.md](week4/README.md) - 12/12 issue selesai (kontrak V2, UI cancel on-chain, sequential baseline CLI).
 
 ---
 
@@ -106,7 +106,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 2 — Blockchain Environment
 
-**Status saat ini:** Selesai (artefak) — 15 selesai, 1 sebagian, 0 belum dari 16 issue. Spesifikasi kontrak final, wireframe, template, dan simulasi clean clone (ABI identik) tersedia; uji di komputer anggota lain belum.
+**Status saat ini:** **Selesai** — 16/16 issue selesai, 0 sebagian, 0 belum. Uji clean clone di komputer/lingkungan anggota lain PASS (`reproduction_second_env.log`).
 **Lead:** Farrel · **Pendukung:** Arby, Agustina, Luis · **Target:** 22%
 
 | PIC | Issue | Output / Evidence |
@@ -115,7 +115,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 | FRL | `W2-FRL-02` Panduan MetaMask: add network, import akun | `docs/PANDUAN_SETUP_DAN_OPERASIONAL.md` Langkah 4 |
 | FRL | `W2-FRL-03` Truffle config + test harness + perbaiki README | `blockchain/test/`, baseline smoke 4 PASS |
 | FRL | `W2-FRL-04` Deploy script + ABI/address history + `.env.example` | `blockchain/scripts/logDeployment.js`, `blockchain/deployments/` |
-| FRL | `W2-FRL-05` Uji reproduksi di komputer anggota lain | Sebagian: clean clone PASS di mesin sendiri + `docs/week2/evidence/reproduction_clean_clone.log` |
+| FRL | `W2-FRL-05` Uji reproduksi di komputer anggota lain | Selesai: clean clone PASS di mesin utama & mesin kedua (Debian 12 WSL2) + `docs/week2/evidence/reproduction_second_env.log` |
 | ARB | `W2-ARB-02` Finalkan struct/enum/mapping/modifier | `docs/week2/02_CONTRACT_SPEC_FINAL.md` |
 | ARB | `W2-ARB-03` Skeleton unit test SC-01 s.d. SC-06 | `blockchain/test/01_sc01_sc06.skeleton.test.js` |
 | AGU | `W2-AGU-02` Finalkan transition table + event list | `docs/week2/02` bagian 7 & 9 |
@@ -129,7 +129,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 | KEN | `W2-KEN-02` Template test report, bug report, benchmark sheet | `docs/templates/` |
 
 **Exit gate:** clean clone → compile → deploy berhasil di mesin anggota lain; ABI/address konsisten.
-**Status gate:** ABI konsisten dan clean clone PASS di mesin sendiri; uji di mesin anggota lain **belum** (`W2-FRL-05` sebagian).
+**Status gate:** ✅ 100% Selesai — ABI konsisten dan clean clone PASS di mesin utama dan mesin kedua anggota lain (`W2-FRL-05` selesai).
 
 ---
 
@@ -160,7 +160,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 4 — Smart Contract V2
 
-**Status saat ini:** Berjalan — 10 selesai, 1 sebagian, 1 belum dari 12 issue (**88%**). Exit gate kontrak terpenuhi; sisa UI cancel dan UAT browser menjadi carry-over M5.
+**Status saat ini:** **Selesai** — 12 selesai, 0 sebagian, 0 belum dari 12 issue (100%). Scope kontrak 12/12 SC PASS, UI cancel on-chain tersedia, dan sequential baseline CLI data mock menghasilkan evidence D100–D5000.
 **Lead:** Agustina · **Pendukung:** Arby, Farrel, Kenjiro · **Target:** 52%
 
 | PIC | Issue | Output / Evidence |
@@ -173,12 +173,12 @@ Target progress kumulatif mengikuti dashboard tracker:
 | FRL | `W4-FRL-08` Cek kompatibilitas frontend dengan interface V2 | Catatan kompatibilitas |
 | KEN | `W4-KEN-04` Security/revert test independen + review SC-07 s.d. SC-12 | Security report |
 | LUI | `W4-LUI-05` Sesuaikan service dengan ABI V2 | Service update |
-| IHS | `W4-IHS-04` Implement wallet connect + tx status UI (mock) | UI berjalan |
-| FDR | `W4-FDR-05` Sequential baseline CLI dengan data mock | Baseline script |
+| IHS | `W4-IHS-04` Implement wallet connect + tx status UI (mock) | Selesai: panel/modal cancel on-chain di `order-detail.php`; `docs/week4/07_CANCEL_UI.md` |
+| FDR | `W4-FDR-05` Sequential baseline CLI dengan data mock | Selesai: `benchmark/` + D100–D5000; `docs/week4/06_SEQUENTIAL_BASELINE.md` |
 | FEE | `W4-FEE-09` Update traceability + dokumentasi kontrak | Dokumen |
 | YAS | `W4-YAS-08` UAT scenario payment/status/cancel | Skenario UAT |
 
-**Exit gate:** 12/12 SC PASS, security test selesai, ABI/address v2 dipublikasikan. **Tercapai 11 November 2026:** kontrak V2 `0x2f3e…bE10`, 16 passing (12 SC + 4 smoke), security review tanpa Critical/High/Medium.
+**Exit gate:** 12/12 SC PASS, security test selesai, ABI/address v2 dipublikasikan, UI cancel on-chain, sequential baseline CLI data mock. **Terpenuhi 12 November 2026:** kontrak V2 `0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10`, 16 passing (12 SC + 4 smoke), security review tanpa Critical/High/Medium, UI cancel + smoke test 12/12 PASS, dan baseline D100–D5000 deterministik. UAT browser manual dilanjutkan sebagai bukti visual M5.
 
 ---
 
@@ -321,7 +321,7 @@ Jika Minggu 3 atau Minggu 5 slip, Minggu 7 dan 8 ikut mundur.
 ### 6.2 Strategi paralelisasi
 
 - **Minggu 3:** interface kontrak wajib freeze, walau V2 belum selesai.
-- **Minggu 4–5:** Farelly mulai sequential baseline dan worker skeleton dengan data mock agar Minggu 6 tidak menjadi bottleneck.
+- **Minggu 4:** sequential baseline data mock selesai (D100–D5000) sebagai pembanding; **Minggu 5:** Farelly menyiapkan worker skeleton agar Minggu 6 tidak menjadi bottleneck.
 - **Minggu 5–8:** UI/proof/dashboard berjalan paralel dengan backend, tidak menunggu semuanya selesai.
 - **Minggu 1–8:** dokumentasi, traceability, dan weekly log berjalan terus.
 

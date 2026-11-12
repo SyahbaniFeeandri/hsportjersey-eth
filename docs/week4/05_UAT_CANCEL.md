@@ -3,7 +3,7 @@
 **Issue:** `W4-YAS-08`, `W4-AGU-06`
 **Pemilik:** Yasmin Akmaliyah
 **Reviewer:** Agustina, Kenjiro, Feeandri
-**Status:** Skenario siap; eksekusi browser menunggu UI cancel (M5)
+**Status:** Skenario siap; UI cancel tersedia (`07_CANCEL_UI.md`); eksekusi browser menunggu Ganache + MetaMask aktif
 **Tanggal:** 11 November 2026
 
 ---
@@ -45,7 +45,7 @@ Memetakan skenario UAT pembatalan order dan refund ke implementasi `cancelOrder`
 | 5 | Buka detail order | Event `OrderCancelled` + `EscrowRefunded` dan tx hash tampil |
 | 6 | Coba batalkan lagi | Ditolak `Order is final` |
 
-**Status saat ini:** langkah 1–6 terbukti di level kontrak lewat SC-11, tetapi langkah 2–3 dan 5 **belum dapat dilakukan di browser** karena tombol cancel belum ada.
+**Status saat ini:** langkah 1–6 terbukti di level kontrak lewat SC-11. Langkah 2–3 dan 5 kini **tersedia di UI** (`order-detail.php`); eksekusi browser menunggu Ganache + MetaMask aktif.
 
 ---
 
@@ -58,7 +58,7 @@ Memetakan skenario UAT pembatalan order dan refund ke implementasi `cancelOrder`
 | 3 | Akun luar mencoba cancel | Revert `Not authorized to cancel` |
 | 4 | Operator cancel dengan alasan | Berhasil; status `Cancelled`; escrow direfund |
 
-**Status saat ini:** terbukti di level kontrak (SC-11). Uji browser menunggu UI dan integrasi wallet per peran.
+**Status saat ini:** terbukti di level kontrak (SC-11). UI cancel tersedia; uji browser per peran menunggu Ganache + MetaMask aktif.
 
 ---
 
@@ -92,11 +92,11 @@ Memetakan skenario UAT pembatalan order dan refund ke implementasi `cancelOrder`
 
 ## 7. Batasan Eksekusi Sekarang
 
-1. **UI cancel belum ada**, sehingga UAT browser belum dapat dijalankan end-to-end.
+1. **UI cancel sudah tersedia** di `order-detail.php`; UAT browser belum dieksekusi pada sesi ini karena Ganache/MetaMask tidak aktif.
 2. Peran di MetaMask masih memakai akun Ganache; belum ada pemisahan akun pembeli/operator yang ramah pengguna.
 3. Refund memakai `transfer` 2300 gas; pembeli EOA aman, kontrak dengan `receive()` berat tidak diuji.
 4. Waktu konfirmasi bergantung pada Ganache lokal; tidak ada uji testnet.
-5. Bukti visual (screenshot) belum diambil karena menunggu UI.
+5. Bukti visual (screenshot) belum diambil; smoke test statis tersedia di `evidence/cancel_ui_smoke.log`.
 
 ---
 
@@ -128,10 +128,10 @@ Jangan menuliskan private key atau seed phrase di dokumen, screenshot, atau comm
 
 | Item | Target |
 |---|---|
-| UI tombol cancel + validasi state | M5 (`W5-IHS-...`) |
-| UAT browser UAT-09/10/11/12 | M5 setelah UI tersedia |
+| UI tombol cancel + validasi state | ✅ Selesai (M4, `W4-IHS-04`) |
+| UAT browser UAT-09/10/11/12 | M5 (UI tersedia; menunggu eksekusi) |
 | Screenshot bukti | M5 |
-| Integrasi simpan tx refund ke DB | M5 (INT-04/INT-05) |
+| Integrasi simpan tx refund ke DB | ✅ Selesai (action `cancel_order`) |
 
 ---
 

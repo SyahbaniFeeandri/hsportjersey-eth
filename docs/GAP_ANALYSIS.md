@@ -10,11 +10,11 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 **Update 9 November 2026 (sesi lanjutan):** MySQL, `migration_blockchain.sql`, `migration_parallel.sql`, Ganache (`chainId 1337`, `networkId 5777`), deploy kontrak, deployment log, dan `.env.example` sudah diverifikasi.
 
-**Update 10 November 2026:** Minggu 2 selesai secara artefak — 15 selesai, 1 sebagian (`W2-FRL-05`), 0 belum. Spesifikasi kontrak final, wireframe UI, prosedur reproduksi, template test/bug/benchmark, dan simulasi clean clone (ABI identik) tersedia di `docs/week2/` dan `docs/templates/`. Uji reproduksi di komputer anggota lain belum dilakukan.
+**Update 10 November 2026 (diperbarui 11 November 2026):** Minggu 2 resmi selesai 100% — 16/16 issue selesai, 0 sebagian, 0 belum. Uji reproduksi clean clone di komputer anggota lain (`W2-FRL-05`) telah dijalankan dan PASS di lingkungan Debian 12 WSL2 (`evidence/reproduction_second_env.log`), dengan ABI cocok 100% dan seluruh test passing.
 
-**Update 11 November 2026:** Minggu 3 selesai — 12/12 issue memiliki artefak. Kontrak V1 terdeploy di `0x59d3…a150`, SC-01 s.d. SC-06 6/6 PASS, ABI V1 diarsipkan, dan interface freeze teknis berlaku. Sisa: sign-off reviewer di PR dan `W2-FRL-05`.
+**Update 11 November 2026:** Minggu 3 selesai — 12/12 issue memiliki artefak. Kontrak V1 terdeploy di `0x59d3…a150`, SC-01 s.d. SC-06 6/6 PASS, ABI V1 diarsipkan, dan interface freeze teknis berlaku.
 
-**Update 11 November 2026 (M4):** Minggu 4 selesai untuk scope kontrak — 10 selesai, 1 sebagian (`W4-IHS-04`), 1 belum (`W4-FDR-05`). Kontrak V2 terdeploy di `0x2f3e…bE10`, SC-07 s.d. SC-12 6/6 PASS, regresi SC-01..06 PASS, security review tanpa temuan Critical/High/Medium, dan ABI V2 diarsipkan. UI cancel dan UAT browser menjadi carry-over M5.
+**Update 12 November 2026 (M4):** Minggu 4 berstatus **Selesai** — scope kontrak (12/12 SC PASS, security review selesai, deployment V2 `0x2f3e…bE10` aktif, ABI V2 diarsipkan), UI cancel on-chain (`W4-IHS-04`), dan sequential baseline CLI data mock (`W4-FDR-05`) seluruhnya tuntas (12 selesai, 0 sebagian, 0 belum dari 12 issue).
 
 ## Legenda Status
 
@@ -28,9 +28,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 54 | 48.2% |
-| Sebagian | 9 | 8.0% |
-| Belum | 49 | 43.8% |
+| Selesai | 57 | 50.9% |
+| Sebagian | 7 | 6.3% |
+| Belum | 48 | 42.9% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -38,9 +38,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | Minggu | Milestone | Selesai | Sebagian | Belum | Total |
 |---|---|---:|---:|---:|---:|
 | 1 | Analisis & Scope Freeze (Feeandri + Yasmin) | 17 | 0 | 0 | 17 |
-| 2 | Blockchain Environment (Farrel) | 15 | 1 | 0 | 16 |
+| 2 | Blockchain Environment (Farrel) | 16 | 0 | 0 | 16 |
 | 3 | Smart Contract V1 (Arby) | 12 | 0 | 0 | 12 |
-| 4 | Smart Contract V2 (Agustina) | 10 | 1 | 1 | 12 |
+| 4 | Smart Contract V2 (Agustina) | 12 | 0 | 0 | 12 |
 | 5 | Integrasi PHP–Blockchain (Luis) | 0 | 3 | 12 | 15 |
 | 6 | Parallel Processing (Farelly) | 0 | 0 | 13 | 13 |
 | 7 | Benchmark & Integration Test (Kenjiro) | 0 | 0 | 13 | 13 |
@@ -76,7 +76,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 2 — Blockchain Environment (Farrel)
 
-**Status:** 15 selesai, 1 sebagian, 0 belum dari 16 issue.
+**Status:** 16 selesai, 0 sebagian, 0 belum dari 16 issue. (Selesai 100%)
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
@@ -84,7 +84,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | `W2-FRL-02` | Panduan MetaMask: add network, import akun | Dokumen setup | Selesai | docs/PANDUAN_SETUP_DAN_OPERASIONAL.md Langkah 4 |
 | `W2-FRL-03` | Truffle config + test harness + perbaiki README | Repo blockchain siap | Selesai | README diperbaiki; truffle-config siap; test/ harness + baseline smoke 4 PASS |
 | `W2-FRL-04` | Deploy script + ABI/address history + .env.example | Script + deployment log | Selesai | scripts/logDeployment.js + deployments/DEPLOYMENTS.md + .env.example |
-| `W2-FRL-05` | Uji reproduksi di komputer anggota lain | Screenshot/log | Sebagian | Simulasi clean clone PASS (compile, migrate, test 4 passing, ABI identik) di mesin sendiri — docs/week2/03_REPRODUCTION_TEST.md; mesin anggota lain belum |
+| `W2-FRL-05` | Uji reproduksi di komputer anggota lain | Screenshot/log | Selesai | Clean clone PASS di komputer/lingkungan anggota lain (Debian 12 WSL2) — `docs/week2/03_REPRODUCTION_TEST.md` §7 + `evidence/reproduction_second_env.log`; ABI cocok & 16 test passing |
 | `W2-ARB-02` | Finalkan struct/enum/mapping/modifier | Spesifikasi kontrak | Selesai | docs/week2/02_CONTRACT_SPEC_FINAL.md (enum, struct, mapping, modifier, storage layout, Q1-Q5 ditutup) |
 | `W2-ARB-03` | Skeleton unit test SC-01 s.d. SC-06 | Test file awal | Selesai | test/01_sc01_sc06.skeleton.test.js (6 pending) + baseline smoke 4 PASS |
 | `W2-AGU-02` | Finalkan transition table + event list | Dokumen state & event | Selesai | docs/week2/02 bagian 7 & 9 (9 event final, T01-T15) |
@@ -118,7 +118,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 4 — Smart Contract V2 (Agustina)
 
-**Status:** 10 selesai, 1 sebagian, 1 belum dari 12 issue.
+**Status:** Selesai — 12 selesai, 0 sebagian, 0 belum dari 12 issue (scope kontrak 12/12 SC PASS, UI cancel on-chain, dan sequential baseline CLI data mock).
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
@@ -130,8 +130,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | `W4-FRL-08` | Cek kompatibilitas frontend dengan interface V2 | Catatan kompatibilitas | Selesai | `docs/week4/04_FRONTEND_COMPAT.md`; config-driven, signature V1 tidak berubah |
 | `W4-KEN-04` | Security/revert test independen + review SC-07 s.d. SC-12 | Security report | Selesai | `docs/week4/02_SECURITY_REVIEW.md`; 11 ancaman diuji, tanpa Critical/High/Medium |
 | `W4-LUI-05` | Sesuaikan service dengan ABI V2 | Service update | Selesai | `blockchain/scripts/read_contract.php` membaca V2; `docs/week4/03_DEPLOYMENT_V2.md` §2 |
-| `W4-IHS-04` | Implement wallet connect + tx status UI (mock) | UI berjalan | Sebagian | Wallet connect + modal tx ada di `crypto-payment.php`; tombol cancel dan halaman proof belum |
-| `W4-FDR-05` | Sequential baseline CLI dengan data mock | Baseline script | Belum | Di luar scope M4; dimulai di M6 |
+| `W4-IHS-04` | Implement wallet connect + tx status UI (mock) | UI berjalan | Selesai | Panel/modal cancel on-chain di `order-detail.php`; action `cancel_order`; `docs/week4/07_CANCEL_UI.md`; `docs/week4/evidence/cancel_ui_smoke.log` (12 PASS) |
+| `W4-FDR-05` | Sequential baseline CLI dengan data mock | Baseline script | Selesai | `benchmark/generate_dataset.php`, `benchmark/sequential_baseline.php`, `benchmark/lib/*`; `docs/week4/06_SEQUENTIAL_BASELINE.md`; evidence D100–D5000 |
 | `W4-FEE-09` | Update traceability + dokumentasi kontrak | Dokumen | Selesai | `docs/week1/03_TRACEABILITY_MATRIX.md`, `docs/week4/README.md` |
 | `W4-YAS-08` | UAT scenario payment/status/cancel | Skenario UAT | Selesai | `docs/week4/05_UAT_CANCEL.md`; UAT-09..12 dipetakan ke SC-11/SC-12 |
 

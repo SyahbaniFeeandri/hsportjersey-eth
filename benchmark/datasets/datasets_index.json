@@ -1,0 +1,38 @@
+[
+    {
+        "dataset": "D100",
+        "size": 100,
+        "hash": "bf5073f852ccf622deca2f3100ac48dbfc573f309d55684c86514168b9b72532",
+        "verified": 70,
+        "mismatch": 20,
+        "error": 10,
+        "path": "benchmark/datasets\\D100.json"
+    },
+    {
+        "dataset": "D500",
+        "size": 500,
+        "hash": "734ddd14ea450a8218285099163c558e04df1efacf8b18d7804696439896d2db",
+        "verified": 350,
+        "mismatch": 100,
+        "error": 50,
+        "path": "benchmark/datasets\\D500.json"
+    },
+    {
+        "dataset": "D1000",
+        "size": 1000,
+        "hash": "253275fa15d85313b392d2e03ceac5dffba8eeaf031576c9b07135f33b53975a",
+        "verified": 700,
+        "mismatch": 200,
+        "error": 100,
+        "path": "benchmark/datasets\\D1000.json"
+    },
+    {
+        "dataset": "D5000",
+        "size": 5000,
+        "hash": "2bed91dfbc1608b563afa2951f51512488760e20ada22a8147d5c579dc518eed",
+        "verified": 3500,
+        "mismatch": 1000,
+        "error": 500,
+        "path": "benchmark/datasets\\D5000.json"
+    }
+]
