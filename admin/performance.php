@@ -59,6 +59,48 @@ foreach ($chartRows as $row) {
     $maxChartSpeedup = max($maxChartSpeedup, (float)$row['speedup']);
 }
 
+// ---------------------------------------------------------------------
+// M7 — bukti benchmark final (matrix 4x4) + regresi 21 test.
+// Dibaca dari artefak docs/week7/evidence agar dashboard menampilkan
+// angka yang sama dengan laporan, bukan hasil hitung ulang.
+// ---------------------------------------------------------------------
+$finalMatrix = null;
+$finalMatrixError = null;
+$matrixPath = __DIR__ . '/../docs/week7/evidence/benchmark_matrix.json';
+if (is_file($matrixPath)) {
+    $decoded = json_decode((string)file_get_contents($matrixPath), true);
+    if (is_array($decoded) && isset($decoded['rows'])) {
+        $finalMatrix = $decoded;
+    } else {
+        $finalMatrixError = 'JSON matrix tidak valid.';
+    }
+} else {
+    $finalMatrixError = 'Belum ada docs/week7/evidence/benchmark_matrix.json.';
+}
+
+$chartSvg = null;
+$chartPath = __DIR__ . '/../docs/week7/evidence/benchmark_chart.svg';
+if (is_file($chartPath)) {
+    $chartSvg = (string)file_get_contents($chartPath);
+}
+
+$regression = null;
+$regressionPath = __DIR__ . '/../docs/week7/evidence/regression_summary.json';
+if (is_file($regressionPath)) {
+    $decoded = json_decode((string)file_get_contents($regressionPath), true);
+    if (is_array($decoded) && isset($decoded['tests'])) {
+        $regression = $decoded;
+    }
+}
+
+$regressionGroups = [];
+if ($regression !== null) {
+    foreach ($regression['tests'] as $test) {
+        $prefix = substr((string)$test['code'], 0, 2);
+        $regressionGroups[$prefix][] = $test;
+    }
+}
+
 $formatNumber = static fn($value, int $decimals = 0): string => $value === null
     ? '-'
     : number_format((float)$value, $decimals, ',', '.');
@@ -158,6 +200,138 @@ $statusBadge = static function (string $status): string {
                         <i class="fas fa-shield-halved fa-2x text-warning"></i>
                         <h3 class="mt-2 mb-0"><?php echo $stats['correctness_pass']; ?>/<?php echo $stats['correctness_total']; ?></h3>
                         <p class="text-muted mb-0">Correctness gate MATCH</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-microchip me-2 text-primary"></i>Benchmark Matrix Final — 4 Dataset × 4 Worker (M7)</h5>
+                    <?php if ($finalMatrix !== null): ?>
+                        <?php $matrixPass = !empty($finalMatrix['summary']['all_pass']); ?>
+                        <span class="badge bg-<?php echo $matrixPass ? 'success' : 'danger'; ?>">
+                            <?php echo (int)($finalMatrix['summary']['passed'] ?? 0); ?>/<?php echo (int)($finalMatrix['summary']['configurations'] ?? 0); ?> konfigurasi PASS
+                        </span>
+                    <?php endif; ?>
+                </div>
+                <div class="card-body p-0">
+                    <?php if ($finalMatrix === null): ?>
+                        <p class="text-muted p-3 mb-0">
+                            <i class="fas fa-circle-info me-1"></i><?php echo htmlspecialchars((string)$finalMatrixError); ?>
+                            Jalankan <code>php benchmark/run_matrix.php</code>.
+                        </p>
+                    <?php else: ?>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Dataset</th>
+                                        <th class="text-center">P</th>
+                                        <th class="text-end">Baseline</th>
+                                        <th class="text-end">Wall-clock</th>
+                                        <th class="text-end">Speedup</th>
+                                        <th class="text-end">Efficiency</th>
+                                        <th class="text-end">Throughput</th>
+                                        <th class="text-end">Order</th>
+                                        <th class="text-center">Worker</th>
+                                        <th>Checksum</th>
+                                        <th>Gate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($finalMatrix['rows'] as $row): ?>
+                                    <tr>
+                                        <td><strong><?php echo htmlspecialchars((string)$row['dataset']); ?></strong>
+                                            <span class="text-muted small">(<?php echo (int)$row['dataset_size']; ?>)</span></td>
+                                        <td class="text-center"><?php echo (int)$row['workers']; ?></td>
+                                        <td class="text-end"><?php echo (int)$row['baseline_duration_ms']; ?> ms</td>
+                                        <td class="text-end"><?php echo (int)$row['duration_ms']; ?> ms</td>
+                                        <td class="text-end fw-semibold"><?php echo number_format((float)$row['speedup'], 2, ',', '.'); ?>x</td>
+                                        <td class="text-end"><?php echo number_format((float)$row['efficiency'] * 100, 1, ',', '.'); ?>%</td>
+                                        <td class="text-end"><?php echo number_format((float)$row['throughput_per_sec'], 1, ',', '.'); ?>/s</td>
+                                        <td class="text-end"><?php echo (int)$row['processed_orders']; ?>/<?php echo (int)$row['dataset_size']; ?></td>
+                                        <td class="text-center"><?php echo (int)$row['distinct_workers']; ?>/<?php echo (int)$row['jobs_total']; ?></td>
+                                        <td class="mono"><?php echo htmlspecialchars(substr((string)$row['checksum'], 0, 12)); ?>…</td>
+                                        <td><?php echo $correctnessBadge(($row['checksum_match'] ?? false) ? 'MATCH' : 'DIFFERENT'); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="card-footer bg-white small text-muted">
+                    Latensi simulasi <?php echo (int)($finalMatrix['latency_us'] ?? 5000); ?> µs/order, dataset deterministik
+                    (seed <code>HSPORT-2026</code>). Gate MATCH = checksum paralel identik dengan baseline sequential.
+                    Sumber: <code>docs/week7/evidence/benchmark_matrix.json</code>.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0"><i class="fas fa-chart-line me-2 text-primary"></i>Grafik Speedup vs Jumlah Worker</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <?php if ($chartSvg === null): ?>
+                                <p class="text-muted mb-0">Grafik belum tersedia. Jalankan <code>php benchmark/run_matrix.php</code>.</p>
+                            <?php else: ?>
+                                <div class="table-responsive"><?php echo $chartSvg; ?></div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card mb-4">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-clipboard-check me-2 text-primary"></i>Regresi 21 Test</h5>
+                            <?php if ($regression !== null): ?>
+                                <span class="badge bg-<?php echo !empty($regression['all_pass']) ? 'success' : 'danger'; ?>">
+                                    <?php echo (int)$regression['passed']; ?>/<?php echo (int)$regression['total']; ?> PASS
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="card-body">
+                            <?php if ($regression === null): ?>
+                                <p class="text-muted mb-0">Belum ada <code>docs/week7/evidence/regression_summary.json</code>. Jalankan <code>php tests/regression/run_all.php</code>.</p>
+                            <?php else: ?>
+                                <?php
+                                $groupLabels = [
+                                    'SC' => 'Smart contract (SC-01..12)',
+                                    'IN' => 'Integrasi (INT-01..05)',
+                                    'PA' => 'Parallel & benchmark (PAR-01..04)',
+                                ];
+                                ?>
+                                <?php foreach ($groupLabels as $prefix => $label): ?>
+                                    <?php
+                                    $group = $regressionGroups[$prefix] ?? [];
+                                    $groupPass = count(array_filter($group, static fn(array $t): bool => $t['status'] === 'PASS'));
+                                    $groupFailed = array_values(array_filter($group, static fn(array $t): bool => $t['status'] !== 'PASS'));
+                                    ?>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span><?php echo htmlspecialchars($label); ?></span>
+                                        <span class="badge bg-<?php echo empty($groupFailed) ? 'success' : 'danger'; ?>">
+                                            <?php echo $groupPass; ?>/<?php echo count($group); ?>
+                                        </span>
+                                    </div>
+                                    <?php if (!empty($groupFailed)): ?>
+                                        <div class="small text-danger mb-2">
+                                            Gagal: <?php echo htmlspecialchars(implode(', ', array_column($groupFailed, 'code'))); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <hr>
+                                <div class="small text-muted">
+                                    Dieksekusi <?php echo htmlspecialchars(date('d M Y H:i', strtotime((string)$regression['executed_at']))); ?>
+                                    · durasi <?php echo number_format((float)$regression['elapsed_seconds'], 1, ',', '.'); ?> detik
+                                    · kontrak <span class="mono"><?php echo htmlspecialchars((string)($regression['environment']['contract_address'] ?? '-')); ?></span>
+                                </div>
+                                <div class="small text-muted mt-1">
+                                    Detail per test: <code>docs/week7/evidence/regression_summary.md</code>.
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>

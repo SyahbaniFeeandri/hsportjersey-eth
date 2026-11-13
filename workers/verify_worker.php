@@ -72,6 +72,7 @@ $workerId = (string)($options['worker'] ?? ('w-' . getmypid()));
 $batchId = isset($options['batch']) ? (int)$options['batch'] : null;
 $loop = isset($options['loop']);
 $maxJobs = isset($options['max-jobs']) ? max(1, (int)$options['max-jobs']) : 0;
+$targetJobId = isset($options['job-id']) ? max(0, (int)$options['job-id']) : 0;
 
 if (isset($options['dry-run'])) {
     echo "Worker config (dry-run)\n";
@@ -134,6 +135,10 @@ while (true) {
         if ($batchId !== null) {
             $sql .= ' AND batch_id = ?';
             $params[] = $batchId;
+        }
+        if ($targetJobId > 0) {
+            $sql .= ' AND id = ?';
+            $params[] = $targetJobId;
         }
         $sql .= ' ORDER BY partition_no ASC LIMIT 1 FOR UPDATE SKIP LOCKED';
 

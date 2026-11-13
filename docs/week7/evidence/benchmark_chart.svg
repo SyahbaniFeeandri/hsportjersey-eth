@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="480" y="28" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="700" fill="#212529">Speedup vs Jumlah Worker</text>
+<line x1="70" y1="470" x2="930" y2="470" stroke="#e9ecef" stroke-width="1"/>
+<text x="60" y="474" text-anchor="end" font-family="Segoe UI, Arial" font-size="11" fill="#6c757d">0,0x</text>
+<line x1="70" y1="386" x2="930" y2="386" stroke="#e9ecef" stroke-width="1"/>
+<text x="60" y="390" text-anchor="end" font-family="Segoe UI, Arial" font-size="11" fill="#6c757d">1,8x</text>
+<line x1="70" y1="302" x2="930" y2="302" stroke="#e9ecef" stroke-width="1"/>
+<text x="60" y="306" text-anchor="end" font-family="Segoe UI, Arial" font-size="11" fill="#6c757d">3,6x</text>
+<line x1="70" y1="218" x2="930" y2="218" stroke="#e9ecef" stroke-width="1"/>
+<text x="60" y="222" text-anchor="end" font-family="Segoe UI, Arial" font-size="11" fill="#6c757d">5,4x</text>
+<line x1="70" y1="134" x2="930" y2="134" stroke="#e9ecef" stroke-width="1"/>
+<text x="60" y="138" text-anchor="end" font-family="Segoe UI, Arial" font-size="11" fill="#6c757d">7,2x</text>
+<line x1="70" y1="50" x2="930" y2="50" stroke="#e9ecef" stroke-width="1"/>
+<text x="60" y="54" text-anchor="end" font-family="Segoe UI, Arial" font-size="11" fill="#6c757d">9,0x</text>
+<line x1="70" y1="50" x2="70" y2="470" stroke="#f1f3f5" stroke-width="1"/>
+<text x="70" y="494" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#495057">P=1</text>
+<line x1="356.66666666667" y1="50" x2="356.66666666667" y2="470" stroke="#f1f3f5" stroke-width="1"/>
+<text x="356.66666666667" y="494" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#495057">P=2</text>
+<line x1="643.33333333333" y1="50" x2="643.33333333333" y2="470" stroke="#f1f3f5" stroke-width="1"/>
+<text x="643.33333333333" y="494" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#495057">P=4</text>
+<line x1="930" y1="50" x2="930" y2="470" stroke="#f1f3f5" stroke-width="1"/>
+<text x="930" y="494" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#495057">P=8</text>
+<line x1="70" y1="470" x2="930" y2="470" stroke="#343a40" stroke-width="1.5"/>
+<line x1="70" y1="50" x2="70" y2="470" stroke="#343a40" stroke-width="1.5"/>
+<text x="500" y="518" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#343a40">Jumlah worker (P)</text>
+<text x="18" y="260" text-anchor="middle" transform="rotate(-90 18 260)" font-family="Segoe UI, Arial" font-size="13" fill="#343a40">Speedup (baseline / wall-clock)</text>
+<polyline points="70,423.33333333333 356.66666666667,376.66666666667 643.33333333333,283.33333333333 930,96.666666666667" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="6 5"/>
+<polyline points="70,430.75333333333 356.66666666667,405.88 643.33333333333,386.882 930,389.06133333333" fill="none" stroke="#0d6efd" stroke-width="2.5"/>
+<circle cx="70" cy="430.75333333333" r="4" fill="#0d6efd"/>
+<circle cx="356.66666666667" cy="405.88" r="4" fill="#0d6efd"/>
+<circle cx="643.33333333333" cy="386.882" r="4" fill="#0d6efd"/>
+<circle cx="930" cy="389.06133333333" r="4" fill="#0d6efd"/>
+<polyline points="70,424.68666666667 356.66666666667,383.73666666667 643.33333333333,318.80466666667 930,252.14133333333" fill="none" stroke="#198754" stroke-width="2.5"/>
+<circle cx="70" cy="424.68666666667" r="4" fill="#198754"/>
+<circle cx="356.66666666667" cy="383.73666666667" r="4" fill="#198754"/>
+<circle cx="643.33333333333" cy="318.80466666667" r="4" fill="#198754"/>
+<circle cx="930" cy="252.14133333333" r="4" fill="#198754"/>
+<polyline points="70,424.22 356.66666666667,380.81066666667 643.33333333333,305.24333333333 930,201.75533333333" fill="none" stroke="#fd7e14" stroke-width="2.5"/>
+<circle cx="70" cy="424.22" r="4" fill="#fd7e14"/>
+<circle cx="356.66666666667" cy="380.81066666667" r="4" fill="#fd7e14"/>
+<circle cx="643.33333333333" cy="305.24333333333" r="4" fill="#fd7e14"/>
+<circle cx="930" cy="201.75533333333" r="4" fill="#fd7e14"/>
+<polyline points="70,423.65533333333 356.66666666667,377.95933333333 643.33333333333,288.85866666667 930,128.51666666667" fill="none" stroke="#6f42c1" stroke-width="2.5"/>
+<circle cx="70" cy="423.65533333333" r="4" fill="#6f42c1"/>
+<circle cx="356.66666666667" cy="377.95933333333" r="4" fill="#6f42c1"/>
+<circle cx="643.33333333333" cy="288.85866666667" r="4" fill="#6f42c1"/>
+<circle cx="930" cy="128.51666666667" r="4" fill="#6f42c1"/>
+<rect x="86" y="62" width="12" height="12" fill="#0d6efd" rx="2"/>
+<text x="104" y="72" font-family="Segoe UI, Arial" font-size="12" fill="#343a40">D100</text>
+<rect x="86" y="82" width="12" height="12" fill="#198754" rx="2"/>
+<text x="104" y="92" font-family="Segoe UI, Arial" font-size="12" fill="#343a40">D500</text>
+<rect x="86" y="102" width="12" height="12" fill="#fd7e14" rx="2"/>
+<text x="104" y="112" font-family="Segoe UI, Arial" font-size="12" fill="#343a40">D1000</text>
+<rect x="86" y="122" width="12" height="12" fill="#6f42c1" rx="2"/>
+<text x="104" y="132" font-family="Segoe UI, Arial" font-size="12" fill="#343a40">D5000</text>
+<line x1="276" y1="68" x2="306" y2="68" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="312" y="72" font-family="Segoe UI, Arial" font-size="12" fill="#6c757d">ideal = P</text>
+</svg>

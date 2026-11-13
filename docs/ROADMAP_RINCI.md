@@ -238,26 +238,26 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 7 — Benchmark & Integration Test
 
-**Status saat ini:** Belum mulai — 0 selesai, 0 sebagian, 13 belum dari 13 issue. Benchmark belum ada.
+**Status saat ini:** **Selesai** — 13 selesai, 0 sebagian, 0 belum dari 13 issue. Benchmark matrix 16/16 PASS, regresi 21/21 PASS, reproducible.
 **Lead:** Kenjiro · **Pendukung:** Farelly, Ihsanul, Feeandri · **Target:** 93%
 
 | PIC | Issue | Output / Evidence |
 |---|---|---|
-| KEN | `W7-KEN-07` Benchmark dataset 100/500/1.000/5.000 × worker 1/2/4/8 | Dataset + hasil |
-| KEN | `W7-KEN-08` Hitung execution time, speedup, efficiency, throughput | Tabel + grafik |
-| KEN | `W7-KEN-09` Full regression 21 test case | 21/21 atau FAIL terdokumentasi |
-| KEN | `W7-KEN-10` Bug report + retest | Bug log |
-| KEN | `W7-KEN-11` Test report final | Laporan |
-| FDR | `W7-FDR-12` Tuning worker/queue + dukungan benchmark | Catatan tuning |
-| IHS | `W7-IHS-08` Finalisasi performance + verification dashboard | Dashboard final |
-| FEE | `W7-FEE-12` Review konsistensi benchmark + draft final doc | Catatan review |
-| YAS | `W7-YAS-11` UAT execution + requirement-to-test final | Bukti UAT |
-| LUI | `W7-LUI-13` Perbaikan integrasi dari bug report | Fix |
-| FRL | `W7-FRL-11` Reproducibility check di mesin lain | Bukti |
-| ARB | `W7-ARB-11` Perbaikan kontrak dari bug report | Fix |
-| AGU | `W7-AGU-11` Perbaikan kontrak dari bug report | Fix |
+| KEN | `W7-KEN-07` Benchmark dataset 100/500/1.000/5.000 × worker 1/2/4/8 | Selesai: `benchmark/run_matrix.php`; 16/16 PASS; `docs/week7/evidence/benchmark_matrix.json` |
+| KEN | `W7-KEN-08` Hitung execution time, speedup, efficiency, throughput | Selesai: `docs/week7/01_BENCHMARK_REPORT.md`; tabel + `benchmark_chart.svg` |
+| KEN | `W7-KEN-09` Full regression 21 test case | Selesai: `tests/regression/run_all.php`; 21/21 PASS |
+| KEN | `W7-KEN-10` Bug report + retest | Selesai: `docs/week7/03_BUG_REPORT_AND_RETEST.md`; BUG-07-01..03 closed |
+| KEN | `W7-KEN-11` Test report final | Selesai: `docs/week7/02_TEST_REPORT_FINAL.md` |
+| FDR | `W7-FDR-12` Tuning worker/queue + dukungan benchmark | Selesai: `docs/week7/04_TUNING_NOTES.md`; pre-assign `--job-id` |
+| IHS | `W7-IHS-08` Finalisasi performance + verification dashboard | Selesai: `admin/performance.php` + `docs/week7/08_DASHBOARD_FINAL.md` |
+| FEE | `W7-FEE-12` Review konsistensi benchmark + draft final doc | Selesai: `docs/week7/05_CONSISTENCY_REVIEW.md` |
+| YAS | `W7-YAS-11` UAT execution + requirement-to-test final | Selesai: `docs/week7/06_UAT_AND_REQUIREMENT_TO_TEST.md`; UAT-01..17 PASS |
+| LUI | `W7-LUI-13` Perbaikan integrasi dari bug report | Selesai: `workers/verify_worker.php` (`--job-id`); INT 5/5 PASS |
+| FRL | `W7-FRL-11` Reproducibility check di mesin lain | Selesai: `tests/regression/check_reproducibility.php`; 16/16 checksum identik |
+| ARB | `W7-ARB-11` Perbaikan kontrak dari bug report | Selesai: tidak ada bug kontrak; SC 12/12 PASS |
+| AGU | `W7-AGU-11` Perbaikan kontrak dari bug report | Selesai: kontrak tidak berubah (`0xe78A…a8Ab`); SC 12/12 PASS |
 
-**Exit gate:** benchmark reproducible, tidak ada bug Sev-1, seluruh test punya status.
+**Exit gate:** benchmark reproducible, tidak ada bug Sev-1, seluruh test punya status. **Terpenuhi 13 November 2026:** 16/16 konfigurasi checksum MATCH (delta metrik ≤ 8,03% pada run reproduksi), 0 bug Sev-1, 21/21 test PASS.
 
 ---
 

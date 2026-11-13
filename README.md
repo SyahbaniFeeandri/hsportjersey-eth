@@ -270,7 +270,7 @@ Pastikan software berikut telah terpasang di komputer Anda:
      - Hak Akses: Manajemen produk, status pengiriman, verifikasi pembayaran, nomor resi, laporan.
    - **Akun Pelanggan (Customer):**
      - Email: `customer@example.com`
-     - Password: `password`
+     - Password: `customer123`
      *(Atau buat akun baru melalui menu [register.php](register.php))*
 
 ---

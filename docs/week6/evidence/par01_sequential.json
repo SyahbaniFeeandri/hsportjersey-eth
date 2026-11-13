@@ -5,10 +5,10 @@
     "dataset_size": 500,
     "dataset_hash": "734ddd14ea450a8218285099163c558e04df1efacf8b18d7804696439896d2db",
     "seed": "HSPORT-2026",
-    "started_at": "2026-11-13T02:48:35+00:00",
-    "finished_at": "2026-11-13T02:48:37+00:00",
-    "duration_ms": 2693,
-    "duration_us": 2692939,
+    "started_at": "2026-11-13T03:46:11+00:00",
+    "finished_at": "2026-11-13T03:46:14+00:00",
+    "duration_ms": 2638,
+    "duration_us": 2637996,
     "total_orders": 500,
     "verified_count": 350,
     "mismatch_count": 100,
@@ -18,11 +18,11 @@
     "revenue_all": 612423000,
     "revenue_verified": 376814000,
     "aov": 1224846,
-    "throughput_per_sec": 185.67,
+    "throughput_per_sec": 189.54,
     "checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
     "latency_us": 5000,
     "persisted": {
-        "batch_id": 27,
-        "job_id": 72
+        "batch_id": 126,
+        "job_id": 390
     }
 }

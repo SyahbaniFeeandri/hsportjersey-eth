@@ -342,6 +342,17 @@ foreach ($workerCounts as $workers) {
 
     echo "\n--- P={$workers} | batch #{$batchId} ({$batchCode}) | " . count($partitions) . " partisi ---\n";
 
+    // Pre-assign satu job ke satu proses worker. Tanpa ini, proses yang
+    // dijadwalkan belakangan bisa menemukan antrean kosong dan idle,
+    // sehingga gate "worker unik = jumlah partisi" gagal secara acak.
+    $jobStmt = $pdo->prepare('SELECT id, partition_no FROM verification_jobs WHERE batch_id = ? ORDER BY partition_no');
+    $jobStmt->execute([$batchId]);
+    $jobRows = $jobStmt->fetchAll(PDO::FETCH_ASSOC);
+    $jobIdByPartition = [];
+    foreach ($jobRows as $jobRow) {
+        $jobIdByPartition[(int)$jobRow['partition_no']] = (int)$jobRow['id'];
+    }
+
     $workerScript = $root . '/workers/benchmark_worker.php';
     $wallStarted = microtime(true);
     $descriptors = [
@@ -353,6 +364,12 @@ foreach ($workerCounts as $workers) {
     $processes = [];
     for ($w = 1; $w <= count($partitions); $w++) {
         $workerId = 'par-' . $workers . '-w' . $w;
+        $assignedJobId = $jobIdByPartition[$w] ?? 0;
+        if ($assignedJobId <= 0) {
+            fwrite(STDERR, "[ERROR] Job untuk partisi {$w} tidak ditemukan.\n");
+            $allGood = false;
+            continue;
+        }
         $command = [
             PHP_BINARY,
             $workerScript,
@@ -360,6 +377,7 @@ foreach ($workerCounts as $workers) {
             '--worker=' . $workerId,
             '--dataset=' . $datasetPath,
             '--latency-us=' . $latencyUs,
+            '--job-id=' . $assignedJobId,
             '--max-jobs=1',
         ];
         $process = proc_open($command, $descriptors, $pipes, $root);

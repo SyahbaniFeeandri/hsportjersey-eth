@@ -1,0 +1,77 @@
+{
+    "executed_at": "2026-11-13T03:46:25+00:00",
+    "matrix": "C:\\laragon\\www\\project_jersey/docs/week7/evidence/benchmark_matrix.json",
+    "latency_us": 5000,
+    "par03": {
+        "rows": 16,
+        "pass": true
+    },
+    "par04": {
+        "race": true,
+        "repeat": true,
+        "integrity": true,
+        "lease_recovery": true
+    },
+    "summary": {
+        "total_checks": 9,
+        "passed": 9,
+        "failed": 0,
+        "all_pass": true
+    },
+    "checks": [
+        {
+            "code": "PAR-03.a",
+            "name": "Matrix berisi 4 dataset x 4 jumlah worker",
+            "status": "PASS",
+            "detail": "rows=16 expected=16"
+        },
+        {
+            "code": "PAR-03.b",
+            "name": "Throughput & speedup konsisten dengan wall-clock",
+            "status": "PASS",
+            "detail": "error=0"
+        },
+        {
+            "code": "PAR-03.c",
+            "name": "Efficiency = speedup / worker dan bernilai wajar",
+            "status": "PASS",
+            "detail": "error=0"
+        },
+        {
+            "code": "PAR-03.d",
+            "name": "Speedup meningkat pada dataset >= 500 order",
+            "status": "PASS",
+            "detail": "dataset gagal=0"
+        },
+        {
+            "code": "PAR-03.e",
+            "name": "Seluruh konfigurasi checksum MATCH",
+            "status": "PASS",
+            "detail": "gate gagal=0"
+        },
+        {
+            "code": "PAR-04.a",
+            "name": "Dua worker memperebutkan satu job: hanya satu yang memproses",
+            "status": "PASS",
+            "detail": "exit=0/0 status=DONE worker=par04-racer-a attempts=1 checkpoints=1"
+        },
+        {
+            "code": "PAR-04.b",
+            "name": "Pengulangan P=8 menghasilkan checksum identik",
+            "status": "PASS",
+            "detail": "checksum1=1258b0c3790fa9c4 checksum2=1258b0c3790fa9c4 baseline=1258b0c3790fa9c4 gate=ok"
+        },
+        {
+            "code": "PAR-04.c",
+            "name": "Checkpoint unik, attempts=1, dan reducer idempoten",
+            "status": "PASS",
+            "detail": "checkpoints=8->8 jobs=8 retried=0 distinct_worker=8 reduce1=1258b0c3790fa9c4 reduce2=1258b0c3790fa9c4"
+        },
+        {
+            "code": "PAR-04.d",
+            "name": "Lease recovery memulihkan job yang ditinggal worker mati",
+            "status": "PASS",
+            "detail": "status=DONE worker=par04-recovery attempts=2 checkpoints=1"
+        }
+    ]
+}

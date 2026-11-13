@@ -4,7 +4,7 @@
 **Issue terkait:** `W1-FEE-04`
 **Pemilik:** Muhammad Feeandri Syahbani
 **Reviewer:** Yasmin Akmaliyah, Kenjiro B.H.G.
-**Status:** Diperbarui M4 — 12/21 test PASS, kontrak V2 terdeploy
+**Status:** Diperbarui M7 — 21/21 test PASS, benchmark reproducible
 **Tanggal:** 9 November 2026 (revisi 11 November 2026)
 
 ---
@@ -40,16 +40,16 @@
 | **REQ-11** | Admin lihat status verifikasi + retry | `admin/orders.php`, `admin/payments.php` (belum ada verifikasi) | Kolom verifikasi + aksi retry | INT-05 | UAT-13 | Ihsanul, Luis | M5 | Sebagian |
 | **REQ-12** | Halaman proof blockchain pembeli | — | `blockchain-proof.php` + komponen tx status | — (manual) | UAT-14 | Ihsanul | M5 | Selesai |
 | **REQ-13** | Sequential & parallel menghasilkan hasil identik | Worker + queue + partition/reduce | Worker, queue, partition/reduce | PAR-01, PAR-02 | UAT-15 | Farelly | M6 | Selesai |
-| **REQ-14** | Ukur execution time, speedup, efficiency, throughput | — | Benchmark script + grafik + dashboard | PAR-03, PAR-04 | UAT-16 | Kenjiro, Farelly | M7 | Belum |
+| **REQ-14** | Ukur execution time, speedup, efficiency, throughput | `benchmark/run_matrix.php`, `benchmark_chart.svg` | Benchmark script + grafik + dashboard | PAR-03, PAR-04 | UAT-16 | Kenjiro, Farelly | M7 | Selesai |
 | **REQ-15** | Reproducible + kontribusi tertelusur | `README.md`, panduan setup, Git repo | Deploy log, `.env.example`, weekly log, tag rilis | — (manual) | UAT-17 | Feeandri, semua | M2, M8 | Sebagian |
 
 ### 2.1 Ringkasan status implementasi requirement
 
 | Status | Jumlah | REQ |
 |---|---:|---|
-| Selesai | 12 | REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08, REQ-09, REQ-10, REQ-12, REQ-13 |
+| Selesai | 13 | REQ-01..REQ-10, REQ-12, REQ-13, REQ-14 |
 | Sebagian | 2 | REQ-11, REQ-15 |
-| Belum | 1 | REQ-14 |
+| Belum | 0 | — |
 | **Total** | **15** | |
 
 ---
@@ -89,8 +89,8 @@
 |---|---|---|---|---|---|---|
 | **PAR-01** | Sequential baseline: waktu & agregasi | REQ-13 | Farelly | Kenjiro | M6 | **PASS** |
 | **PAR-02** | Parallel multi-worker partition/reduce = sequential | REQ-13 | Farelly | Kenjiro | M6 | **PASS** |
-| **PAR-03** | Hitung throughput, speedup, efficiency | REQ-14 | Kenjiro + Farelly | Feeandri | M7 | Not Started |
-| **PAR-04** | Ketahanan konkurensi & integritas agregasi | REQ-14, NFR-01 | Kenjiro + Farelly | Yasmin | M7 | Not Started |
+| **PAR-03** | Hitung throughput, speedup, efficiency | REQ-14 | Kenjiro + Farelly | Feeandri | M7 | **PASS** |
+| **PAR-04** | Ketahanan konkurensi & integritas agregasi | REQ-14, NFR-01 | Kenjiro + Farelly | Yasmin | M7 | **PASS** |
 
 ---
 
@@ -100,14 +100,16 @@
 |---|---:|---:|
 | Requirement total | 15 | — |
 | Requirement Must | 14 | — |
-| Requirement dengan minimal 1 test otomatis | 12 | 14 |
+| Requirement dengan minimal 1 test otomatis | 13 | 14 |
 | Requirement dengan test otomatis **atau** UAT | 15 | 15 |
 | Requirement tanpa verifikasi apa pun | 0 | 0 |
 | Test total | 21 | 21 |
 | Test dengan requirement | 21 | 21 |
-| Test PASS | 19 | 21 |
+| Test PASS | 21 | 21 |
 | Orphan test (tanpa REQ) | 0 | 0 |
 | Orphan requirement Must (tanpa test) | 0 (REQ-12/15 punya UAT manual) | 0 |
+
+> **Catatan M7 (13 November 2026):** PAR-03 dan PAR-04 **PASS** (9/9 CHECK). Benchmark matrix 4 dataset × 4 worker lulus **16/16** dengan checksum identik dengan sequential; D5000 P=8 mencapai speedup **7,318×** (efficiency 91,5%, 1.386,58 order/s). Regresi penuh **21/21 PASS** lewat `tests/regression/run_all.php`. Reproducibility check di workspace kedua menghasilkan 16/16 checksum identik (delta metrik ≤ 8,03%). REQ-14 menjadi **Selesai**; REQ-15 tetap **Sebagian** karena tag rilis baru dikerjakan di M8. Tiga bug ditutup: BUG-07-01 (worker idle race), BUG-07-02 (quoting harness), BUG-07-03 (kredensial dokumen).
 
 > **Catatan M6 (13 November 2026):** PAR-01 dan PAR-02 **PASS**. Baseline sequential D500 menghasilkan checksum `61cfe1d0…` dengan komposisi 350/100/50 dan revenue Rp 612.423.000. Parallel P=1/2/4/8 menghasilkan checksum identik, partisi menutup 1..500, `distinct_workers = jobs_total`, dan `max_attempts = 1`. Suite `tests/parallel/run_par.php` lulus 24/24 CHECK (termasuk RACE-01 lease recovery dan RACE-02 idempotensi reducer). REQ-13 menjadi Selesai; sisa 2 test (PAR-03/PAR-04) menunggu M7.
 >
@@ -149,15 +151,15 @@
 | SC-10 | Log test V2 | [`../week4/evidence/sc07_sc12_test.log`](../week4/evidence/sc07_sc12_test.log) | 11 Nov 2026 |
 | SC-11 | Log test V2 | [`../week4/evidence/sc07_sc12_test.log`](../week4/evidence/sc07_sc12_test.log) | 11 Nov 2026 |
 | SC-12 | Log test V2 | [`../week4/evidence/sc07_sc12_test.log`](../week4/evidence/sc07_sc12_test.log) | 11 Nov 2026 |
-| INT-01 | — | — | — |
-| INT-02 | — | — | — |
-| INT-03 | — | — | — |
-| INT-04 | — | — | — |
-| INT-05 | — | — | — |
+| INT-01 | Log + JSON | [`../week7/evidence/int_regression.log`](../week7/evidence/int_regression.log) · [`int01_int05_test.json`](../week5/evidence/int01_int05_test.json) | 13 Nov 2026 |
+| INT-02 | Log + JSON | [`../week7/evidence/int_regression.log`](../week7/evidence/int_regression.log) · [`int01_int05_test.json`](../week5/evidence/int01_int05_test.json) | 13 Nov 2026 |
+| INT-03 | Log + JSON | [`../week7/evidence/int_regression.log`](../week7/evidence/int_regression.log) · [`int01_int05_test.json`](../week5/evidence/int01_int05_test.json) | 13 Nov 2026 |
+| INT-04 | Log + JSON | [`../week7/evidence/int_regression.log`](../week7/evidence/int_regression.log) · [`int01_int05_test.json`](../week5/evidence/int01_int05_test.json) | 13 Nov 2026 |
+| INT-05 | Log + JSON | [`../week7/evidence/int_regression.log`](../week7/evidence/int_regression.log) · [`int01_int05_test.json`](../week5/evidence/int01_int05_test.json) | 13 Nov 2026 |
 | PAR-01 | Log + JSON suite | [`../week6/evidence/par01_par02_test.log`](../week6/evidence/par01_par02_test.log) · [`par01_sequential.json`](../week6/evidence/par01_sequential.json) | 13 Nov 2026 |
 | PAR-02 | Log + JSON suite | [`../week6/evidence/par01_par02_test.log`](../week6/evidence/par01_par02_test.log) · [`par02_parallel.json`](../week6/evidence/par02_parallel.json) | 13 Nov 2026 |
-| PAR-03 | — | — | — |
-| PAR-04 | — | — | — |
+| PAR-03 | Matrix + log | [`../week7/evidence/benchmark_matrix.json`](../week7/evidence/benchmark_matrix.json) · [`par03_par04_test.log`](../week7/evidence/par03_par04_test.log) | 13 Nov 2026 |
+| PAR-04 | Log + JSON | [`../week7/evidence/par03_par04_test.json`](../week7/evidence/par03_par04_test.json) · [`regression_summary.json`](../week7/evidence/regression_summary.json) | 13 Nov 2026 |
 
 ---
 

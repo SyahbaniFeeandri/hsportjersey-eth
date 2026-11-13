@@ -1,0 +1,66 @@
+===============================================================
+ H-SPORT FINANCIAL dAPP - PARALLEL RUNNER (M6)
+ Dataset     : D500 (500 order)
+ Dataset hash: 734ddd14ea450a8218285099163c558e04df1efacf8b18d7804696439896d2db
+ Worker      : 1, 2, 4, 8
+ Latency     : 5000 us/order (simulasi RPC Mode A)
+ Waktu       : 2026-11-13 03:33:30
+===============================================================
+[baseline] Menjalankan sequential baseline (worker_count=1)...
+[baseline] checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 duration=2647 ms throughput=188,93 order/detik
+[baseline] batch #65 (SEQ-D500-L5000-20261113033330-0516) checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939
+
+--- P=1 | batch #66 (PAR-D500-W1-20261113033333-2342) | 1 partisi ---
+[par-1-w1] Job #189 partisi 1 (1..500)
+[par-1-w1] Selesai partisi 1: 500 order | VERIFIED=350 MISMATCH=100 ERROR=50 | 2632 ms
+ P=1  wall=2726 ms | checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 (MATCH) | jobs 1/1 | worker unik=1 | maxAttempts=1 | speedup=0,971
+
+--- P=2 | batch #67 (PAR-D500-W2-20261113033335-4764) | 2 partisi ---
+[par-2-w1] Job #190 partisi 1 (1..250)
+[par-2-w1] Selesai partisi 1: 250 order | VERIFIED=175 MISMATCH=50 ERROR=25 | 1321 ms
+[par-2-w2] Job #191 partisi 2 (251..500)
+[par-2-w2] Selesai partisi 2: 250 order | VERIFIED=175 MISMATCH=50 ERROR=25 | 1322 ms
+ P=2  wall=1432 ms | checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 (MATCH) | jobs 2/2 | worker unik=2 | maxAttempts=1 | speedup=1,849
+
+--- P=4 | batch #68 (PAR-D500-W4-20261113033337-0774) | 4 partisi ---
+[par-4-w1] Job #192 partisi 1 (1..125)
+[par-4-w1] Selesai partisi 1: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 658 ms
+[par-4-w2] Job #193 partisi 2 (126..250)
+[par-4-w2] Selesai partisi 2: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 656 ms
+[par-4-w3] Job #194 partisi 3 (251..375)
+[par-4-w3] Selesai partisi 3: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 659 ms
+[par-4-w4] Job #195 partisi 4 (376..500)
+[par-4-w4] Selesai partisi 4: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 659 ms
+ P=4  wall= 817 ms | checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 (MATCH) | jobs 4/4 | worker unik=4 | maxAttempts=1 | speedup=3,240
+
+--- P=8 | batch #69 (PAR-D500-W8-20261113033338-7065) | 8 partisi ---
+[par-8-w1] Job #196 partisi 1 (1..63)
+[par-8-w1] Selesai partisi 1: 63 order | VERIFIED=45 MISMATCH=12 ERROR=6 | 329 ms
+[par-8-w2] Job #197 partisi 2 (64..126)
+[par-8-w2] Selesai partisi 2: 63 order | VERIFIED=45 MISMATCH=12 ERROR=6 | 331 ms
+[par-8-w3] Job #198 partisi 3 (127..189)
+[par-8-w3] Selesai partisi 3: 63 order | VERIFIED=43 MISMATCH=14 ERROR=6 | 329 ms
+[par-8-w4] Job #199 partisi 4 (190..252)
+[par-8-w4] Selesai partisi 4: 63 order | VERIFIED=44 MISMATCH=12 ERROR=7 | 331 ms
+[par-8-w5] Job #200 partisi 5 (253..314)
+[par-8-w5] Selesai partisi 5: 62 order | VERIFIED=44 MISMATCH=12 ERROR=6 | 325 ms
+[par-8-w6] Job #201 partisi 6 (315..376)
+[par-8-w6] Selesai partisi 6: 62 order | VERIFIED=44 MISMATCH=12 ERROR=6 | 325 ms
+[par-8-w7] Job #202 partisi 7 (377..438)
+[par-8-w7] Selesai partisi 7: 62 order | VERIFIED=43 MISMATCH=13 ERROR=6 | 328 ms
+[par-8-w8] Job #203 partisi 8 (439..500)
+[par-8-w8] Selesai partisi 8: 62 order | VERIFIED=42 MISMATCH=13 ERROR=7 | 326 ms
+ P=8  wall= 567 ms | checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 (MATCH) | jobs 8/8 | worker unik=8 | maxAttempts=1 | speedup=4,668
+
+===============================================================
+ RINGKASAN PARALLEL
+===============================================================
+ P    Wall(ms)   Checksum     Match      Speedup  Jobs    
+ 1    2726       61cfe1d0d976 MATCH      0,971    1/1
+ 2    1432       61cfe1d0d976 MATCH      1,849    2/2
+ 4    817        61cfe1d0d976 MATCH      3,240    4/4
+ 8    567        61cfe1d0d976 MATCH      4,668    8/8
+---------------------------------------------------------------
+ Exit gate output sequential = parallel : PASS
+===============================================================
+ JSON report : C:\laragon\www\project_jersey/docs/week7/evidence/parallel_D500.json

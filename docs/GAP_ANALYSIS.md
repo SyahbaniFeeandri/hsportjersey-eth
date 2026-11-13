@@ -32,9 +32,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 85 | 75.9% |
+| Selesai | 98 | 87.5% |
 | Sebagian | 4 | 3.6% |
-| Belum | 23 | 20.5% |
+| Belum | 10 | 8.9% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -47,7 +47,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | 4 | Smart Contract V2 (Agustina) | 12 | 0 | 0 | 12 |
 | 5 | Integrasi PHP–Blockchain (Luis) | 15 | 0 | 0 | 15 |
 | 6 | Parallel Processing (Farelly) | 13 | 0 | 0 | 13 |
-| 7 | Benchmark & Integration Test (Kenjiro) | 0 | 0 | 13 | 13 |
+| 7 | Benchmark & Integration Test (Kenjiro) | 13 | 0 | 0 | 13 |
 | 8 | Finalisasi & Demo (semua) | 0 | 4 | 10 | 14 |
 
 > **Catatan:** jumlah issue yang belum dikerjakan tinggi karena roadmap memecah pekerjaan secara rinci. Angka ini adalah checklist eksekusi, bukan penilaian kualitas.
@@ -183,23 +183,23 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 7 — Benchmark & Integration Test (Kenjiro)
 
-**Status:** 0 selesai, 0 sebagian, 13 belum dari 13 issue.
+**Status:** Selesai — 13 selesai, 0 sebagian, 0 belum dari 13 issue (matrix 16/16 PASS, regresi 21/21 PASS, benchmark reproducible).
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
-| `W7-KEN-07` | Benchmark dataset 100/500/1.000/5.000 x worker 1/2/4/8 | Dataset + hasil | Belum | Menunggu W6 |
-| `W7-KEN-08` | Hitung execution time, speedup, efficiency, throughput | Tabel + grafik | Belum | - |
-| `W7-KEN-09` | Full regression 21 test case | 21/21 atau FAIL terdokumentasi | Belum | 0/21 |
-| `W7-KEN-10` | Bug report + retest | Bug log | Belum | - |
-| `W7-KEN-11` | Test report final | Laporan | Belum | - |
-| `W7-FDR-12` | Tuning worker/queue + dukungan benchmark | Catatan tuning | Belum | - |
-| `W7-IHS-08` | Finalisasi performance + verification dashboard | Dashboard final | Belum | - |
-| `W7-FEE-12` | Review konsistensi benchmark + draft final doc | Catatan review | Belum | - |
-| `W7-YAS-11` | UAT execution + requirement-to-test final | Bukti UAT | Belum | - |
-| `W7-LUI-13` | Perbaikan integrasi dari bug report | Fix | Belum | - |
-| `W7-FRL-11` | Reproducibility check di mesin lain | Bukti | Belum | - |
-| `W7-ARB-11` | Perbaikan kontrak dari bug report | Fix | Belum | - |
-| `W7-AGU-11` | Perbaikan kontrak dari bug report | Fix | Belum | - |
+| `W7-KEN-07` | Benchmark dataset 100/500/1.000/5.000 x worker 1/2/4/8 | Dataset + hasil | Selesai | `benchmark/run_matrix.php`; 16/16 konfigurasi PASS; `docs/week7/evidence/benchmark_matrix.json` |
+| `W7-KEN-08` | Hitung execution time, speedup, efficiency, throughput | Tabel + grafik | Selesai | `docs/week7/01_BENCHMARK_REPORT.md`; `benchmark_matrix.csv/.md`, `benchmark_chart.svg` |
+| `W7-KEN-09` | Full regression 21 test case | 21/21 atau FAIL terdokumentasi | Selesai | `tests/regression/run_all.php`; **21/21 PASS**; `regression_summary.json/.md` |
+| `W7-KEN-10` | Bug report + retest | Bug log | Selesai | `docs/week7/03_BUG_REPORT_AND_RETEST.md`; BUG-07-01..03 closed |
+| `W7-KEN-11` | Test report final | Laporan | Selesai | `docs/week7/02_TEST_REPORT_FINAL.md` |
+| `W7-FDR-12` | Tuning worker/queue + dukungan benchmark | Catatan tuning | Selesai | `docs/week7/04_TUNING_NOTES.md`; pre-assign `--job-id` |
+| `W7-IHS-08` | Finalisasi performance + verification dashboard | Dashboard final | Selesai | `admin/performance.php` (matrix, chart, regresi); `docs/week7/08_DASHBOARD_FINAL.md` |
+| `W7-FEE-12` | Review konsistensi benchmark + draft final doc | Catatan review | Selesai | `docs/week7/05_CONSISTENCY_REVIEW.md` |
+| `W7-YAS-11` | UAT execution + requirement-to-test final | Bukti UAT | Selesai | `docs/week7/06_UAT_AND_REQUIREMENT_TO_TEST.md`; UAT-01..17 PASS |
+| `W7-LUI-13` | Perbaikan integrasi dari bug report | Fix | Selesai | `workers/verify_worker.php` (`--job-id`); INT 5/5 PASS ulang |
+| `W7-FRL-11` | Reproducibility check di mesin lain | Bukti | Selesai | `tests/regression/check_reproducibility.php`; 16/16 checksum identik; `docs/week7/07_REPRODUCIBILITY.md` |
+| `W7-ARB-11` | Perbaikan kontrak dari bug report | Fix | Selesai | Tidak ada bug kontrak; SC 12/12 PASS; `03_BUG_REPORT_AND_RETEST.md` §5 |
+| `W7-AGU-11` | Perbaikan kontrak dari bug report | Fix | Selesai | Kontrak tidak berubah (`0xe78A…a8Ab`); SC 12/12 PASS |
 
 ### Minggu 8 — Finalisasi & Demo (semua)
 
@@ -244,20 +244,20 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | B4 | PHP 8.1.10 tidak di PATH; Composer tidak ada | Setup integrasi kurang reproducible | Pakai path absolut + JSON-RPC cURL | Farrel/Luis |
 | B5 | Kontrak masih 4 state | W3–W4 belum bisa mulai | Implement target interface, freeze akhir M3 | Arby/Agustina |
 | B6 | Integrasi masih client-side | Proof tidak lengkap dan tidak tervalidasi backend | Bangun service backend di M5 | Luis |
-| B7 | Reproduksi baru diuji di mesin sendiri | Exit gate M2 belum tertutup penuh | Jadwalkan clean clone di komputer anggota lain | Farrel |
+| B7 | Reproduksi baru diuji di mesin sendiri | Exit gate M2 belum tertutup penuh | Reproduksi M7 di workspace kedua PASS (16/16 checksum identik); clean clone di komputer anggota lain dijadwalkan M8 | Farrel |
 
-## 4. Prioritas 10 Aksi Berikutnya
+## 4. Status 10 Aksi Prioritas (per 13 November 2026)
 
-1. Implementasi kontrak V1 sesuai `docs/week2/02_CONTRACT_SPEC_FINAL.md` (enum 8 state, hash, operator, ABI lengkap).
-2. Aktifkan SC-01 s.d. SC-06 dan capai 6/6 PASS.
-3. Arsipkan `contract_abi.v1.json` dan freeze interface di akhir Minggu 3.
-4. Jadwalkan uji clean clone di komputer anggota lain untuk menutup `W2-FRL-05`.
-5. Implementasi V2: `recordPayment`, `updateOrderStatus`, `cancelOrder`, refund.
-6. Selesaikan SC-07 s.d. SC-12 + security/revert test.
-7. Bangun service backend read/write + receipt/event reader + verification.
-8. Selesaikan INT-01 s.d. INT-05 dengan bukti tx hash dan block number.
-9. Bangun queue/worker paralel + sequential baseline; jalankan PAR-01 s.d. PAR-04.
-10. Final report, weekly log, code freeze, dan demo end-to-end.
+1. ✅ Implementasi kontrak V1 sesuai `docs/week2/02_CONTRACT_SPEC_FINAL.md` — selesai M3.
+2. ✅ Aktifkan SC-01 s.d. SC-06 dan capai 6/6 PASS — selesai M3.
+3. ✅ Arsipkan `contract_abi.v1.json` dan freeze interface — selesai M3.
+4. ⏳ Jadwalkan uji clean clone di komputer anggota lain (reproduksi M7 sudah di workspace kedua; mesin fisik lain dijadwalkan M8).
+5. ✅ Implementasi V2 `recordPayment`, `updateOrderStatus`, `cancelOrder`, refund — selesai M4.
+6. ✅ SC-07 s.d. SC-12 + security/revert test — selesai M4.
+7. ✅ Service backend read/write + receipt/event reader + verification — selesai M5.
+8. ✅ INT-01 s.d. INT-05 dengan bukti tx hash dan block number — selesai M5.
+9. ✅ Queue/worker paralel + sequential baseline; PAR-01 s.d. PAR-04 — selesai M6–M7 (matrix 16/16, regresi 21/21).
+10. ⏳ Final report, weekly log, code freeze, dan demo end-to-end — M8.
 
 ## 5. Catatan Eksekusi
 
@@ -270,5 +270,6 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 - `Progress Tracker.docx` sudah di-re-baseline: Milestone 1 = Selesai 100%; Milestone 2 = 97%.
 - `blockchain/README.md` sudah diperbaiki dari Hardhat ke Truffle.
 - Kontrak saat ini `HSportStore` V2 dengan 8 state, `cancelOrder`, dan refund escrow; spesifikasi final di `docs/week2/02_CONTRACT_SPEC_FINAL.md`.
-- **Test harness:** 19/21 test PASS (12 SC + 5 INT + PAR-01/PAR-02). PAR-03/PAR-04 menunggu M7. Suite M6: 24/24 CHECK PASS.
+- **Test harness:** **21/21 test PASS** (12 SC + 5 INT + PAR-01..PAR-04) per 13 November 2026, dijalankan lewat `php tests/regression/run_all.php`; ringkasan di `docs/week7/evidence/regression_summary.json`. Suite M6 tetap 24/24 CHECK PASS, PAR-03/PAR-04 9/9 CHECK PASS.
+- **Minggu 7:** benchmark matrix 4 dataset × 4 worker **16/16 PASS** (D5000 P=8 speedup 7,318×, efficiency 91,5%); regression **21/21 PASS**; reproducibility 16/16 checksum identik; 3 bug ditutup (1 Sev-2, 1 Sev-3, 1 Sev-4); dashboard final menampilkan matrix, grafik, dan status regresi.
 - PHP 8.1.10 tidak ada di PATH; Composer tidak terpasang; integrasi direncanakan memakai JSON-RPC cURL.

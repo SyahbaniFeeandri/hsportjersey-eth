@@ -1,0 +1,186 @@
+{
+    "executed_at": "2026-11-13T03:46:25+00:00",
+    "environment": {
+        "php": "8.1.10",
+        "os": "Windows",
+        "contract_address": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+        "ganache_rpc": "http://127.0.0.1:7545",
+        "mysql": "h_sport_db@127.0.0.1:3306"
+    },
+    "suites": {
+        "SC": {
+            "exit_code": 0,
+            "found": 12,
+            "log": "docs/week7/evidence/sc_regression.log"
+        },
+        "INT": {
+            "exit_code": 0,
+            "found": 5,
+            "log": "docs/week7/evidence/int_regression.log"
+        },
+        "PAR-01/02": {
+            "exit_code": 0,
+            "checks": 24,
+            "log": "docs/week7/evidence/par01_par02_regression.log"
+        },
+        "PAR-03/04": {
+            "exit_code": 0,
+            "checks": 9,
+            "log": "docs/week7/evidence/par03_par04_regression.log"
+        }
+    },
+    "total": 21,
+    "passed": 21,
+    "failed": 0,
+    "all_pass": true,
+    "elapsed_seconds": 23.09,
+    "tests": [
+        {
+            "code": "SC-01",
+            "name": "inisialisasi contract, owner, dan akses owner (133ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "inisialisasi contract, owner, dan akses owner (133ms)"
+        },
+        {
+            "code": "SC-02",
+            "name": "createOrder valid \u2014 escrow, state Created, event (88ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "createOrder valid \u2014 escrow, state Created, event (88ms)"
+        },
+        {
+            "code": "SC-03",
+            "name": "createOrder amount tidak valid revert",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "createOrder amount tidak valid revert"
+        },
+        {
+            "code": "SC-04",
+            "name": "duplicate externalOrderHash revert (78ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "duplicate externalOrderHash revert (78ms)"
+        },
+        {
+            "code": "SC-05",
+            "name": "getOrder ID valid mengembalikan data benar (92ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "getOrder ID valid mengembalikan data benar (92ms)"
+        },
+        {
+            "code": "SC-06",
+            "name": "getOrder ID tidak ada revert",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "getOrder ID tidak ada revert"
+        },
+        {
+            "code": "SC-07",
+            "name": "access control menolak non-operator, non-buyer, dan non-owner (115ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "access control menolak non-operator, non-buyer, dan non-owner (115ms)"
+        },
+        {
+            "code": "SC-08",
+            "name": "recordPayment valid, event, dan double payment ditolak (246ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "recordPayment valid, event, dan double payment ditolak (246ms)"
+        },
+        {
+            "code": "SC-09",
+            "name": "transisi valid dan shipOrder memancarkan event (208ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "transisi valid dan shipOrder memancarkan event (208ms)"
+        },
+        {
+            "code": "SC-10",
+            "name": "transisi tidak sah ditolak dan state tidak berubah (342ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "transisi tidak sah ditolak dan state tidak berubah (342ms)"
+        },
+        {
+            "code": "SC-11",
+            "name": "cancel valid, refund, unauthorized, terminal, dan batas reason (963ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "cancel valid, refund, unauthorized, terminal, dan batas reason (963ms)"
+        },
+        {
+            "code": "SC-12",
+            "name": "confirmReceived merilis escrow sekali dan double release ditolak (556ms)",
+            "requirement": "REQ kontrak",
+            "status": "PASS",
+            "detail": "confirmReceived merilis escrow sekali dan double release ditolak (556ms)"
+        },
+        {
+            "code": "INT-01",
+            "name": "Koneksi RPC Backend ke Ganache Node",
+            "requirement": "REQ integrasi",
+            "status": "PASS",
+            "detail": "Koneksi RPC Backend ke Ganache Node"
+        },
+        {
+            "code": "INT-02",
+            "name": "Sinkronisasi Order DB Lokal dengan Smart Contract",
+            "requirement": "REQ integrasi",
+            "status": "PASS",
+            "detail": "Sinkronisasi Order DB Lokal dengan Smart Contract"
+        },
+        {
+            "code": "INT-03",
+            "name": "Pengambilan Transaction Hash, Receipt & Status Blockchain",
+            "requirement": "REQ integrasi",
+            "status": "PASS",
+            "detail": "Pengambilan Transaction Hash, Receipt & Status Blockchain"
+        },
+        {
+            "code": "INT-04",
+            "name": "Penyimpanan Bukti Kriptografis (Tx Hash, Block, Wallet) ke DB",
+            "requirement": "REQ integrasi",
+            "status": "PASS",
+            "detail": "Penyimpanan Bukti Kriptografis (Tx Hash, Block, Wallet) ke DB"
+        },
+        {
+            "code": "INT-05",
+            "name": "Verifikasi Konsistensi Data Status DB vs Smart Contract (VERIFIED / MISMATCH)",
+            "requirement": "REQ integrasi",
+            "status": "PASS",
+            "detail": "Verifikasi Konsistensi Data Status DB vs Smart Contract (VERIFIED / MISMATCH)"
+        },
+        {
+            "code": "PAR-01",
+            "name": "Sequential baseline: waktu & agregasi",
+            "requirement": "REQ-13",
+            "status": "PASS",
+            "detail": "checks=4 checksum=61cfe1d0d9769ea1"
+        },
+        {
+            "code": "PAR-02",
+            "name": "Parallel partition/reduce = sequential",
+            "requirement": "REQ-13",
+            "status": "PASS",
+            "detail": "checks=18 runs=4"
+        },
+        {
+            "code": "PAR-03",
+            "name": "Throughput, speedup, efficiency",
+            "requirement": "REQ-14",
+            "status": "PASS",
+            "detail": "checks=5 rows=16"
+        },
+        {
+            "code": "PAR-04",
+            "name": "Ketahanan konkurensi & integritas agregasi",
+            "requirement": "REQ-14, NFR-01",
+            "status": "PASS",
+            "detail": "checks=4"
+        }
+    ]
+}

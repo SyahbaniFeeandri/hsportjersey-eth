@@ -1,0 +1,83 @@
+===============================================================
+   H-SPORT FINANCIAL dAPP — PARALLEL TEST SUITE (PAR-01/02)
+   Dataset: D500 (500 order) | latency=5000 us
+   Waktu  : 2026-11-13 03:46:11
+===============================================================
+
+ [✓ PASS] PAR-01.a: Baseline sequential selesai & tersimpan
+         -> exit=0 total=500 durasi=2638 ms worker=1
+
+ [✓ PASS] PAR-01.b: Komposisi VERIFIED/MISMATCH/ERROR sesuai dataset
+         -> seq=350/100/50 expected=350/100/50
+
+ [✓ PASS] PAR-01.c: Agregasi finansial (revenue, paid/unpaid, AOV) konsisten
+         -> revenue=Rp 612.423.000 expected=Rp 612.423.000 paid/unpaid=428/72 aov=1224846
+
+ [✓ PASS] PAR-01.d: Checksum sequential valid (sha256)
+         -> checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939
+
+ [✓ PASS] PAR-02.a: Parallel runner selesai untuk semua jumlah worker
+         -> exit=0 all_gates_pass=true
+
+ [✓ PASS] PAR-02.b: Checksum parallel = sequential untuk setiap P
+         -> baseline=61cfe1d0d9769ea1… run=4
+
+ [✓ PASS] PAR-02.P1.a: P=1: checksum & jumlah order sama dengan sequential
+         -> checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=1/1 worker_unik=1 attempts_max=1
+
+ [✓ PASS] PAR-02.P1.b: P=1: partisi menutup 1..500 tanpa gap/overlap
+         -> ranges=1..500
+
+ [✓ PASS] PAR-02.P1.c: P=1: metrik finansial & bebas duplikasi
+         -> revenue=Rp 612.423.000 duplicates=0
+
+ [✓ PASS] PAR-02.P1.d: P=1: tidak ada job diklaim dua kali / checkpoint ganda
+         -> checkpoints=1 jobs=1 retried=0 distinct_worker_db=1
+
+ [✓ PASS] PAR-02.P2.a: P=2: checksum & jumlah order sama dengan sequential
+         -> checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=2/2 worker_unik=2 attempts_max=1
+
+ [✓ PASS] PAR-02.P2.b: P=2: partisi menutup 1..500 tanpa gap/overlap
+         -> ranges=1..250, 251..500
+
+ [✓ PASS] PAR-02.P2.c: P=2: metrik finansial & bebas duplikasi
+         -> revenue=Rp 612.423.000 duplicates=0
+
+ [✓ PASS] PAR-02.P2.d: P=2: tidak ada job diklaim dua kali / checkpoint ganda
+         -> checkpoints=2 jobs=2 retried=0 distinct_worker_db=2
+
+ [✓ PASS] PAR-02.P4.a: P=4: checksum & jumlah order sama dengan sequential
+         -> checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=4/4 worker_unik=4 attempts_max=1
+
+ [✓ PASS] PAR-02.P4.b: P=4: partisi menutup 1..500 tanpa gap/overlap
+         -> ranges=1..125, 126..250, 251..375, 376..500
+
+ [✓ PASS] PAR-02.P4.c: P=4: metrik finansial & bebas duplikasi
+         -> revenue=Rp 612.423.000 duplicates=0
+
+ [✓ PASS] PAR-02.P4.d: P=4: tidak ada job diklaim dua kali / checkpoint ganda
+         -> checkpoints=4 jobs=4 retried=0 distinct_worker_db=4
+
+ [✓ PASS] PAR-02.P8.a: P=8: checksum & jumlah order sama dengan sequential
+         -> checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=8/8 worker_unik=8 attempts_max=1
+
+ [✓ PASS] PAR-02.P8.b: P=8: partisi menutup 1..500 tanpa gap/overlap
+         -> ranges=1..63, 64..126, 127..189, 190..252, 253..314, 315..376, 377..438, 439..500
+
+ [✓ PASS] PAR-02.P8.c: P=8: metrik finansial & bebas duplikasi
+         -> revenue=Rp 612.423.000 duplicates=0
+
+ [✓ PASS] PAR-02.P8.d: P=8: tidak ada job diklaim dua kali / checkpoint ganda
+         -> checkpoints=8 jobs=8 retried=0 distinct_worker_db=8
+
+ [✓ PASS] RACE-01: Lease recovery memulihkan job RUNNING yang kadaluarsa
+         -> status=DONE worker=recovery-test attempts=2 checkpoints=1
+
+ [✓ PASS] RACE-02: Reducer idempoten (reduce ulang tidak mengubah checksum/checkpoint)
+         -> checksum1=61cfe1d0d9769ea1 checksum2=61cfe1d0d9769ea1 checkpoints=8->8
+
+===============================================================
+   HASIL AKHIR: 24 / 24 CHECK PASS
+   Status: ALL PASS (100%)
+===============================================================
+

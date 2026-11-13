@@ -1,12 +1,12 @@
 {
-    "executed_at": "2026-11-12T02:41:37+00:00",
+    "executed_at": "2026-11-13T03:46:11+00:00",
     "contract_address": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
     "chain_id": 1337,
     "order": {
-        "db_order_id": 34,
-        "chain_order_id": 2,
-        "order_number": "INV-INT-0241375239",
-        "tx_hash": "0x2639d90018532fd4b528501aaa15b89ef37b4a9d0285f985678c8b7f7b973b91"
+        "db_order_id": 38,
+        "chain_order_id": 4,
+        "order_number": "INV-INT-0346115800",
+        "tx_hash": "0x42e35859dedf158108f6288c4e11027411ae0baf3b9ab6f36701514cd5701d25"
     },
     "total": 5,
     "passed": 5,
@@ -15,22 +15,22 @@
         "INT-01": {
             "name": "Koneksi RPC Backend ke Ganache Node",
             "status": "PASS",
-            "detail": "RPC: http://127.0.0.1:7545 | Chain ID: 1337 (Expected 1337) | Block: #3 | Contract: 0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab (Bytecode verified)"
+            "detail": "RPC: http://127.0.0.1:7545 | Chain ID: 1337 (Expected 1337) | Block: #193 | Contract: 0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab (Bytecode verified)"
         },
         "INT-02": {
             "name": "Sinkronisasi Order DB Lokal dengan Smart Contract",
             "status": "PASS",
-            "detail": "DB Order #34 (INV-INT-0241375239) -> on-chain order ID #2 via tx 0x2639d90018\u2026 (Buyer: 0xffcf8fdee72ac11b5c542428b35eef5769c409f0, Status: Created)"
+            "detail": "DB Order #38 (INV-INT-0346115800) -> on-chain order ID #4 via tx 0x42e35859de\u2026 (Buyer: 0xffcf8fdee72ac11b5c542428b35eef5769c409f0, Status: Created)"
         },
         "INT-03": {
             "name": "Pengambilan Transaction Hash, Receipt & Status Blockchain",
             "status": "PASS",
-            "detail": "Tx Hash: 0x2639d90018532fd4b528501aaa15b89ef37b4a9d0285f985678c8b7f7b973b91 | Status: CONFIRMED | Block: #4 | Gas Used: 281317 | Contract: 0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab"
+            "detail": "Tx Hash: 0x42e35859dedf158108f6288c4e11027411ae0baf3b9ab6f36701514cd5701d25 | Status: CONFIRMED | Block: #194 | Gas Used: 281317 | Contract: 0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab"
         },
         "INT-04": {
             "name": "Penyimpanan Bukti Kriptografis (Tx Hash, Block, Wallet) ke DB",
             "status": "PASS",
-            "detail": "Proof tersimpan di `orders` (ID: 34, Tx: 0x2639d900\u2026, Block: 4) & dicatat di `blockchain_transactions` (1 baris)"
+            "detail": "Proof tersimpan di `orders` (ID: 38, Tx: 0x42e35859\u2026, Block: 194) & dicatat di `blockchain_transactions` (1 baris)"
         },
         "INT-05": {
             "name": "Verifikasi Konsistensi Data Status DB vs Smart Contract (VERIFIED / MISMATCH)",

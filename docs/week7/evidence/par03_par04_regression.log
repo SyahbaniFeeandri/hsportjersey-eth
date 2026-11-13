@@ -1,0 +1,38 @@
+===============================================================
+   H-SPORT — PAR-03 & PAR-04 (METRIK + KONKURENSI)
+   Matrix : C:\laragon\www\project_jersey/docs/week7/evidence/benchmark_matrix.json
+   Waktu  : 2026-11-13 03:46:23
+===============================================================
+
+ [✓ PASS] PAR-03.a: Matrix berisi 4 dataset x 4 jumlah worker
+         -> rows=16 expected=16
+
+ [✓ PASS] PAR-03.b: Throughput & speedup konsisten dengan wall-clock
+         -> error=0
+
+ [✓ PASS] PAR-03.c: Efficiency = speedup / worker dan bernilai wajar
+         -> error=0
+
+ [✓ PASS] PAR-03.d: Speedup meningkat pada dataset >= 500 order
+         -> dataset gagal=0
+
+ [✓ PASS] PAR-03.e: Seluruh konfigurasi checksum MATCH
+         -> gate gagal=0
+
+ [✓ PASS] PAR-04.a: Dua worker memperebutkan satu job: hanya satu yang memproses
+         -> exit=0/0 status=DONE worker=par04-racer-a attempts=1 checkpoints=1
+
+ [✓ PASS] PAR-04.b: Pengulangan P=8 menghasilkan checksum identik
+         -> checksum1=1258b0c3790fa9c4 checksum2=1258b0c3790fa9c4 baseline=1258b0c3790fa9c4 gate=ok
+
+ [✓ PASS] PAR-04.c: Checkpoint unik, attempts=1, dan reducer idempoten
+         -> checkpoints=8->8 jobs=8 retried=0 distinct_worker=8 reduce1=1258b0c3790fa9c4 reduce2=1258b0c3790fa9c4
+
+ [✓ PASS] PAR-04.d: Lease recovery memulihkan job yang ditinggal worker mati
+         -> status=DONE worker=par04-recovery attempts=2 checkpoints=1
+
+===============================================================
+   HASIL AKHIR: 9 / 9 CHECK PASS
+   Status: ALL PASS (100%)
+===============================================================
+

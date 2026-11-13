@@ -167,7 +167,7 @@ Sistem kini siap diakses melalui peramban:
 | Hak Akses (Role) | Email | Kata Sandi (Password) | Keterangan |
 |---|---|---|---|
 | **Administrator** | `admin@hsport.com` | `admin123` | Akses penuh dashboard admin, kelola status pesanan, input no resi, kelola katalog produk. |
-| **Customer** | `customer@example.com` | `password` | Akun demo pelanggan dengan riwayat pesanan. |
+| **Customer** | `customer@example.com` | `customer123` | Akun demo pelanggan dengan riwayat pesanan. |
 | **Pendaftaran Baru** | Bebas via `register.php` | Bebas | Pelanggan baru dapat mendaftar langsung. |
 
 ---

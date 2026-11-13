@@ -56,16 +56,21 @@ function connectBenchmarkDatabase(array $config): PDO
 /**
  * @return array<string,mixed>|null
  */
-function claimJob(PDO $pdo, int $batchId, string $workerId): ?array
+function claimJob(PDO $pdo, int $batchId, string $workerId, ?int $jobId = null): ?array
 {
     $pdo->beginTransaction();
     try {
-        $stmt = $pdo->prepare("SELECT * FROM verification_jobs
-            WHERE batch_id = ? AND status = 'PENDING'
-            ORDER BY partition_no ASC
-            LIMIT 1
-            FOR UPDATE SKIP LOCKED");
-        $stmt->execute([$batchId]);
+        $sql = "SELECT * FROM verification_jobs
+            WHERE batch_id = ? AND status = 'PENDING'";
+        $params = [$batchId];
+        if ($jobId !== null && $jobId > 0) {
+            $sql .= ' AND id = ?';
+            $params[] = $jobId;
+        }
+        $sql .= " ORDER BY partition_no ASC LIMIT 1 FOR UPDATE SKIP LOCKED";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
         $job = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$job) {
@@ -109,7 +114,7 @@ $batchId = isset($options['batch']) ? (int)$options['batch'] : 0;
 $latencyUs = isset($options['latency-us']) ? max(0, (int)$options['latency-us']) : (int)($config['algorithm']['default_latency_us'] ?? 0);
 $loop = isset($options['loop']);
 $maxJobs = isset($options['max-jobs']) ? max(1, (int)$options['max-jobs']) : 0;
-
+$targetJobId = isset($options['job-id']) ? max(0, (int)$options['job-id']) : 0;
 if ($batchId <= 0) {
     fwrite(STDERR, "Parameter --batch=<id> wajib diisi.\n");
     exit(2);
@@ -174,7 +179,7 @@ $verifier = new SequentialVerifier($chain, (int)($dataset['meta']['eth_rate_idr'
 $processedJobs = 0;
 while (true) {
     try {
-        $job = claimJob($pdo, $batchId, $workerId);
+        $job = claimJob($pdo, $batchId, $workerId, $targetJobId > 0 ? $targetJobId : null);
     } catch (Throwable $e) {
         fwrite(STDERR, "[ERROR] {$workerId}: gagal claim job: {$e->getMessage()}\n");
         exit(1);
