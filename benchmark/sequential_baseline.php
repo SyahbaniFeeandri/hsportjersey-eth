@@ -108,7 +108,8 @@ function persistBatch(PDO $pdo, array $summary, string $batchCode): array
         ':duration_ms' => $summary['duration_ms'],
         ':started_at' => date('Y-m-d H:i:s'),
         ':finished_at' => date('Y-m-d H:i:s'),
-        ':notes' => 'Sequential baseline (worker_count=1) dengan mock chain adapter, seed=' . $summary['seed'],
+        ':notes' => 'Sequential baseline (worker_count=1) dengan mock chain adapter, seed=' . $summary['seed']
+            . ', latency_us=' . (int)($summary['latency_us'] ?? 0),
     ]);
 
     $batchId = (int)$pdo->lastInsertId();
@@ -172,15 +173,17 @@ function persistBatch(PDO $pdo, array $summary, string $batchCode): array
 $options = parseCliOptions($argv);
 $dataset = loadDataset($options);
 
-$chain = new MockChainAdapter($dataset['orders']);
+$chain = new MockChainAdapter($dataset['orders'], (int)($options['latency-us'] ?? 0));
 $verifier = new SequentialVerifier($chain, (int)($dataset['meta']['eth_rate_idr'] ?? 10000000));
 $summary = $verifier->run($dataset);
+$summary['latency_us'] = $chain->getLatencyUs();
 
 echo "===============================================================\n";
 echo " H-SPORT FINANCIAL dAPP — SEQUENTIAL BASELINE (W4-FDR-05)\n";
 echo " Dataset : {$summary['dataset_name']} ({$summary['dataset_size']} order)\n";
 echo " Seed    : {$summary['seed']}\n";
 echo " Mode    : {$summary['mode']} / worker_count={$summary['worker_count']}\n";
+echo " Latency : {$summary['latency_us']} us/order (simulasi RPC Mode A)\n";
 echo " Waktu   : " . date('Y-m-d H:i:s') . "\n";
 echo "===============================================================\n";
 printf(" Total orders      : %d\n", $summary['total_orders']);

@@ -34,4 +34,20 @@ return [
 
     // Mode batch yang valid sesuai ENUM job_batches.mode.
     'modes' => ['ALGORITHM', 'INTEGRATION'],
+
+    // Benchmark Mode A: latensi deterministik per pembacaan order (mikrodetik).
+    // Dipakai agar speedup paralel terukur tanpa bergantung pada Ganache.
+    'algorithm' => [
+        'default_latency_us' => 1000,
+        'datasets_dir' => __DIR__ . '/../benchmark/datasets',
+    ],
+
+    // Worker integrasi: order tanpa blockchain_order_id dihitung SKIPPED,
+    // bukan PENDING/MISMATCH.
+    'integration' => [
+        'skip_without_chain_id' => true,
+    ],
+
+    // Pulihkan job RUNNING yang lease-nya kadaluarsa saat worker mulai.
+    'lease_recovery_on_start' => false,
 ];

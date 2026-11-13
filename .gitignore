@@ -28,6 +28,8 @@ yarn-error.log*
 !docs/week2/evidence/*.log
 !docs/week3/evidence/*.log
 !docs/week4/evidence/*.log
+!docs/week5/evidence/*.log
+!docs/week6/evidence/*.log
 !docs/evidence/**/*.log
 
 # Environment files (if any created later)

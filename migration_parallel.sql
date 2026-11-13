@@ -182,12 +182,17 @@ SELECT
     b.`finished_at`,
     b.`created_at`
 FROM `job_batches` b
+LEFT JOIN (
+    SELECT `dataset_name`, `dataset_size`, `mode`, MAX(`id`) AS `baseline_id`
+    FROM `job_batches`
+    WHERE `is_baseline` = 1 AND `status` = 'DONE'
+    GROUP BY `dataset_name`, `dataset_size`, `mode`
+) bl
+    ON bl.`dataset_name` = b.`dataset_name`
+   AND bl.`dataset_size` = b.`dataset_size`
+   AND bl.`mode` = b.`mode`
 LEFT JOIN `job_batches` base
-    ON base.`dataset_name` = b.`dataset_name`
-   AND base.`dataset_size` = b.`dataset_size`
-   AND base.`mode` = b.`mode`
-   AND base.`is_baseline` = 1
-   AND base.`status` = 'DONE';
+    ON base.`id` = bl.`baseline_id`;
 
 -- ------------------------------------------------------------
 -- 6. Verifikasi

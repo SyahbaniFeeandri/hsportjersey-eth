@@ -5,12 +5,13 @@
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
 **Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 72 selesai, 4 sebagian, 36 belum dari 112 issue.
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 85 selesai, 4 sebagian, 23 belum dari 112 issue.
 **Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) - 17/17 issue selesai.
 **Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 16/16 issue selesai (`W2-FRL-05` clean clone di komputer anggota lain PASS).
 **Artefak Minggu 3:** lihat [docs/week3/README.md](week3/README.md) - 12/12 issue selesai (exit gate teknis terpenuhi).
 **Artefak Minggu 4:** lihat [docs/week4/README.md](week4/README.md) - 12/12 issue selesai (kontrak V2, UI cancel on-chain, sequential baseline CLI).
 **Artefak Minggu 5:** lihat [docs/week5/README.md](week5/README.md) - 15/15 issue selesai (5/5 INT PASS, proof page, worker skeleton).
+**Artefak Minggu 6:** lihat [docs/week6/README.md](week6/README.md) - 13/13 issue selesai (PAR-01/PAR-02 24/24 PASS, dashboard, worker paralel).
 
 ---
 
@@ -212,26 +213,26 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 6 — Parallel Processing
 
-**Status saat ini:** Belum mulai — 0 selesai, 0 sebagian, 13 belum dari 13 issue.
+**Status saat ini:** Selesai — 13 selesai, 0 sebagian, 0 belum dari 13 issue. PAR-01/PAR-02 24/24 CHECK PASS.
 **Lead:** Farelly · **Pendukung:** Luis, Ihsanul, Kenjiro · **Target:** 82%
 
 | PIC | Issue | Output / Evidence |
 |---|---|---|
-| FDR | `W6-FDR-07` Job/Queue batch verification | Queue |
-| FDR | `W6-FDR-08` Multi-worker 1/2/4/8 | Worker |
-| FDR | `W6-FDR-09` Partition/reduce | Algoritma |
-| FDR | `W6-FDR-10` Agregasi finansial: revenue, count, AOV, paid/unpaid, verified/mismatch | Output agregasi |
-| FDR | `W6-FDR-11` PAR-01/PAR-02 evidence | 2/2 PASS |
-| KEN | `W6-KEN-06` Verifikasi PAR-01/02 + cek race condition & duplikasi | Test report |
-| IHS | `W6-IHS-07` Performance dashboard awal | Dashboard |
-| LUI | `W6-LUI-12` Dukungan verification service untuk worker | Integrasi worker |
-| FEE | `W6-FEE-11` Dokumentasi arsitektur paralel | Dokumen |
-| YAS | `W6-YAS-10` Acceptance criteria hasil agregasi | Catatan AC |
-| ARB | `W6-ARB-10` Support bug fixing | Fix |
-| AGU | `W6-AGU-10` Support bug fixing | Fix |
-| FRL | `W6-FRL-10` Maintenance environment/deploy ulang | Log |
+| FDR | `W6-FDR-07` Job/Queue batch verification | Selesai: `workers/enqueue_batch.php` (batch + P job) |
+| FDR | `W6-FDR-08` Multi-worker 1/2/4/8 | Selesai: `benchmark/parallel_runner.php`; `distinct_workers = jobs_total` |
+| FDR | `W6-FDR-09` Partition/reduce | Selesai: `benchmark/lib/PartitionPlanner.php` + `Reducer.php` |
+| FDR | `W6-FDR-10` Agregasi finansial: revenue, count, AOV, paid/unpaid, verified/mismatch | Selesai: `docs/week6/02_PAR_EVIDENCE.md` |
+| FDR | `W6-FDR-11` PAR-01/PAR-02 evidence | Selesai: 24/24 PASS; `docs/week6/evidence/` |
+| KEN | `W6-KEN-06` Verifikasi PAR-01/02 + cek race condition & duplikasi | Selesai: `docs/week6/03_RACE_CONDITION_REVIEW.md` |
+| IHS | `W6-IHS-07` Performance dashboard awal | Selesai: `admin/performance.php` + `docs/week6/05_DASHBOARD.md` |
+| LUI | `W6-LUI-12` Dukungan verification service untuk worker | Selesai: `docs/week6/07_WORKER_INTEGRATION.md` |
+| FEE | `W6-FEE-11` Dokumentasi arsitektur paralel | Selesai: `docs/week6/01_PARALLEL_ARCHITECTURE.md` |
+| YAS | `W6-YAS-10` Acceptance criteria hasil agregasi | Selesai: `docs/week6/04_ACCEPTANCE_CRITERIA.md` |
+| ARB | `W6-ARB-10` Support bug fixing | Selesai: `docs/week6/06_SUPPORT_LOG.md` (tidak ada bug kontrak) |
+| AGU | `W6-AGU-10` Support bug fixing | Selesai: `docs/week6/06_SUPPORT_LOG.md` (kontrak stabil) |
+| FRL | `W6-FRL-10` Maintenance environment/deploy ulang | Selesai: `docs/week6/06_SUPPORT_LOG.md` §5 |
 
-**Exit gate:** output sequential = parallel; 1/2/4/8 worker memproses job berbeda.
+**Exit gate:** output sequential = parallel; 1/2/4/8 worker memproses job berbeda. **Terpenuhi 13 November 2026:** checksum PAR-01 = PAR-02 (`61cfe1d0…` untuk D500, `1258b0c3…` untuk D1000), `distinct_workers = jobs_total`, `max_attempts = 1`.
 
 ---
 

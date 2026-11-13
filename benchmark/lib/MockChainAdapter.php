@@ -17,15 +17,24 @@ class MockChainAdapter
 {
     /** @var array<int,array<string,mixed>> */
     private array $orders = [];
+    private int $latencyUs;
 
     /**
      * @param array<int,array<string,mixed>> $orders
+     * @param int $latencyUs Latensi deterministik per pembacaan (mensimulasikan RPC
+     *                       pada Mode A). 0 = tanpa latensi (baseline M4).
      */
-    public function __construct(array $orders)
+    public function __construct(array $orders, int $latencyUs = 0)
     {
         foreach ($orders as $order) {
             $this->orders[(int)$order['id']] = $order;
         }
+        $this->latencyUs = max(0, $latencyUs);
+    }
+
+    public function getLatencyUs(): int
+    {
+        return $this->latencyUs;
     }
 
     /**
@@ -35,6 +44,10 @@ class MockChainAdapter
      */
     public function getOrder(int $orderId): array
     {
+        if ($this->latencyUs > 0) {
+            usleep($this->latencyUs);
+        }
+
         if (!isset($this->orders[$orderId])) {
             throw new MockChainException("Order not found: {$orderId}");
         }

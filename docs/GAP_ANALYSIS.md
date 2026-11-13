@@ -16,6 +16,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 > **Update 12 November 2026 (M5):** Minggu 5 berstatus **Selesai** — 15/15 issue, INT-01..05 PASS (5/5), backend read/write + persist proof + verification service, halaman bukti blockchain, worker skeleton, dan traceability diperbarui.
 
+**Update 13 November 2026 (M6):** Minggu 6 berstatus **Selesai** — 13/13 issue, PAR-01/PAR-02 **24/24 CHECK PASS**, worker 1/2/4/8 memproses partisi berbeda, checksum sequential = parallel, reducer/agregasi finansial, dashboard performa, race-condition review, dan dokumentasi `docs/week6/` tersedia. Total proyek: **85 selesai / 4 sebagian / 23 belum**.
+
 **Update 12 November 2026 (M4):** Minggu 4 berstatus **Selesai** — scope kontrak (12/12 SC PASS, security review selesai, deployment V2 `0x2f3e…bE10` aktif, ABI V2 diarsipkan), UI cancel on-chain (`W4-IHS-04`), dan sequential baseline CLI data mock (`W4-FDR-05`) seluruhnya tuntas (12 selesai, 0 sebagian, 0 belum dari 12 issue).
 
 ## Legenda Status
@@ -30,9 +32,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 72 | 64.3% |
+| Selesai | 85 | 75.9% |
 | Sebagian | 4 | 3.6% |
-| Belum | 36 | 32.1% |
+| Belum | 23 | 20.5% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -44,7 +46,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | 3 | Smart Contract V1 (Arby) | 12 | 0 | 0 | 12 |
 | 4 | Smart Contract V2 (Agustina) | 12 | 0 | 0 | 12 |
 | 5 | Integrasi PHP–Blockchain (Luis) | 15 | 0 | 0 | 15 |
-| 6 | Parallel Processing (Farelly) | 0 | 0 | 13 | 13 |
+| 6 | Parallel Processing (Farelly) | 13 | 0 | 0 | 13 |
 | 7 | Benchmark & Integration Test (Kenjiro) | 0 | 0 | 13 | 13 |
 | 8 | Finalisasi & Demo (semua) | 0 | 4 | 10 | 14 |
 
@@ -161,23 +163,23 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 6 — Parallel Processing (Farelly)
 
-**Status:** 0 selesai, 0 sebagian, 13 belum dari 13 issue.
+**Status:** Selesai — 13 selesai, 0 sebagian, 0 belum dari 13 issue (PAR-01/PAR-02 24/24 CHECK PASS, dashboard, dan dokumentasi arsitektur tersedia).
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
-| `W6-FDR-07` | Job/Queue batch verification | Queue | Belum | Belum ada implementasi queue |
-| `W6-FDR-08` | Multi-worker 1/2/4/8 | Worker | Belum | - |
-| `W6-FDR-09` | Partition/reduce | Algoritma | Belum | - |
-| `W6-FDR-10` | Agregasi finansial: revenue, count, AOV, paid/unpaid, verified/mismatch | Output agregasi | Belum | - |
-| `W6-FDR-11` | PAR-01/PAR-02 evidence | 2/2 PASS | Belum | - |
-| `W6-KEN-06` | Verifikasi PAR-01/02 + cek race condition & duplikasi | Test report | Belum | Menunggu PAR-01/02 |
-| `W6-IHS-07` | Performance dashboard awal | Dashboard | Belum | - |
-| `W6-LUI-12` | Dukungan verification service untuk worker | Integrasi worker | Belum | Menunggu worker |
-| `W6-FEE-11` | Dokumentasi arsitektur paralel | Dokumen | Belum | - |
-| `W6-YAS-10` | Acceptance criteria hasil agregasi | Catatan AC | Belum | - |
-| `W6-ARB-10` | Support bug fixing | Fix | Belum | Menunggu bug report |
-| `W6-AGU-10` | Support bug fixing | Fix | Belum | Menunggu bug report |
-| `W6-FRL-10` | Maintenance environment/deploy ulang | Log | Belum | - |
+| `W6-FDR-07` | Job/Queue batch verification | Queue | Selesai | `workers/enqueue_batch.php`; batch `INTEGRATION` + P job per partisi |
+| `W6-FDR-08` | Multi-worker 1/2/4/8 | Worker | Selesai | `benchmark/parallel_runner.php`; P=1/2/4/8 `distinct_workers = jobs_total` |
+| `W6-FDR-09` | Partition/reduce | Algoritma | Selesai | `benchmark/lib/PartitionPlanner.php` + `Reducer.php`; partisi menutup 1..N |
+| `W6-FDR-10` | Agregasi finansial | Output agregasi | Selesai | `docs/week6/02_PAR_EVIDENCE.md`; revenue Rp 612.423.000, AOV Rp 1.224.846 |
+| `W6-FDR-11` | PAR-01/PAR-02 evidence | 2/2 PASS | Selesai | `tests/parallel/run_par.php`; 24/24 PASS; evidence di `docs/week6/evidence/` |
+| `W6-KEN-06` | Verifikasi PAR-01/02 + race condition | Test report | Selesai | `docs/week6/03_RACE_CONDITION_REVIEW.md`; RACE-01/02 PASS |
+| `W6-IHS-07` | Performance dashboard awal | Dashboard | Selesai | `admin/performance.php` + link sidebar; `docs/week6/05_DASHBOARD.md` |
+| `W6-LUI-12` | Dukungan verification service untuk worker | Integrasi worker | Selesai | `docs/week6/07_WORKER_INTEGRATION.md`; smoke batch #39 2 worker PASS |
+| `W6-FEE-11` | Dokumentasi arsitektur paralel | Dokumen | Selesai | `docs/week6/01_PARALLEL_ARCHITECTURE.md` |
+| `W6-YAS-10` | Acceptance criteria hasil agregasi | Catatan AC | Selesai | `docs/week6/04_ACCEPTANCE_CRITERIA.md` (AC-01..AC-07) |
+| `W6-ARB-10` | Support bug fixing | Fix | Selesai | `docs/week6/06_SUPPORT_LOG.md`; tidak ada bug kontrak |
+| `W6-AGU-10` | Support bug fixing | Fix | Selesai | `docs/week6/06_SUPPORT_LOG.md`; kontrak tidak berubah |
+| `W6-FRL-10` | Maintenance environment/deploy ulang | Log | Selesai | `docs/week6/06_SUPPORT_LOG.md` §5; MySQL + migrasi + suite ulang |
 
 ### Minggu 7 — Benchmark & Integration Test (Kenjiro)
 
@@ -268,5 +270,5 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 - `Progress Tracker.docx` sudah di-re-baseline: Milestone 1 = Selesai 100%; Milestone 2 = 97%.
 - `blockchain/README.md` sudah diperbaiki dari Hardhat ke Truffle.
 - Kontrak saat ini `HSportStore` V2 dengan 8 state, `cancelOrder`, dan refund escrow; spesifikasi final di `docs/week2/02_CONTRACT_SPEC_FINAL.md`.
-- **Test harness:** 17/21 test PASS (12 SC + 5 INT). PAR-01..PAR-04 menunggu M6–M7.
+- **Test harness:** 19/21 test PASS (12 SC + 5 INT + PAR-01/PAR-02). PAR-03/PAR-04 menunggu M7. Suite M6: 24/24 CHECK PASS.
 - PHP 8.1.10 tidak ada di PATH; Composer tidak terpasang; integrasi direncanakan memakai JSON-RPC cURL.

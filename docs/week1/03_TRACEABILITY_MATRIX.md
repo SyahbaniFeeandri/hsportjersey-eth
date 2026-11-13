@@ -39,7 +39,7 @@
 | **REQ-10** | Verifikasi DB vs chain `VERIFIED`/`MISMATCH` | — | Verification service + tabel `blockchain_transactions` | INT-05 | UAT-13 | Luis | M5 | Selesai |
 | **REQ-11** | Admin lihat status verifikasi + retry | `admin/orders.php`, `admin/payments.php` (belum ada verifikasi) | Kolom verifikasi + aksi retry | INT-05 | UAT-13 | Ihsanul, Luis | M5 | Sebagian |
 | **REQ-12** | Halaman proof blockchain pembeli | — | `blockchain-proof.php` + komponen tx status | — (manual) | UAT-14 | Ihsanul | M5 | Selesai |
-| **REQ-13** | Sequential & parallel menghasilkan hasil identik | — | Worker, queue, partition/reduce | PAR-01, PAR-02 | UAT-15 | Farelly | M6 | Belum |
+| **REQ-13** | Sequential & parallel menghasilkan hasil identik | Worker + queue + partition/reduce | Worker, queue, partition/reduce | PAR-01, PAR-02 | UAT-15 | Farelly | M6 | Selesai |
 | **REQ-14** | Ukur execution time, speedup, efficiency, throughput | — | Benchmark script + grafik + dashboard | PAR-03, PAR-04 | UAT-16 | Kenjiro, Farelly | M7 | Belum |
 | **REQ-15** | Reproducible + kontribusi tertelusur | `README.md`, panduan setup, Git repo | Deploy log, `.env.example`, weekly log, tag rilis | — (manual) | UAT-17 | Feeandri, semua | M2, M8 | Sebagian |
 
@@ -47,9 +47,9 @@
 
 | Status | Jumlah | REQ |
 |---|---:|---|
-| Selesai | 11 | REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08, REQ-09, REQ-10, REQ-12 |
+| Selesai | 12 | REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08, REQ-09, REQ-10, REQ-12, REQ-13 |
 | Sebagian | 2 | REQ-11, REQ-15 |
-| Belum | 2 | REQ-13, REQ-14 |
+| Belum | 1 | REQ-14 |
 | **Total** | **15** | |
 
 ---
@@ -87,8 +87,8 @@
 
 | Test | Nama | Requirement | Dev owner | Validator | Milestone | Status |
 |---|---|---|---|---|---|---|
-| **PAR-01** | Sequential baseline: waktu & agregasi | REQ-13 | Farelly | Kenjiro | M6 | Not Started |
-| **PAR-02** | Parallel multi-worker partition/reduce = sequential | REQ-13 | Farelly | Kenjiro | M6 | Not Started |
+| **PAR-01** | Sequential baseline: waktu & agregasi | REQ-13 | Farelly | Kenjiro | M6 | **PASS** |
+| **PAR-02** | Parallel multi-worker partition/reduce = sequential | REQ-13 | Farelly | Kenjiro | M6 | **PASS** |
 | **PAR-03** | Hitung throughput, speedup, efficiency | REQ-14 | Kenjiro + Farelly | Feeandri | M7 | Not Started |
 | **PAR-04** | Ketahanan konkurensi & integritas agregasi | REQ-14, NFR-01 | Kenjiro + Farelly | Yasmin | M7 | Not Started |
 
@@ -100,15 +100,17 @@
 |---|---:|---:|
 | Requirement total | 15 | — |
 | Requirement Must | 14 | — |
-| Requirement dengan minimal 1 test otomatis | 11 | 14 |
+| Requirement dengan minimal 1 test otomatis | 12 | 14 |
 | Requirement dengan test otomatis **atau** UAT | 15 | 15 |
 | Requirement tanpa verifikasi apa pun | 0 | 0 |
 | Test total | 21 | 21 |
 | Test dengan requirement | 21 | 21 |
-| Test PASS | 17 | 21 |
+| Test PASS | 19 | 21 |
 | Orphan test (tanpa REQ) | 0 | 0 |
 | Orphan requirement Must (tanpa test) | 0 (REQ-12/15 punya UAT manual) | 0 |
 
+> **Catatan M6 (13 November 2026):** PAR-01 dan PAR-02 **PASS**. Baseline sequential D500 menghasilkan checksum `61cfe1d0…` dengan komposisi 350/100/50 dan revenue Rp 612.423.000. Parallel P=1/2/4/8 menghasilkan checksum identik, partisi menutup 1..500, `distinct_workers = jobs_total`, dan `max_attempts = 1`. Suite `tests/parallel/run_par.php` lulus 24/24 CHECK (termasuk RACE-01 lease recovery dan RACE-02 idempotensi reducer). REQ-13 menjadi Selesai; sisa 2 test (PAR-03/PAR-04) menunggu M7.
+>
 > **Catatan M5 (12 November 2026):** INT-01 s.d. INT-05 PASS (5/5) terhadap Ganache + MySQL nyata. Alur checkout DB → `createOrder` → receipt → proof → verifikasi terbukti end-to-end. Requirement otomatis PASS bertambah: REQ-01, REQ-09, REQ-10, dan REQ-12 (halaman bukti). Sisa 4 test menunggu M6–M7 (PAR-01..PAR-04). REQ-11 (retry admin) masih sebagian.
 >
 > **Catatan M4 (11 November 2026):** SC-01 s.d. SC-12 PASS (12/12) terhadap kontrak V2. `cancelOrder` + refund terbukti lewat SC-11; regresi V1 bersih.
@@ -152,8 +154,8 @@
 | INT-03 | — | — | — |
 | INT-04 | — | — | — |
 | INT-05 | — | — | — |
-| PAR-01 | — | — | — |
-| PAR-02 | — | — | — |
+| PAR-01 | Log + JSON suite | [`../week6/evidence/par01_par02_test.log`](../week6/evidence/par01_par02_test.log) · [`par01_sequential.json`](../week6/evidence/par01_sequential.json) | 13 Nov 2026 |
+| PAR-02 | Log + JSON suite | [`../week6/evidence/par01_par02_test.log`](../week6/evidence/par01_par02_test.log) · [`par02_parallel.json`](../week6/evidence/par02_parallel.json) | 13 Nov 2026 |
 | PAR-03 | — | — | — |
 | PAR-04 | — | — | — |
 

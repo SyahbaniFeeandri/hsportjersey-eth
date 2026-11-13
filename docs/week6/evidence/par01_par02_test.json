@@ -1,0 +1,555 @@
+{
+    "executed_at": "2026-11-13T02:48:46+00:00",
+    "dataset": {
+        "name": "D500",
+        "size": 500,
+        "hash": "734ddd14ea450a8218285099163c558e04df1efacf8b18d7804696439896d2db",
+        "latency_us": 5000
+    },
+    "par01": {
+        "mode": "SEQUENTIAL",
+        "worker_count": 1,
+        "dataset_name": "D500",
+        "dataset_size": 500,
+        "dataset_hash": "734ddd14ea450a8218285099163c558e04df1efacf8b18d7804696439896d2db",
+        "seed": "HSPORT-2026",
+        "started_at": "2026-11-13T02:48:35+00:00",
+        "finished_at": "2026-11-13T02:48:37+00:00",
+        "duration_ms": 2693,
+        "duration_us": 2692939,
+        "total_orders": 500,
+        "verified_count": 350,
+        "mismatch_count": 100,
+        "error_count": 50,
+        "paid_count": 428,
+        "unpaid_count": 72,
+        "revenue_all": 612423000,
+        "revenue_verified": 376814000,
+        "aov": 1224846,
+        "throughput_per_sec": 185.67,
+        "checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+        "latency_us": 5000,
+        "persisted": {
+            "batch_id": 27,
+            "job_id": 72
+        }
+    },
+    "par02": {
+        "executed_at": "2026-11-13T02:48:46+00:00",
+        "mode": "ALGORITHM",
+        "dataset": {
+            "name": "D500",
+            "size": 500,
+            "hash": "734ddd14ea450a8218285099163c558e04df1efacf8b18d7804696439896d2db",
+            "path": "C:\\laragon\\www\\project_jersey/benchmark/datasets/D500.json"
+        },
+        "latency_us": 5000,
+        "baseline": {
+            "batch_id": 28,
+            "batch_code": "SEQ-D500-L5000-20261113024838-5816",
+            "checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+            "duration_ms": 2707,
+            "verified_count": 350,
+            "mismatch_count": 100,
+            "error_count": 50,
+            "revenue_all": 612423000,
+            "revenue_verified": 376814000,
+            "aov": 1224846
+        },
+        "runs": [
+            {
+                "workers": 1,
+                "batch_id": 29,
+                "batch_code": "PAR-D500-W1-20261113024840-2138",
+                "status": "DONE",
+                "complete": true,
+                "wall_ms": 2836,
+                "duration_ms": 2836,
+                "speedup": 0.9545,
+                "efficiency": 0.9545,
+                "throughput_per_sec": 176.3,
+                "jobs_total": 1,
+                "jobs_done": 1,
+                "distinct_workers": 1,
+                "max_attempts": 1,
+                "checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "baseline_checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "checksum_match": true,
+                "metrics_match": true,
+                "metrics_consistent": true,
+                "duplicate_ids": [],
+                "processed_orders": 500,
+                "verified_count": 350,
+                "mismatch_count": 100,
+                "error_count": 50,
+                "paid_count": 428,
+                "unpaid_count": 72,
+                "revenue_all": 612423000,
+                "revenue_verified": 376814000,
+                "aov": 1224846,
+                "correctness_gate": "MATCH",
+                "partitions": [
+                    {
+                        "job_id": 74,
+                        "partition_no": 1,
+                        "range_start": 1,
+                        "range_end": 500,
+                        "status": "DONE",
+                        "worker_id": "par-1-w1",
+                        "attempts": 1
+                    }
+                ],
+                "worker_output": {
+                    "par-1-w1": "[par-1-w1] Job #74 partisi 1 (1..500)\n[par-1-w1] Selesai partisi 1: 500 order | VERIFIED=350 MISMATCH=100 ERROR=50 | 2739 ms"
+                },
+                "worker_errors": {
+                    "par-1-w1": ""
+                },
+                "exit_codes": {
+                    "par-1-w1": 0
+                }
+            },
+            {
+                "workers": 2,
+                "batch_id": 30,
+                "batch_code": "PAR-D500-W2-20261113024843-4039",
+                "status": "DONE",
+                "complete": true,
+                "wall_ms": 1473,
+                "duration_ms": 1473,
+                "speedup": 1.8377,
+                "efficiency": 0.9189,
+                "throughput_per_sec": 339.44,
+                "jobs_total": 2,
+                "jobs_done": 2,
+                "distinct_workers": 2,
+                "max_attempts": 1,
+                "checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "baseline_checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "checksum_match": true,
+                "metrics_match": true,
+                "metrics_consistent": true,
+                "duplicate_ids": [],
+                "processed_orders": 500,
+                "verified_count": 350,
+                "mismatch_count": 100,
+                "error_count": 50,
+                "paid_count": 428,
+                "unpaid_count": 72,
+                "revenue_all": 612423000,
+                "revenue_verified": 376814000,
+                "aov": 1224846,
+                "correctness_gate": "MATCH",
+                "partitions": [
+                    {
+                        "job_id": 75,
+                        "partition_no": 1,
+                        "range_start": 1,
+                        "range_end": 250,
+                        "status": "DONE",
+                        "worker_id": "par-2-w2",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 76,
+                        "partition_no": 2,
+                        "range_start": 251,
+                        "range_end": 500,
+                        "status": "DONE",
+                        "worker_id": "par-2-w1",
+                        "attempts": 1
+                    }
+                ],
+                "worker_output": {
+                    "par-2-w1": "[par-2-w1] Job #76 partisi 2 (251..500)\n[par-2-w1] Selesai partisi 2: 250 order | VERIFIED=175 MISMATCH=50 ERROR=25 | 1368 ms",
+                    "par-2-w2": "[par-2-w2] Job #75 partisi 1 (1..250)\n[par-2-w2] Selesai partisi 1: 250 order | VERIFIED=175 MISMATCH=50 ERROR=25 | 1368 ms"
+                },
+                "worker_errors": {
+                    "par-2-w1": "",
+                    "par-2-w2": ""
+                },
+                "exit_codes": {
+                    "par-2-w1": 0,
+                    "par-2-w2": 0
+                }
+            },
+            {
+                "workers": 4,
+                "batch_id": 31,
+                "batch_code": "PAR-D500-W4-20261113024845-7068",
+                "status": "DONE",
+                "complete": true,
+                "wall_ms": 811,
+                "duration_ms": 811,
+                "speedup": 3.3379,
+                "efficiency": 0.8345,
+                "throughput_per_sec": 616.52,
+                "jobs_total": 4,
+                "jobs_done": 4,
+                "distinct_workers": 4,
+                "max_attempts": 1,
+                "checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "baseline_checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "checksum_match": true,
+                "metrics_match": true,
+                "metrics_consistent": true,
+                "duplicate_ids": [],
+                "processed_orders": 500,
+                "verified_count": 350,
+                "mismatch_count": 100,
+                "error_count": 50,
+                "paid_count": 428,
+                "unpaid_count": 72,
+                "revenue_all": 612423000,
+                "revenue_verified": 376814000,
+                "aov": 1224846,
+                "correctness_gate": "MATCH",
+                "partitions": [
+                    {
+                        "job_id": 77,
+                        "partition_no": 1,
+                        "range_start": 1,
+                        "range_end": 125,
+                        "status": "DONE",
+                        "worker_id": "par-4-w1",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 78,
+                        "partition_no": 2,
+                        "range_start": 126,
+                        "range_end": 250,
+                        "status": "DONE",
+                        "worker_id": "par-4-w2",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 79,
+                        "partition_no": 3,
+                        "range_start": 251,
+                        "range_end": 375,
+                        "status": "DONE",
+                        "worker_id": "par-4-w4",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 80,
+                        "partition_no": 4,
+                        "range_start": 376,
+                        "range_end": 500,
+                        "status": "DONE",
+                        "worker_id": "par-4-w3",
+                        "attempts": 1
+                    }
+                ],
+                "worker_output": {
+                    "par-4-w1": "[par-4-w1] Job #77 partisi 1 (1..125)\n[par-4-w1] Selesai partisi 1: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 670 ms",
+                    "par-4-w2": "[par-4-w2] Job #78 partisi 2 (126..250)\n[par-4-w2] Selesai partisi 2: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 674 ms",
+                    "par-4-w3": "[par-4-w3] Job #80 partisi 4 (376..500)\n[par-4-w3] Selesai partisi 4: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 675 ms",
+                    "par-4-w4": "[par-4-w4] Job #79 partisi 3 (251..375)\n[par-4-w4] Selesai partisi 3: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 670 ms"
+                },
+                "worker_errors": {
+                    "par-4-w1": "",
+                    "par-4-w2": "",
+                    "par-4-w3": "",
+                    "par-4-w4": ""
+                },
+                "exit_codes": {
+                    "par-4-w1": 0,
+                    "par-4-w2": 0,
+                    "par-4-w3": 0,
+                    "par-4-w4": 0
+                }
+            },
+            {
+                "workers": 8,
+                "batch_id": 32,
+                "batch_code": "PAR-D500-W8-20261113024846-7016",
+                "status": "DONE",
+                "complete": true,
+                "wall_ms": 574,
+                "duration_ms": 574,
+                "speedup": 4.716,
+                "efficiency": 0.5895,
+                "throughput_per_sec": 871.08,
+                "jobs_total": 8,
+                "jobs_done": 8,
+                "distinct_workers": 8,
+                "max_attempts": 1,
+                "checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "baseline_checksum": "61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939",
+                "checksum_match": true,
+                "metrics_match": true,
+                "metrics_consistent": true,
+                "duplicate_ids": [],
+                "processed_orders": 500,
+                "verified_count": 350,
+                "mismatch_count": 100,
+                "error_count": 50,
+                "paid_count": 428,
+                "unpaid_count": 72,
+                "revenue_all": 612423000,
+                "revenue_verified": 376814000,
+                "aov": 1224846,
+                "correctness_gate": "MATCH",
+                "partitions": [
+                    {
+                        "job_id": 81,
+                        "partition_no": 1,
+                        "range_start": 1,
+                        "range_end": 63,
+                        "status": "DONE",
+                        "worker_id": "par-8-w1",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 82,
+                        "partition_no": 2,
+                        "range_start": 64,
+                        "range_end": 126,
+                        "status": "DONE",
+                        "worker_id": "par-8-w2",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 83,
+                        "partition_no": 3,
+                        "range_start": 127,
+                        "range_end": 189,
+                        "status": "DONE",
+                        "worker_id": "par-8-w3",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 84,
+                        "partition_no": 4,
+                        "range_start": 190,
+                        "range_end": 252,
+                        "status": "DONE",
+                        "worker_id": "par-8-w7",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 85,
+                        "partition_no": 5,
+                        "range_start": 253,
+                        "range_end": 314,
+                        "status": "DONE",
+                        "worker_id": "par-8-w6",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 86,
+                        "partition_no": 6,
+                        "range_start": 315,
+                        "range_end": 376,
+                        "status": "DONE",
+                        "worker_id": "par-8-w4",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 87,
+                        "partition_no": 7,
+                        "range_start": 377,
+                        "range_end": 438,
+                        "status": "DONE",
+                        "worker_id": "par-8-w8",
+                        "attempts": 1
+                    },
+                    {
+                        "job_id": 88,
+                        "partition_no": 8,
+                        "range_start": 439,
+                        "range_end": 500,
+                        "status": "DONE",
+                        "worker_id": "par-8-w5",
+                        "attempts": 1
+                    }
+                ],
+                "worker_output": {
+                    "par-8-w1": "[par-8-w1] Job #81 partisi 1 (1..63)\n[par-8-w1] Selesai partisi 1: 63 order | VERIFIED=45 MISMATCH=12 ERROR=6 | 340 ms",
+                    "par-8-w2": "[par-8-w2] Job #82 partisi 2 (64..126)\n[par-8-w2] Selesai partisi 2: 63 order | VERIFIED=45 MISMATCH=12 ERROR=6 | 333 ms",
+                    "par-8-w3": "[par-8-w3] Job #83 partisi 3 (127..189)\n[par-8-w3] Selesai partisi 3: 63 order | VERIFIED=43 MISMATCH=14 ERROR=6 | 340 ms",
+                    "par-8-w4": "[par-8-w4] Job #86 partisi 6 (315..376)\n[par-8-w4] Selesai partisi 6: 62 order | VERIFIED=44 MISMATCH=12 ERROR=6 | 327 ms",
+                    "par-8-w5": "[par-8-w5] Job #88 partisi 8 (439..500)\n[par-8-w5] Selesai partisi 8: 62 order | VERIFIED=42 MISMATCH=13 ERROR=7 | 327 ms",
+                    "par-8-w6": "[par-8-w6] Job #85 partisi 5 (253..314)\n[par-8-w6] Selesai partisi 5: 62 order | VERIFIED=44 MISMATCH=12 ERROR=6 | 327 ms",
+                    "par-8-w7": "[par-8-w7] Job #84 partisi 4 (190..252)\n[par-8-w7] Selesai partisi 4: 63 order | VERIFIED=44 MISMATCH=12 ERROR=7 | 335 ms",
+                    "par-8-w8": "[par-8-w8] Job #87 partisi 7 (377..438)\n[par-8-w8] Selesai partisi 7: 62 order | VERIFIED=43 MISMATCH=13 ERROR=6 | 331 ms"
+                },
+                "worker_errors": {
+                    "par-8-w1": "",
+                    "par-8-w2": "",
+                    "par-8-w3": "",
+                    "par-8-w4": "",
+                    "par-8-w5": "",
+                    "par-8-w6": "",
+                    "par-8-w7": "",
+                    "par-8-w8": ""
+                },
+                "exit_codes": {
+                    "par-8-w1": 0,
+                    "par-8-w2": 0,
+                    "par-8-w3": 0,
+                    "par-8-w4": 0,
+                    "par-8-w5": 0,
+                    "par-8-w6": 0,
+                    "par-8-w7": 0,
+                    "par-8-w8": 0
+                }
+            }
+        ],
+        "all_gates_pass": true
+    },
+    "summary": {
+        "total_checks": 24,
+        "passed": 24,
+        "failed": 0,
+        "all_pass": true
+    },
+    "checks": [
+        {
+            "code": "PAR-01.a",
+            "name": "Baseline sequential selesai & tersimpan",
+            "status": "PASS",
+            "detail": "exit=0 total=500 durasi=2693 ms worker=1"
+        },
+        {
+            "code": "PAR-01.b",
+            "name": "Komposisi VERIFIED/MISMATCH/ERROR sesuai dataset",
+            "status": "PASS",
+            "detail": "seq=350/100/50 expected=350/100/50"
+        },
+        {
+            "code": "PAR-01.c",
+            "name": "Agregasi finansial (revenue, paid/unpaid, AOV) konsisten",
+            "status": "PASS",
+            "detail": "revenue=Rp 612.423.000 expected=Rp 612.423.000 paid/unpaid=428/72 aov=1224846"
+        },
+        {
+            "code": "PAR-01.d",
+            "name": "Checksum sequential valid (sha256)",
+            "status": "PASS",
+            "detail": "checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939"
+        },
+        {
+            "code": "PAR-02.a",
+            "name": "Parallel runner selesai untuk semua jumlah worker",
+            "status": "PASS",
+            "detail": "exit=0 all_gates_pass=true"
+        },
+        {
+            "code": "PAR-02.b",
+            "name": "Checksum parallel = sequential untuk setiap P",
+            "status": "PASS",
+            "detail": "baseline=61cfe1d0d9769ea1\u2026 run=4"
+        },
+        {
+            "code": "PAR-02.P1.a",
+            "name": "P=1: checksum & jumlah order sama dengan sequential",
+            "status": "PASS",
+            "detail": "checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=1/1 worker_unik=1 attempts_max=1"
+        },
+        {
+            "code": "PAR-02.P1.b",
+            "name": "P=1: partisi menutup 1..500 tanpa gap/overlap",
+            "status": "PASS",
+            "detail": "ranges=1..500"
+        },
+        {
+            "code": "PAR-02.P1.c",
+            "name": "P=1: metrik finansial & bebas duplikasi",
+            "status": "PASS",
+            "detail": "revenue=Rp 612.423.000 duplicates=0"
+        },
+        {
+            "code": "PAR-02.P1.d",
+            "name": "P=1: tidak ada job diklaim dua kali / checkpoint ganda",
+            "status": "PASS",
+            "detail": "checkpoints=1 jobs=1 retried=0 distinct_worker_db=1"
+        },
+        {
+            "code": "PAR-02.P2.a",
+            "name": "P=2: checksum & jumlah order sama dengan sequential",
+            "status": "PASS",
+            "detail": "checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=2/2 worker_unik=2 attempts_max=1"
+        },
+        {
+            "code": "PAR-02.P2.b",
+            "name": "P=2: partisi menutup 1..500 tanpa gap/overlap",
+            "status": "PASS",
+            "detail": "ranges=1..250, 251..500"
+        },
+        {
+            "code": "PAR-02.P2.c",
+            "name": "P=2: metrik finansial & bebas duplikasi",
+            "status": "PASS",
+            "detail": "revenue=Rp 612.423.000 duplicates=0"
+        },
+        {
+            "code": "PAR-02.P2.d",
+            "name": "P=2: tidak ada job diklaim dua kali / checkpoint ganda",
+            "status": "PASS",
+            "detail": "checkpoints=2 jobs=2 retried=0 distinct_worker_db=2"
+        },
+        {
+            "code": "PAR-02.P4.a",
+            "name": "P=4: checksum & jumlah order sama dengan sequential",
+            "status": "PASS",
+            "detail": "checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=4/4 worker_unik=4 attempts_max=1"
+        },
+        {
+            "code": "PAR-02.P4.b",
+            "name": "P=4: partisi menutup 1..500 tanpa gap/overlap",
+            "status": "PASS",
+            "detail": "ranges=1..125, 126..250, 251..375, 376..500"
+        },
+        {
+            "code": "PAR-02.P4.c",
+            "name": "P=4: metrik finansial & bebas duplikasi",
+            "status": "PASS",
+            "detail": "revenue=Rp 612.423.000 duplicates=0"
+        },
+        {
+            "code": "PAR-02.P4.d",
+            "name": "P=4: tidak ada job diklaim dua kali / checkpoint ganda",
+            "status": "PASS",
+            "detail": "checkpoints=4 jobs=4 retried=0 distinct_worker_db=4"
+        },
+        {
+            "code": "PAR-02.P8.a",
+            "name": "P=8: checksum & jumlah order sama dengan sequential",
+            "status": "PASS",
+            "detail": "checksum=61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939 jobs=8/8 worker_unik=8 attempts_max=1"
+        },
+        {
+            "code": "PAR-02.P8.b",
+            "name": "P=8: partisi menutup 1..500 tanpa gap/overlap",
+            "status": "PASS",
+            "detail": "ranges=1..63, 64..126, 127..189, 190..252, 253..314, 315..376, 377..438, 439..500"
+        },
+        {
+            "code": "PAR-02.P8.c",
+            "name": "P=8: metrik finansial & bebas duplikasi",
+            "status": "PASS",
+            "detail": "revenue=Rp 612.423.000 duplicates=0"
+        },
+        {
+            "code": "PAR-02.P8.d",
+            "name": "P=8: tidak ada job diklaim dua kali / checkpoint ganda",
+            "status": "PASS",
+            "detail": "checkpoints=8 jobs=8 retried=0 distinct_worker_db=8"
+        },
+        {
+            "code": "RACE-01",
+            "name": "Lease recovery memulihkan job RUNNING yang kadaluarsa",
+            "status": "PASS",
+            "detail": "status=DONE worker=recovery-test attempts=2 checkpoints=1"
+        },
+        {
+            "code": "RACE-02",
+            "name": "Reducer idempoten (reduce ulang tidak mengubah checksum/checkpoint)",
+            "status": "PASS",
+            "detail": "checksum1=61cfe1d0d9769ea1 checksum2=61cfe1d0d9769ea1 checkpoints=8->8"
+        }
+    ]
+}

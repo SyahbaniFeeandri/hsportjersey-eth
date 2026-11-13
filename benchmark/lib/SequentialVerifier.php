@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace HSport\Benchmark;
 
+require_once __DIR__ . '/Checksum.php';
+
 class SequentialVerifier
 {
     private MockChainAdapter $chain;
@@ -53,6 +55,7 @@ class SequentialVerifier
                 'verification' => 'ERROR',
                 'amount_idr' => $amountIdr,
                 'amount_wei' => $amountWei,
+                'paid' => (($dbOrder['payment_status'] ?? '') === 'paid'),
                 'differences' => [],
                 'error' => $e->getMessage(),
             ];
@@ -90,6 +93,7 @@ class SequentialVerifier
             'verification' => empty($differences) ? 'VERIFIED' : 'MISMATCH',
             'amount_idr' => $amountIdr,
             'amount_wei' => $amountWei,
+            'paid' => ($dbOrder['payment_status'] === 'paid'),
             'differences' => $differences,
             'error' => null,
         ];
@@ -119,7 +123,7 @@ class SequentialVerifier
 
             if ($result['verification'] === 'VERIFIED') {
                 $verified++;
-                if (($order['payment_status'] ?? '') === 'paid') {
+                if ($result['paid'] === true) {
                     $revenueVerified += $result['amount_idr'];
                 }
             } elseif ($result['verification'] === 'MISMATCH') {
@@ -129,7 +133,7 @@ class SequentialVerifier
             }
 
             $revenueAll += $result['amount_idr'];
-            if (($order['payment_status'] ?? '') === 'paid') {
+            if ($result['paid'] === true) {
                 $paidCount++;
             } else {
                 $unpaidCount++;
@@ -140,12 +144,7 @@ class SequentialVerifier
         $durationMs = (int)round($durationUs / 1000);
 
         // Checksum stabil: urutkan berdasarkan id, lalu hash baris hasil.
-        usort($results, fn($a, $b) => $a['id'] <=> $b['id']);
-        $lines = [];
-        foreach ($results as $r) {
-            $lines[] = $r['id'] . '|' . $r['verification'] . '|' . $r['amount_wei'] . '|' . implode(',', $r['differences']);
-        }
-        $checksum = hash('sha256', implode("\n", $lines));
+        $checksum = Checksum::compute($results);
 
         $total = count($results);
 

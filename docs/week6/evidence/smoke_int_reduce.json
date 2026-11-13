@@ -1,0 +1,48 @@
+{
+    "batch_id": 14,
+    "batch_code": "INT-SMOKE-001",
+    "mode": "INTEGRATION",
+    "dataset_name": "orders-live",
+    "dataset_size": 21,
+    "worker_count": 2,
+    "status": "DONE",
+    "complete": true,
+    "expected_orders": 21,
+    "processed_orders": 21,
+    "verified_count": 1,
+    "mismatch_count": 0,
+    "error_count": 20,
+    "paid_count": 19,
+    "unpaid_count": 2,
+    "revenue_all": 53139000,
+    "revenue_verified": 10000000,
+    "aov": 2530428.5714,
+    "checksum": "518d5d57207322283b2cf46966d945d00e643399cd7922044c98c042ff910bcd",
+    "baseline_checksum": null,
+    "checksum_match": null,
+    "metrics_consistent": false,
+    "duplicate_ids": [],
+    "duration_ms": 0,
+    "throughput_per_sec": null,
+    "incomplete_jobs": [],
+    "partitions": [
+        {
+            "job_id": 36,
+            "partition_no": 1,
+            "range_start": 1,
+            "range_end": 20,
+            "status": "DONE",
+            "worker_id": "int-smoke-w1",
+            "attempts": 1
+        },
+        {
+            "job_id": 37,
+            "partition_no": 2,
+            "range_start": 21,
+            "range_end": 40,
+            "status": "DONE",
+            "worker_id": "int-smoke-w1",
+            "attempts": 1
+        }
+    ]
+}
