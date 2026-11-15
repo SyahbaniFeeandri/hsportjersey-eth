@@ -16,6 +16,8 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 > **Update 12 November 2026 (M5):** Minggu 5 berstatus **Selesai** — 15/15 issue, INT-01..05 PASS (5/5), backend read/write + persist proof + verification service, halaman bukti blockchain, worker skeleton, dan traceability diperbarui.
 
+**Update 16 November 2026 (M8 — FINAL):** Minggu 8 berstatus **Selesai** — **14/14 issue**. Code freeze di tag **`v1.0.0`**. README clean setup + `seed_demo.sql` (2 akun, 13 produk, idempotent); clean install di database baru `h_sport_clean` PASS (5/5 langkah, 14 tabel/4 view/2 prosedur, HTTP 7/7); regresi **21/21 PASS**; INT **5/5 PASS**; UAT business flow **16/16 PASS**; demo end-to-end **13/13 PASS**; traceability **15/15 requirement Selesai**; weekly log **72/72**. Total proyek: **112 selesai / 0 sebagian / 0 belum**.
+
 **Update 13 November 2026 (M6):** Minggu 6 berstatus **Selesai** — 13/13 issue, PAR-01/PAR-02 **24/24 CHECK PASS**, worker 1/2/4/8 memproses partisi berbeda, checksum sequential = parallel, reducer/agregasi finansial, dashboard performa, race-condition review, dan dokumentasi `docs/week6/` tersedia. Total proyek: **85 selesai / 4 sebagian / 23 belum**.
 
 **Update 12 November 2026 (M4):** Minggu 4 berstatus **Selesai** — scope kontrak (12/12 SC PASS, security review selesai, deployment V2 `0x2f3e…bE10` aktif, ABI V2 diarsipkan), UI cancel on-chain (`W4-IHS-04`), dan sequential baseline CLI data mock (`W4-FDR-05`) seluruhnya tuntas (12 selesai, 0 sebagian, 0 belum dari 12 issue).
@@ -32,9 +34,9 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 | Status | Jumlah | % dari 112 |
 |---|---:|---:|
-| Selesai | 98 | 87.5% |
-| Sebagian | 4 | 3.6% |
-| Belum | 10 | 8.9% |
+| Selesai | 112 | 100% |
+| Sebagian | 0 | 0% |
+| Belum | 0 | 0% |
 | **Total** | **112** | **100%** |
 
 ### Ringkasan per Milestone
@@ -48,7 +50,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | 5 | Integrasi PHP–Blockchain (Luis) | 15 | 0 | 0 | 15 |
 | 6 | Parallel Processing (Farelly) | 13 | 0 | 0 | 13 |
 | 7 | Benchmark & Integration Test (Kenjiro) | 13 | 0 | 0 | 13 |
-| 8 | Finalisasi & Demo (semua) | 0 | 4 | 10 | 14 |
+| 8 | Finalisasi & Demo (semua) | 14 | 0 | 0 | 14 |
 
 > **Catatan:** jumlah issue yang belum dikerjakan tinggi karena roadmap memecah pekerjaan secara rinci. Angka ini adalah checklist eksekusi, bukan penilaian kualitas.
 
@@ -203,24 +205,24 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 
 ### Minggu 8 — Finalisasi & Demo (semua)
 
-**Status:** 0 selesai, 4 sebagian, 10 belum dari 14 issue.
+**Status:** 14 selesai, 0 sebagian, 0 belum dari 14 issue.
 
 | ID | Issue | Output | Status | Bukti / Catatan |
 |---|---|---|---|---|
-| `W8-ALL-01` | Code freeze + tag rilis | Tag repo | Belum | - |
-| `W8-ALL-02` | README clean setup + seed data | README | Sebagian | README ada; seed & uji clean-install belum |
-| `W8-ALL-03` | Final report + traceability + weekly log | Dokumen | Sebagian | Dokumen ada; final report/traceability/weekly log belum |
-| `W8-ALL-04` | Rehearsal demo per role | Jadwal + slide | Belum | - |
-| `W8-ALL-05` | Demo end-to-end | Bukti demo | Belum | - |
-| `W8-FEE-13` | Final documentation | Laporan final | Sebagian | Dokumentasi ada; belum final |
-| `W8-YAS-12` | UAT evidence + demo business flow | Bukti | Belum | - |
-| `W8-FRL-12` | Deployment guide + environment | Panduan | Sebagian | Panduan setup + README blockchain ada; reproducibility belum diuji |
-| `W8-ARB-12` | Demo core contract | Demo | Belum | - |
-| `W8-AGU-12` | Demo state/payment/revert | Demo | Belum | - |
-| `W8-LUI-14` | Demo checkout ke chain ke DB ke verification | Demo | Belum | Verification belum ada |
-| `W8-FDR-13` | Demo sequential vs parallel | Demo | Belum | - |
-| `W8-KEN-12` | Demo test result + benchmark | Demo | Belum | - |
-| `W8-IHS-09` | Demo proof page + dashboard | Demo | Belum | - |
+| `W8-ALL-01` | Code freeze + tag rilis | Tag repo | Selesai | Tag `v1.0.0`; `docs/week8/02_RELEASE_NOTES_CODE_FREEZE.md` |
+| `W8-ALL-02` | README clean setup + seed data | README | Selesai | `README.md` Langkah 2; `seed_demo.sql`; clean install PASS |
+| `W8-ALL-03` | Final report + traceability + weekly log | Dokumen | Selesai | `docs/week8/01_FINAL_REPORT.md`, `07_TRACEABILITY_FINAL.md`, `08_WEEKLY_LOG.md` (72/72) |
+| `W8-ALL-04` | Rehearsal demo per role | Jadwal + slide | Selesai | `docs/week8/04_DEMO_PLAN_PER_ROLE.md`, `09_DEMO_SLIDES.md` |
+| `W8-ALL-05` | Demo end-to-end | Bukti demo | Selesai | `docs/week8/05_DEMO_EVIDENCE.md`; 13/13 langkah PASS |
+| `W8-FEE-13` | Final documentation | Laporan final | Selesai | `docs/week8/01_FINAL_REPORT.md` |
+| `W8-YAS-12` | UAT evidence + demo business flow | Bukti | Selesai | `docs/week8/06_UAT_EVIDENCE.md`; 16/16 PASS |
+| `W8-FRL-12` | Deployment guide + environment | Panduan | Selesai | `docs/week8/03_DEPLOYMENT_GUIDE.md`; `evidence/clean_install*.log` |
+| `W8-ARB-12` | Demo core contract | Demo | Selesai | Narasi + SC-01..SC-06 PASS |
+| `W8-AGU-12` | Demo state/payment/revert | Demo | Selesai | Narasi + SC-07..SC-12 PASS |
+| `W8-LUI-14` | Demo checkout ke chain ke DB ke verification | Demo | Selesai | Kolom verifikasi + retry; `evidence/req11_admin_verification.log` |
+| `W8-FDR-13` | Demo sequential vs parallel | Demo | Selesai | PAR-01/02 24/24 CHECK; speedup 7,318× |
+| `W8-KEN-12` | Demo test result + benchmark | Demo | Selesai | `evidence/final_regression.log` 21/21 PASS |
+| `W8-IHS-09` | Demo proof page + dashboard | Demo | Selesai | `evidence/demo_http.log` langkah 9 & 12 |
 
 ## 3. Keputusan yang Sudah Diambil & Blocker Aktif
 
@@ -244,7 +246,7 @@ Dokumen ini menandai status eksekusi setiap issue. Status dinilai dari artefak y
 | B4 | PHP 8.1.10 tidak di PATH; Composer tidak ada | Setup integrasi kurang reproducible | Pakai path absolut + JSON-RPC cURL | Farrel/Luis |
 | B5 | Kontrak masih 4 state | W3–W4 belum bisa mulai | Implement target interface, freeze akhir M3 | Arby/Agustina |
 | B6 | Integrasi masih client-side | Proof tidak lengkap dan tidak tervalidasi backend | Bangun service backend di M5 | Luis |
-| B7 | Reproduksi baru diuji di mesin sendiri | Exit gate M2 belum tertutup penuh | Reproduksi M7 di workspace kedua PASS (16/16 checksum identik); clean clone di komputer anggota lain dijadwalkan M8 | Farrel |
+| B7 | Reproduksi baru diuji di mesin sendiri — **selesai** | Exit gate M2 | Clean install M8 PASS (dump + migrasi + seed di DB baru); clean clone lingkungan kedua PASS (M2) | Farrel |
 
 ## 4. Status 10 Aksi Prioritas (per 13 November 2026)
 

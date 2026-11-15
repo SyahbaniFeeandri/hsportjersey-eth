@@ -53,7 +53,10 @@ Sebelum memulai, pastikan lingkungan kerja komputer lokal memenuhi spesifikasi b
    - `migration_reviews.sql` (berisi tabel ulasan dan rating produk).
    - `migration_blockchain.sql` (berisi kolom bukti blockchain dan tabel `blockchain_transactions`).
    - `migration_parallel.sql` (berisi tabel antrean paralel: `job_batches`, `verification_jobs`, `checkpoints`, `worker_logs`).
-7. Periksa file konfigurasi koneksi di `config/database.php`. Pastikan parameter sesuai:
+7. Import **data demo**:
+   - `seed_demo.sql` (2 akun demo + 13 produk; idempotent, aman diulang).
+8. Periksa file konfigurasi koneksi di `config/database.php`. Pastikan parameter sesuai
+   (dapat dioverride lewat environment variable `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`):
    ```php
    $host = 'localhost';
    $dbname = 'h_sport_db';

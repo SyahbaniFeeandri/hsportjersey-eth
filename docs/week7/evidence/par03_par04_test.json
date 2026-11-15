@@ -1,5 +1,5 @@
 {
-    "executed_at": "2026-11-13T03:46:25+00:00",
+    "executed_at": "2026-11-15T18:19:41+00:00",
     "matrix": "C:\\laragon\\www\\project_jersey/docs/week7/evidence/benchmark_matrix.json",
     "latency_us": 5000,
     "par03": {
@@ -53,7 +53,7 @@
             "code": "PAR-04.a",
             "name": "Dua worker memperebutkan satu job: hanya satu yang memproses",
             "status": "PASS",
-            "detail": "exit=0/0 status=DONE worker=par04-racer-a attempts=1 checkpoints=1"
+            "detail": "exit=0/0 status=DONE worker=par04-racer-b attempts=1 checkpoints=1"
         },
         {
             "code": "PAR-04.b",

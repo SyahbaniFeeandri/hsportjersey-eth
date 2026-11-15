@@ -4,14 +4,16 @@
 **Semester:** Gasal 2026/2027
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
-**Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 85 selesai, 4 sebagian, 23 belum dari 112 issue.
+**Status dokumen:** Final — 112/112 issue selesai, rilis `v1.0.0`
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 112 selesai, 0 sebagian, 0 belum dari 112 issue.
 **Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) - 17/17 issue selesai.
 **Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 16/16 issue selesai (`W2-FRL-05` clean clone di komputer anggota lain PASS).
 **Artefak Minggu 3:** lihat [docs/week3/README.md](week3/README.md) - 12/12 issue selesai (exit gate teknis terpenuhi).
 **Artefak Minggu 4:** lihat [docs/week4/README.md](week4/README.md) - 12/12 issue selesai (kontrak V2, UI cancel on-chain, sequential baseline CLI).
 **Artefak Minggu 5:** lihat [docs/week5/README.md](week5/README.md) - 15/15 issue selesai (5/5 INT PASS, proof page, worker skeleton).
 **Artefak Minggu 6:** lihat [docs/week6/README.md](week6/README.md) - 13/13 issue selesai (PAR-01/PAR-02 24/24 PASS, dashboard, worker paralel).
+**Artefak Minggu 7:** lihat [docs/week7/README.md](week7/README.md) - 13/13 issue selesai (benchmark 16/16, regresi 21/21, reproducible).
+**Artefak Minggu 8:** lihat [docs/week8/README.md](week8/README.md) - 14/14 issue selesai (clean install, UAT 16/16, demo, tag `v1.0.0`).
 
 ---
 
@@ -263,7 +265,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 8 — Finalisasi & Demo
 
-**Status saat ini:** Sebagian kecil — 0 selesai, 4 sebagian, 10 belum dari 14 issue.
+**Status saat ini:** **Selesai** — 14 selesai, 0 sebagian, 0 belum dari 14 issue.
 **Lead:** semua · **Pendukung:** semua · **Target:** 100%
 
 | PIC | Issue | Output / Evidence |
@@ -283,7 +285,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 | KEN | `W8-KEN-12` Demo test result + benchmark | Demo |
 | IHS | `W8-IHS-09` Demo proof page + dashboard | Demo |
 
-**Exit gate:** demo berjalan dari clean setup; setiap anggota menjelaskan `input → process → output → error → test → dependency`.
+**Exit gate:** demo berjalan dari clean setup; setiap anggota menjelaskan `input → process → output → error → test → dependency`. **Terpenuhi 16 November 2026:** clean install 5/5 + HTTP 7/7, demo 13/13, UAT 16/16, regresi 21/21, tag `v1.0.0`.
 
 ---
 

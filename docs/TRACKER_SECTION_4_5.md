@@ -5,6 +5,7 @@ Dokumen ini adalah draft isi untuk melengkapi `docs/Progress Tracker.docx` yang 
 - **Bagian 4** menggantikan/menambahkan bagian Test Case Tracker yang hilang.
 - **Bagian 5** menggantikan/menambahkan bagian Weekly Progress Log yang hilang.
 - Isi ini sudah disisipkan ke `Progress Tracker.docx` sebelum Bagian 6.
+- **Status akhir (16 November 2026):** 21/21 test PASS, 72/72 entri log Final, rilis `v1.0.0`.
 
 ---
 
@@ -17,48 +18,48 @@ Dokumen ini adalah draft isi untuk melengkapi `docs/Progress Tracker.docx` yang 
 
 | ID | Test Case | Expected Result | Dev Owner | Validator | Status | Tanggal | Bukti / Catatan |
 |---|---|---|---|---|---|---|---|
-| SC-01 | Inisialisasi contract, owner, akses owner | `owner` = deployer; non-owner `addOperator` REVERT `Not owner` | Arby + Farrel | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-02 | `createOrder` valid | Escrow terkunci, state `Created`, event `OrderCreated` | Arby | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-03 | `createOrder` amount tidak valid | REVERT: `Amount must be > 0` / `Incorrect amount` | Arby | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-04 | Duplicate `externalOrderHash` | REVERT: `Duplicate order hash` | Arby | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-05 | `getOrder` ID valid | Data order sesuai input | Arby | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-06 | `getOrder` ID tidak ada | REVERT: `Order not found` | Arby | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-07 | Access control | Non-operator/non-buyer/non-owner REVERT sesuai modifier | Arby + Agustina | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-08 | `recordPayment` valid + double payment | `Paid` + event `PaymentRecorded`; double REVERT `Payment already recorded` | Agustina | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-09 | Transisi valid + `shipOrder` | `InProduction → ReadyToShip → Shipped` + event | Agustina | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-10 | Transisi tidak sah | REVERT: `Invalid state transition` | Agustina | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-11 | Cancel valid/unauthorized/terminal | `Cancelled` + refund; unauthorized/terminal REVERT | Agustina | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
-| SC-12 | `confirmReceived` + release escrow | `Completed`, escrow released, saldo seller naik; double release REVERT | Agustina | Kenjiro | Not Started | | Lihat `docs/week1/07_TEST_PLAN.md` |
+| SC-01 | Inisialisasi contract, owner, akses owner | `owner` = deployer; non-owner `addOperator` REVERT `Not owner` | Arby + Farrel | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-02 | `createOrder` valid | Escrow terkunci, state `Created`, event `OrderCreated` | Arby | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-03 | `createOrder` amount tidak valid | REVERT: `Amount must be > 0` / `Incorrect amount` | Arby | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-04 | Duplicate `externalOrderHash` | REVERT: `Duplicate order hash` | Arby | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-05 | `getOrder` ID valid | Data order sesuai input | Arby | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-06 | `getOrder` ID tidak ada | REVERT: `Order not found` | Arby | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-07 | Access control | Non-operator/non-buyer/non-owner REVERT sesuai modifier | Arby + Agustina | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-08 | `recordPayment` valid + double payment | `Paid` + event `PaymentRecorded`; double REVERT `Payment already recorded` | Agustina | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-09 | Transisi valid + `shipOrder` | `InProduction → ReadyToShip → Shipped` + event | Agustina | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-10 | Transisi tidak sah | REVERT: `Invalid state transition` | Agustina | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-11 | Cancel valid/unauthorized/terminal | `Cancelled` + refund; unauthorized/terminal REVERT | Agustina | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
+| SC-12 | `confirmReceived` + release escrow | `Completed`, escrow released, saldo seller naik; double release REVERT | Agustina | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/sc_regression.log` |
 
 ### 4.2 Kelompok B — Integrasi (INT-01 s.d. INT-05)
 
 | ID | Test Case | Expected Result | Dev Owner | Validator | Status | Tanggal | Bukti / Catatan |
 |---|---|---|---|---|---|---|---|
-| INT-01 | Koneksi RPC backend ke node | RPC merespons, `eth_chainId` sesuai | Luis + Farrel | Kenjiro | Not Started | | |
-| INT-02 | Checkout DB + `createOrder` on-chain | Order DB dan order on-chain terhubung | Luis | Kenjiro | Not Started | | |
-| INT-03 | Ambil tx hash & receipt asinkron | `tx_hash`, `block_number`, status receipt terbaca | Luis | Kenjiro | Not Started | | |
-| INT-04 | Simpan proof ke DB | Tx hash, block number, wallet, contract address persisten | Luis | Kenjiro | Not Started | | |
-| INT-05 | Verifikasi DB vs chain | Hasil `VERIFIED` / `MISMATCH` benar | Luis | Kenjiro | Not Started | | |
+| INT-01 | Koneksi RPC backend ke node | RPC merespons, `eth_chainId` sesuai | Luis + Farrel | Kenjiro | PASS | 16 Nov 2026 | `docs/week8/evidence/final_int_suite.log` |
+| INT-02 | Checkout DB + `createOrder` on-chain | Order DB dan order on-chain terhubung | Luis | Kenjiro | PASS | 16 Nov 2026 | `docs/week8/evidence/final_int_suite.log` |
+| INT-03 | Ambil tx hash & receipt asinkron | `tx_hash`, `block_number`, status receipt terbaca | Luis | Kenjiro | PASS | 16 Nov 2026 | `docs/week8/evidence/final_int_suite.log` |
+| INT-04 | Simpan proof ke DB | Tx hash, block number, wallet, contract address persisten | Luis | Kenjiro | PASS | 16 Nov 2026 | `docs/week8/evidence/final_int_suite.log` |
+| INT-05 | Verifikasi DB vs chain | Hasil `VERIFIED` / `MISMATCH` benar | Luis | Kenjiro | PASS | 16 Nov 2026 | `docs/week8/evidence/final_int_suite.log`; `req11_admin_verification.log` |
 
 ### 4.3 Kelompok C — Parallel & Benchmark (PAR-01 s.d. PAR-04)
 
 | ID | Test Case | Expected Result | Dev Owner | Validator | Status | Tanggal | Bukti / Catatan |
 |---|---|---|---|---|---|---|---|
-| PAR-01 | Sequential baseline | Waktu & hasil agregasi tercatat | Farelly | Kenjiro | Not Started | | |
-| PAR-02 | Parallel multi-worker partition/reduce | Hasil sama dengan sequential | Farelly | Kenjiro | Not Started | | |
-| PAR-03 | Hitung throughput & speedup | `speedup = T_seq / T_par`, throughput valid | Kenjiro + Farelly | Feeandri | Not Started | | |
-| PAR-04 | Ketahanan konkurensi | Tidak ada race condition/duplikasi; agregasi utuh | Kenjiro + Farelly | Yasmin | Not Started | | |
+| PAR-01 | Sequential baseline | Waktu & hasil agregasi tercatat | Farelly | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/par01_par02_regression.log` |
+| PAR-02 | Parallel multi-worker partition/reduce | Hasil sama dengan sequential | Farelly | Kenjiro | PASS | 13 Nov 2026 | `docs/week7/evidence/par01_par02_regression.log` |
+| PAR-03 | Hitung throughput & speedup | `speedup = T_seq / T_par`, throughput valid | Kenjiro + Farelly | Feeandri | PASS | 13 Nov 2026 | `docs/week7/evidence/par03_par04_regression.log` |
+| PAR-04 | Ketahanan konkurensi | Tidak ada race condition/duplikasi; agregasi utuh | Kenjiro + Farelly | Yasmin | PASS | 13 Nov 2026 | `docs/week7/evidence/par03_par04_regression.log` |
 
 ### 4.4 Ringkasan Test Case
 
 | Status | Jumlah | % dari 21 |
 |---|---|---|
-| Not Started | 21 | 100% |
+| Not Started | 0 | 0% |
 | In Progress | 0 | 0% |
-| PASS | 0 | 0% |
+| PASS | **21** | **100%** |
 | FAIL | 0 | 0% |
 
-> **Catatan rekonsiliasi:** 21 test mengikuti basis escrow `DOKUMENTASI_PROJECT_DAN_PERAN.md`, lalu fitur duplicate hash, operator, dan cancel digabungkan ke 12 slot SC. Kontrak tetap `HSportStore.sol` (extend), bukan rewrite ke `HSportOrder`. Definisi final ada di `docs/week1/07_TEST_PLAN.md`.
+> **Catatan rekonsiliasi:** 21 test mengikuti basis escrow `DOKUMENTASI_PROJECT_DAN_PERAN.md`, lalu fitur duplicate hash, operator, dan cancel digabungkan ke 12 slot SC. Kontrak tetap `HSportStore.sol` (extend), bukan rewrite ke `HSportOrder`. Definisi final ada di `docs/week1/07_TEST_PLAN.md`. Ringkasan eksekusi: `docs/week8/evidence/final_regression.log` (21/21 PASS, 47,19 detik).
 
 ---
 
@@ -85,31 +86,34 @@ Dokumen ini adalah draft isi untuk melengkapi `docs/Progress Tracker.docx` yang 
 
 | Mahasiswa | W1 | W2 | W3 | W4 | W5 | W6 | W7 | W8 | Total |
 |---|---|---|---|---|---|---|---|---|---|
-| Muhammad Feeandri Syahbani | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Yasmin Akmaliyah | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Arby Putra | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Agustina Elsi Bunga | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Muhammad Farrel | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Luis | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Ihsanul Farrel | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Farelly De Rossi | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
-| Kenjiro B.H.G | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ | 0/8 |
+| Muhammad Feeandri Syahbani | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Yasmin Akmaliyah | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Arby Putra | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Agustina Elsi Bunga | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Muhammad Farrel | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Luis | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Ihsanul Farrel | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Farelly De Rossi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| Kenjiro B.H.G | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **8/8** |
+| **Total** | 9 | 9 | 9 | 9 | 9 | 9 | 9 | 9 | **72/72** |
 
-### 5.3 Contoh pengisian
+> **Sumber rekap:** [`docs/week8/08_WEEKLY_LOG.md`](week8/08_WEEKLY_LOG.md) — log konsolidasi per minggu + entri W8 per anggota, disusun dari commit dan artefak `docs/week*/`.
+
+### 5.3 Contoh pengisian (W8 — Feeandri)
 
 | Field | Isian |
 |---|---|
-| Minggu | 1 |
+| Minggu | 8 |
 | Nama mahasiswa | Muhammad Feeandri Syahbani |
 | Role utama | Requirement, Scope & Documentation Lead |
-| Target minggu ini | Re-baseline tracker, finalkan scope, traceability skeleton |
-| Pekerjaan selesai | Requirement addendum v1.1, on/off-chain matrix, state diagram 8 state, traceability v0.1 |
-| Commit / PR / Issue | Artefak `docs/week1/` (commit menyusul), issue `W1-FEE-01` s.d. `W1-FEE-05` |
-| Test / hasil | Baseline smoke Truffle 4 PASS; skeleton SC-01..SC-06 6 pending; 0/21 test wajib |
-| Kendala | Test SC sebenarnya menunggu kontrak target; uji reproduksi anggota lain belum |
-| Keputusan teknis | Tetap PHP native; extend `HSportStore`; Truffle dipertahankan |
-| Cross-role contribution | Review desain kontrak bersama Arby |
-| Rencana minggu berikut | Implementasi kontrak target, aktifkan SC-01 s.d. SC-06, uji reproduksi |
+| Target minggu ini | Final report, traceability, weekly log, code freeze |
+| Pekerjaan selesai | Laporan final, traceability 15/15, weekly log 72/72, tag `v1.0.0`, sinkronisasi GAP/ROADMAP |
+| Commit / PR / Issue | Commit M8 + tag `v1.0.0`; `W8-ALL-01`, `W8-ALL-03`, `W8-FEE-13` |
+| Test / hasil | 21/21 regresi PASS; clean install 5/5; UAT 16/16 |
+| Kendala | Rekonsiliasi angka M7 dengan bukti JSON |
+| Keputusan teknis | Setiap klaim dokumen wajib punya file bukti |
+| Cross-role contribution | Review bersama Yasmin dan Kenjiro |
+| Rencana minggu berikut | — (proyek selesai) |
 | Status log | Final |
 
 ### 5.4 Aturan pengisian
@@ -120,3 +124,4 @@ Dokumen ini adalah draft isi untuk melengkapi `docs/Progress Tracker.docx` yang 
 4. Status log hanya boleh `Final` jika sudah direview minimal satu anggota lain.
 5. Log kosong tidak dihitung dalam komponen penilaian individu (weekly log 3 poin).
 6. Rekap 5.2 diperbarui bersamaan dengan pengisian log.
+7. Pada M8, rekap individual dirangkum pada `docs/week8/08_WEEKLY_LOG.md` dan direview pada rehearsal 16 November 2026.

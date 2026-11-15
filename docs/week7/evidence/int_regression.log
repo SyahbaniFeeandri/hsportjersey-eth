@@ -1,19 +1,19 @@
 ===============================================================
    H-SPORT FINANCIAL dAPP — INTEGRATION TEST SUITE (INT-01..05)
-   Tanggal: 2026-11-13 03:46:11
+   Tanggal: 2026-11-15 18:19:22
 ===============================================================
 
  [✓ PASS] INT-01: Koneksi RPC Backend ke Ganache Node
-         -> RPC: http://127.0.0.1:7545 | Chain ID: 1337 (Expected 1337) | Block: #193 | Contract: 0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab (Bytecode verified)
+         -> RPC: http://127.0.0.1:7545 | Chain ID: 1337 (Expected 1337) | Block: #65 | Contract: 0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab (Bytecode verified)
 
  [✓ PASS] INT-02: Sinkronisasi Order DB Lokal dengan Smart Contract
-         -> DB Order #38 (INV-INT-0346115800) -> on-chain order ID #4 via tx 0x42e35859de… (Buyer: 0xffcf8fdee72ac11b5c542428b35eef5769c409f0, Status: Created)
+         -> DB Order #46 (INV-INT-1819227328) -> on-chain order ID #2 via tx 0xb0c73e78c2… (Buyer: 0xffcf8fdee72ac11b5c542428b35eef5769c409f0, Status: Created)
 
  [✓ PASS] INT-03: Pengambilan Transaction Hash, Receipt & Status Blockchain
-         -> Tx Hash: 0x42e35859dedf158108f6288c4e11027411ae0baf3b9ab6f36701514cd5701d25 | Status: CONFIRMED | Block: #194 | Gas Used: 281317 | Contract: 0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab
+         -> Tx Hash: 0xb0c73e78c25f97ae21de4d0ab5c9fb517e215fae208b835eab31fede942865e2 | Status: CONFIRMED | Block: #66 | Gas Used: 281305 | Contract: 0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab
 
  [✓ PASS] INT-04: Penyimpanan Bukti Kriptografis (Tx Hash, Block, Wallet) ke DB
-         -> Proof tersimpan di `orders` (ID: 38, Tx: 0x42e35859…, Block: 194) & dicatat di `blockchain_transactions` (1 baris)
+         -> Proof tersimpan di `orders` (ID: 46, Tx: 0xb0c73e78…, Block: 66) & dicatat di `blockchain_transactions` (1 baris)
 
  [✓ PASS] INT-05: Verifikasi Konsistensi Data Status DB vs Smart Contract (VERIFIED / MISMATCH)
          -> Cocok -> VERIFIED (0 diff) | Manipulasi Rp 10.500.000 -> Terdeteksi MISMATCH (1 diff) | Restore -> VERIFIED

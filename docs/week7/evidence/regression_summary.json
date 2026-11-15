@@ -1,5 +1,5 @@
 {
-    "executed_at": "2026-11-13T03:46:25+00:00",
+    "executed_at": "2026-11-15T18:19:41+00:00",
     "environment": {
         "php": "8.1.10",
         "os": "Windows",
@@ -33,91 +33,91 @@
     "passed": 21,
     "failed": 0,
     "all_pass": true,
-    "elapsed_seconds": 23.09,
+    "elapsed_seconds": 47.19,
     "tests": [
         {
             "code": "SC-01",
-            "name": "inisialisasi contract, owner, dan akses owner (133ms)",
+            "name": "inisialisasi contract, owner, dan akses owner (400ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "inisialisasi contract, owner, dan akses owner (133ms)"
+            "detail": "inisialisasi contract, owner, dan akses owner (400ms)"
         },
         {
             "code": "SC-02",
-            "name": "createOrder valid \u2014 escrow, state Created, event (88ms)",
+            "name": "createOrder valid \u2014 escrow, state Created, event (297ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "createOrder valid \u2014 escrow, state Created, event (88ms)"
+            "detail": "createOrder valid \u2014 escrow, state Created, event (297ms)"
         },
         {
             "code": "SC-03",
-            "name": "createOrder amount tidak valid revert",
+            "name": "createOrder amount tidak valid revert (58ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "createOrder amount tidak valid revert"
+            "detail": "createOrder amount tidak valid revert (58ms)"
         },
         {
             "code": "SC-04",
-            "name": "duplicate externalOrderHash revert (78ms)",
+            "name": "duplicate externalOrderHash revert (303ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "duplicate externalOrderHash revert (78ms)"
+            "detail": "duplicate externalOrderHash revert (303ms)"
         },
         {
             "code": "SC-05",
-            "name": "getOrder ID valid mengembalikan data benar (92ms)",
+            "name": "getOrder ID valid mengembalikan data benar (280ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "getOrder ID valid mengembalikan data benar (92ms)"
+            "detail": "getOrder ID valid mengembalikan data benar (280ms)"
         },
         {
             "code": "SC-06",
-            "name": "getOrder ID tidak ada revert",
+            "name": "getOrder ID tidak ada revert (90ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "getOrder ID tidak ada revert"
+            "detail": "getOrder ID tidak ada revert (90ms)"
         },
         {
             "code": "SC-07",
-            "name": "access control menolak non-operator, non-buyer, dan non-owner (115ms)",
+            "name": "access control menolak non-operator, non-buyer, dan non-owner (371ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "access control menolak non-operator, non-buyer, dan non-owner (115ms)"
+            "detail": "access control menolak non-operator, non-buyer, dan non-owner (371ms)"
         },
         {
             "code": "SC-08",
-            "name": "recordPayment valid, event, dan double payment ditolak (246ms)",
+            "name": "recordPayment valid, event, dan double payment ditolak (815ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "recordPayment valid, event, dan double payment ditolak (246ms)"
+            "detail": "recordPayment valid, event, dan double payment ditolak (815ms)"
         },
         {
             "code": "SC-09",
-            "name": "transisi valid dan shipOrder memancarkan event (208ms)",
+            "name": "transisi valid dan shipOrder memancarkan event (735ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "transisi valid dan shipOrder memancarkan event (208ms)"
+            "detail": "transisi valid dan shipOrder memancarkan event (735ms)"
         },
         {
             "code": "SC-10",
-            "name": "transisi tidak sah ditolak dan state tidak berubah (342ms)",
+            "name": "transisi tidak sah ditolak dan state tidak berubah (1073ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "transisi tidak sah ditolak dan state tidak berubah (342ms)"
+            "detail": "transisi tidak sah ditolak dan state tidak berubah (1073ms)"
         },
         {
             "code": "SC-11",
-            "name": "cancel valid, refund, unauthorized, terminal, dan batas reason (963ms)",
+            "name": "cancel valid, refund, unauthorized, terminal, dan batas reason (3252ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "cancel valid, refund, unauthorized, terminal, dan batas reason (963ms)"
+            "detail": "cancel valid, refund, unauthorized, terminal, dan batas reason (3252ms)"
         },
         {
             "code": "SC-12",
-            "name": "confirmReceived merilis escrow sekali dan double release ditolak (556ms)",
+            "name": "confirmReceived merilis escrow sekali dan double release ditolak (1955ms)",
             "requirement": "REQ kontrak",
             "status": "PASS",
-            "detail": "confirmReceived merilis escrow sekali dan double release ditolak (556ms)"
+            "detail": "confirmReceived merilis escrow sekali dan double release ditolak (1955ms)"
         },
         {
             "code": "INT-01",

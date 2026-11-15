@@ -8,7 +8,7 @@ Using network 'ganache'.
 Compiling your contracts...
 ===========================
 > Compiling .\contracts\HSportStore.sol
-> Artifacts written to C:\Users\Feeandri\AppData\Local\Temp\test--7880-j8G3yN7uMYEt
+> Artifacts written to C:\Users\Feeandri\AppData\Local\Temp\test--14204-4NtBWGEIYtg8
 > Compiled successfully using:
    - solc: 0.8.19+commit.7dd6d404.Emscripten.clang
 HSPORT_TEST=1: lewati deploy migration (mode test).
@@ -16,28 +16,28 @@ HSPORT_TEST=1: lewati deploy migration (mode test).
 
   Contract: HSportStore — baseline smoke (V1, bukan 21 test)
     ✔ SMOKE-01: owner adalah deployer
-    ✔ SMOKE-02: createOrder valid mengunci escrow dan memancarkan event (82ms)
-    ✔ SMOKE-03: createOrder amount 0 revert (166ms)
+    ✔ SMOKE-02: createOrder valid mengunci escrow dan memancarkan event (174ms)
+    ✔ SMOKE-03: createOrder amount 0 revert (270ms)
     ✔ SMOKE-04: createOrder dengan msg.value tidak sesuai revert
 
   Contract: HSportStore — SC-01 s.d. SC-06 (V1)
-    ✔ SC-01: inisialisasi contract, owner, dan akses owner (133ms)
-    ✔ SC-02: createOrder valid — escrow, state Created, event (88ms)
-    ✔ SC-03: createOrder amount tidak valid revert
-    ✔ SC-04: duplicate externalOrderHash revert (78ms)
-    ✔ SC-05: getOrder ID valid mengembalikan data benar (92ms)
-    ✔ SC-06: getOrder ID tidak ada revert
+    ✔ SC-01: inisialisasi contract, owner, dan akses owner (400ms)
+    ✔ SC-02: createOrder valid — escrow, state Created, event (297ms)
+    ✔ SC-03: createOrder amount tidak valid revert (58ms)
+    ✔ SC-04: duplicate externalOrderHash revert (303ms)
+    ✔ SC-05: getOrder ID valid mengembalikan data benar (280ms)
+    ✔ SC-06: getOrder ID tidak ada revert (90ms)
 
   Contract: HSportStore — SC-07 s.d. SC-12 (V2)
-    ✔ SC-07: access control menolak non-operator, non-buyer, dan non-owner (115ms)
-    ✔ SC-08: recordPayment valid, event, dan double payment ditolak (246ms)
-    ✔ SC-09: transisi valid dan shipOrder memancarkan event (208ms)
-    ✔ SC-10: transisi tidak sah ditolak dan state tidak berubah (342ms)
-    ✔ SC-11: cancel valid, refund, unauthorized, terminal, dan batas reason (963ms)
-    ✔ SC-12: confirmReceived merilis escrow sekali dan double release ditolak (556ms)
+    ✔ SC-07: access control menolak non-operator, non-buyer, dan non-owner (371ms)
+    ✔ SC-08: recordPayment valid, event, dan double payment ditolak (815ms)
+    ✔ SC-09: transisi valid dan shipOrder memancarkan event (735ms)
+    ✔ SC-10: transisi tidak sah ditolak dan state tidak berubah (1073ms)
+    ✔ SC-11: cancel valid, refund, unauthorized, terminal, dan batas reason (3252ms)
+    ✔ SC-12: confirmReceived merilis escrow sekali dan double release ditolak (1955ms)
 
 
-  16 passing (4s)
+  16 passing (12s)
 
 
 This version of µWS is not compatible with your Node.js build:

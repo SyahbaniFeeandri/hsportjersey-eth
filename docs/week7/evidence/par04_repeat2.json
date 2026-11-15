@@ -1,5 +1,5 @@
 {
-    "executed_at": "2026-11-13T03:46:25+00:00",
+    "executed_at": "2026-11-15T18:19:41+00:00",
     "mode": "ALGORITHM",
     "dataset": {
         "name": "D1000",
@@ -23,15 +23,15 @@
     "runs": [
         {
             "workers": 8,
-            "batch_id": 135,
-            "batch_code": "PAR-D1000-W8-20261113034624-1272",
+            "batch_id": 157,
+            "batch_code": "PAR-D1000-W8-20261115181939-3025",
             "status": "DONE",
             "complete": true,
-            "wall_ms": 907,
-            "duration_ms": 907,
-            "speedup": 5.8236,
-            "efficiency": 0.728,
-            "throughput_per_sec": 1102.54,
+            "wall_ms": 1130,
+            "duration_ms": 1130,
+            "speedup": 4.6743,
+            "efficiency": 0.5843,
+            "throughput_per_sec": 884.96,
             "jobs_total": 8,
             "jobs_done": 8,
             "distinct_workers": 8,
@@ -54,7 +54,7 @@
             "correctness_gate": "MATCH",
             "partitions": [
                 {
-                    "job_id": 417,
+                    "job_id": 489,
                     "partition_no": 1,
                     "range_start": 1,
                     "range_end": 125,
@@ -63,7 +63,7 @@
                     "attempts": 1
                 },
                 {
-                    "job_id": 418,
+                    "job_id": 490,
                     "partition_no": 2,
                     "range_start": 126,
                     "range_end": 250,
@@ -72,7 +72,7 @@
                     "attempts": 1
                 },
                 {
-                    "job_id": 419,
+                    "job_id": 491,
                     "partition_no": 3,
                     "range_start": 251,
                     "range_end": 375,
@@ -81,7 +81,7 @@
                     "attempts": 1
                 },
                 {
-                    "job_id": 420,
+                    "job_id": 492,
                     "partition_no": 4,
                     "range_start": 376,
                     "range_end": 500,
@@ -90,7 +90,7 @@
                     "attempts": 1
                 },
                 {
-                    "job_id": 421,
+                    "job_id": 493,
                     "partition_no": 5,
                     "range_start": 501,
                     "range_end": 625,
@@ -99,7 +99,7 @@
                     "attempts": 1
                 },
                 {
-                    "job_id": 422,
+                    "job_id": 494,
                     "partition_no": 6,
                     "range_start": 626,
                     "range_end": 750,
@@ -108,7 +108,7 @@
                     "attempts": 1
                 },
                 {
-                    "job_id": 423,
+                    "job_id": 495,
                     "partition_no": 7,
                     "range_start": 751,
                     "range_end": 875,
@@ -117,7 +117,7 @@
                     "attempts": 1
                 },
                 {
-                    "job_id": 424,
+                    "job_id": 496,
                     "partition_no": 8,
                     "range_start": 876,
                     "range_end": 1000,
@@ -127,14 +127,14 @@
                 }
             ],
             "worker_output": {
-                "par-8-w1": "[par-8-w1] Job #417 partisi 1 (1..125)\n[par-8-w1] Selesai partisi 1: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 661 ms",
-                "par-8-w2": "[par-8-w2] Job #418 partisi 2 (126..250)\n[par-8-w2] Selesai partisi 2: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 661 ms",
-                "par-8-w3": "[par-8-w3] Job #419 partisi 3 (251..375)\n[par-8-w3] Selesai partisi 3: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 660 ms",
-                "par-8-w4": "[par-8-w4] Job #420 partisi 4 (376..500)\n[par-8-w4] Selesai partisi 4: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 661 ms",
-                "par-8-w5": "[par-8-w5] Job #421 partisi 5 (501..625)\n[par-8-w5] Selesai partisi 5: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 663 ms",
-                "par-8-w6": "[par-8-w6] Job #422 partisi 6 (626..750)\n[par-8-w6] Selesai partisi 6: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 663 ms",
-                "par-8-w7": "[par-8-w7] Job #423 partisi 7 (751..875)\n[par-8-w7] Selesai partisi 7: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 661 ms",
-                "par-8-w8": "[par-8-w8] Job #424 partisi 8 (876..1000)\n[par-8-w8] Selesai partisi 8: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 662 ms"
+                "par-8-w1": "[par-8-w1] Job #489 partisi 1 (1..125)\n[par-8-w1] Selesai partisi 1: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 664 ms",
+                "par-8-w2": "[par-8-w2] Job #490 partisi 2 (126..250)\n[par-8-w2] Selesai partisi 2: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 665 ms",
+                "par-8-w3": "[par-8-w3] Job #491 partisi 3 (251..375)\n[par-8-w3] Selesai partisi 3: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 664 ms",
+                "par-8-w4": "[par-8-w4] Job #492 partisi 4 (376..500)\n[par-8-w4] Selesai partisi 4: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 660 ms",
+                "par-8-w5": "[par-8-w5] Job #493 partisi 5 (501..625)\n[par-8-w5] Selesai partisi 5: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 661 ms",
+                "par-8-w6": "[par-8-w6] Job #494 partisi 6 (626..750)\n[par-8-w6] Selesai partisi 6: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 666 ms",
+                "par-8-w7": "[par-8-w7] Job #495 partisi 7 (751..875)\n[par-8-w7] Selesai partisi 7: 125 order | VERIFIED=89 MISMATCH=24 ERROR=12 | 661 ms",
+                "par-8-w8": "[par-8-w8] Job #496 partisi 8 (876..1000)\n[par-8-w8] Selesai partisi 8: 125 order | VERIFIED=86 MISMATCH=26 ERROR=13 | 660 ms"
             },
             "worker_errors": {
                 "par-8-w1": "",

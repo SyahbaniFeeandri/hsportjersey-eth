@@ -4,7 +4,7 @@
 **Issue terkait:** `W1-FEE-04`
 **Pemilik:** Muhammad Feeandri Syahbani
 **Reviewer:** Yasmin Akmaliyah, Kenjiro B.H.G.
-**Status:** Diperbarui M7 — 21/21 test PASS, benchmark reproducible
+**Status:** Final M8 — 21/21 test PASS, 15/15 requirement Selesai, tag `v1.0.0`
 **Tanggal:** 9 November 2026 (revisi 11 November 2026)
 
 ---
@@ -37,18 +37,18 @@
 | **REQ-08** | Event lengkap setiap perubahan state | 9 event dideklarasikan; seluruhnya dipancarkan di V2 | Tambah `PaymentRecorded`, `OrderStatusUpdated`, `OrderCancelled`, `OperatorUpdated`, `EscrowRefunded` | SC-02, SC-08, SC-09, SC-11, SC-12 | UAT-04, UAT-07, UAT-09, UAT-11 | Agustina | M3–M4 | Selesai |
 | **REQ-09** | Simpan proof transaksi lengkap | `tx_hash`, `wallet_address` di DB/client; `migration_blockchain.sql` | Service simpan `block_number`, `contract_address`, `blockchain_order_id`, `external_order_hash` | INT-01, INT-03, INT-04 | UAT-01, UAT-04 | Luis | M5 | Selesai |
 | **REQ-10** | Verifikasi DB vs chain `VERIFIED`/`MISMATCH` | — | Verification service + tabel `blockchain_transactions` | INT-05 | UAT-13 | Luis | M5 | Selesai |
-| **REQ-11** | Admin lihat status verifikasi + retry | `admin/orders.php`, `admin/payments.php` (belum ada verifikasi) | Kolom verifikasi + aksi retry | INT-05 | UAT-13 | Ihsanul, Luis | M5 | Sebagian |
+| **REQ-11** | Admin lihat status verifikasi + retry | `admin/orders.php` (kolom Verifikasi + tombol retry `POST verify_order`) | Kolom verifikasi + aksi retry | INT-05 | UAT-13 | Ihsanul, Luis | M5, M8 | Selesai |
 | **REQ-12** | Halaman proof blockchain pembeli | — | `blockchain-proof.php` + komponen tx status | — (manual) | UAT-14 | Ihsanul | M5 | Selesai |
 | **REQ-13** | Sequential & parallel menghasilkan hasil identik | Worker + queue + partition/reduce | Worker, queue, partition/reduce | PAR-01, PAR-02 | UAT-15 | Farelly | M6 | Selesai |
 | **REQ-14** | Ukur execution time, speedup, efficiency, throughput | `benchmark/run_matrix.php`, `benchmark_chart.svg` | Benchmark script + grafik + dashboard | PAR-03, PAR-04 | UAT-16 | Kenjiro, Farelly | M7 | Selesai |
-| **REQ-15** | Reproducible + kontribusi tertelusur | `README.md`, panduan setup, Git repo | Deploy log, `.env.example`, weekly log, tag rilis | — (manual) | UAT-17 | Feeandri, semua | M2, M8 | Sebagian |
+| **REQ-15** | Reproducible + kontribusi tertelusur | `README.md`, panduan setup, Git repo, `seed_demo.sql`, tag `v1.0.0` | Deploy log, `.env.example`, weekly log, tag rilis | Clean install + regresi | UAT-17 | Feeandri, semua | M2, M8 | Selesai |
 
 ### 2.1 Ringkasan status implementasi requirement
 
 | Status | Jumlah | REQ |
 |---|---:|---|
-| Selesai | 13 | REQ-01..REQ-10, REQ-12, REQ-13, REQ-14 |
-| Sebagian | 2 | REQ-11, REQ-15 |
+| Selesai | 15 | REQ-01..REQ-15 |
+| Sebagian | 0 | — |
 | Belum | 0 | — |
 | **Total** | **15** | |
 
@@ -108,6 +108,8 @@
 | Test PASS | 21 | 21 |
 | Orphan test (tanpa REQ) | 0 | 0 |
 | Orphan requirement Must (tanpa test) | 0 (REQ-12/15 punya UAT manual) | 0 |
+
+> **Catatan M8 (16 November 2026):** Rilis **`v1.0.0`** dibekukan. REQ-11 ditutup dengan kolom **Verifikasi** (badge `VERIFIED`/`MISMATCH`/`PENDING`) dan tombol retry di `admin/orders.php`; bukti `docs/week8/evidence/req11_admin_verification.log` (VERIFIED → MISMATCH → VERIFIED). REQ-15 ditutup dengan clean install 5/5 langkah, seed idempotent (13 produk), HTTP smoke 7/7, regresi 21/21, UAT 16/16, weekly log 72/72, dan tag `v1.0.0`. Seluruh **15/15 requirement Selesai**, 0 sebagian, 0 belum.
 
 > **Catatan M7 (13 November 2026):** PAR-03 dan PAR-04 **PASS** (9/9 CHECK). Benchmark matrix 4 dataset × 4 worker lulus **16/16** dengan checksum identik dengan sequential; D5000 P=8 mencapai speedup **7,318×** (efficiency 91,5%, 1.386,58 order/s). Regresi penuh **21/21 PASS** lewat `tests/regression/run_all.php`. Reproducibility check di workspace kedua menghasilkan 16/16 checksum identik (delta metrik ≤ 8,03%). REQ-14 menjadi **Selesai**; REQ-15 tetap **Sebagian** karena tag rilis baru dikerjakan di M8. Tiga bug ditutup: BUG-07-01 (worker idle race), BUG-07-02 (quoting harness), BUG-07-03 (kredensial dokumen).
 

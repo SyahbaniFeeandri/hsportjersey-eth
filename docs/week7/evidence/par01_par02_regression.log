@@ -1,11 +1,11 @@
 ===============================================================
    H-SPORT FINANCIAL dAPP — PARALLEL TEST SUITE (PAR-01/02)
    Dataset: D500 (500 order) | latency=5000 us
-   Waktu  : 2026-11-13 03:46:11
+   Waktu  : 2026-11-15 18:19:23
 ===============================================================
 
  [✓ PASS] PAR-01.a: Baseline sequential selesai & tersimpan
-         -> exit=0 total=500 durasi=2638 ms worker=1
+         -> exit=0 total=500 durasi=2659 ms worker=1
 
  [✓ PASS] PAR-01.b: Komposisi VERIFIED/MISMATCH/ERROR sesuai dataset
          -> seq=350/100/50 expected=350/100/50
