@@ -46,7 +46,8 @@ Sejak `v1.0.0`:
 | `seed_demo.sql` | Seed idempotent 2 akun + 13 produk |
 | `README.md` | Langkah migrasi lengkap, seed, CLI, override env |
 | `.gitignore` | Pengecualian log bukti `docs/week8/evidence/*.log` |
-| `docs/week8/**` | Laporan final, rilis, deployment, demo, UAT, traceability, weekly log |
+| `product-detail.php` | Blok **Pilih Warna** hanya dirender bila produk punya warna; `colors` NULL tidak lagi memicu *deprecated notice* PHP 8.1 |
+| `docs/week8/**` | Laporan final, rilis, deployment, demo, UAT, traceability, weekly log, screenshot |
 
 ### 2.3 Perbaikan bug yang ikut rilis
 
@@ -55,8 +56,12 @@ Sejak `v1.0.0`:
 | BUG-07-01 | Sev-2 | Closed — worker idle race |
 | BUG-07-02 | Sev-3 | Closed — quoting harness regresi |
 | BUG-07-03 | Sev-4 | Closed — kredensial customer dokumen |
+| BUG-08-01 | Sev-3 | Closed — *deprecated notice* `explode(null)` pada produk tanpa warna di `product-detail.php` |
 
 Tidak ada bug terbuka Sev-1/Sev-2 pada saat freeze.
+
+Regresi pasca-perbaikan BUG-08-01: `php tests/regression/run_all.php` →
+**21/21 PASS**, 45,81 detik ([`evidence/post_fix_regression.log`](evidence/post_fix_regression.log)).
 
 ---
 
@@ -64,13 +69,14 @@ Tidak ada bug terbuka Sev-1/Sev-2 pada saat freeze.
 
 | Pemeriksaan | Perintah | Hasil |
 |---|---|---|
-| Sintaks PHP berubah | `php -l admin/orders.php` | No syntax errors |
+| Sintaks PHP berubah | `php -l admin/orders.php`, `php -l product-detail.php` | No syntax errors |
 | Integrasi | `php tests/integration/run_all.php` | **5/5 PASS** |
 | Regresi penuh | `php tests/regression/run_all.php` | **21/21 PASS** |
 | Clean install | dump + 3 migrasi + seed | **5/5 langkah exit 0** |
 | HTTP clean install | 7 halaman utama | **7/7 HTTP 200** |
 | UAT | 16 skenario business flow | **16/16 PASS** |
 | Demo | 13 langkah customer + admin | **13/13 PASS** |
+| Screenshot demo | 15 halaman (Chrome + Playwright) | **15/15 tersimpan** |
 
 Bukti: [`evidence/`](evidence/).
 

@@ -1,0 +1,130 @@
+{
+  "captured_at": "2026-11-16T05:00:49.687Z",
+  "base_url": "http://127.0.0.1:8080",
+  "contract": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+  "chain_order_id": 46,
+  "customer_checkout_order": 49,
+  "viewport": "1440x900 @1.5x, full page (dipotong ke tinggi konten)",
+  "screenshots": [
+    {
+      "file": "01_customer_home.png",
+      "url": "/index.php",
+      "title": "H-Sport Jersey - Custom Jersey Premium",
+      "height": 1483,
+      "bytes": 2636336,
+      "status": "OK"
+    },
+    {
+      "file": "02_customer_catalog.png",
+      "url": "/products.php",
+      "title": "Katalog Produk - H-Sport Jersey",
+      "height": 2951,
+      "bytes": 2437620,
+      "status": "OK"
+    },
+    {
+      "file": "03_customer_product_detail.png",
+      "url": "/product-detail.php?id=1",
+      "title": "Jersey Sepeda Ravina - H-Sport Jersey",
+      "height": 1476,
+      "bytes": 1180645,
+      "status": "OK"
+    },
+    {
+      "file": "04_customer_cart_checkout.png",
+      "url": "/cart.php",
+      "title": "Keranjang Belanja - H-Sport",
+      "height": 900,
+      "bytes": 230141,
+      "status": "OK"
+    },
+    {
+      "file": "05_customer_payment_qris.png",
+      "url": "http://127.0.0.1:8080/generate-qr.php?order_id=49",
+      "title": "Scan QRIS - Pembayaran H-Sport",
+      "height": 1199,
+      "bytes": 1093442,
+      "status": "OK"
+    },
+    {
+      "file": "06_customer_orders.png",
+      "url": "/orders.php",
+      "title": "Pesanan Saya - H-Sport Jersey",
+      "height": 6000,
+      "bytes": 1096570,
+      "status": "OK"
+    },
+    {
+      "file": "07_customer_order_detail.png",
+      "url": "/order-detail.php?id=49",
+      "title": "Detail Pesanan - H-Sport Jersey",
+      "height": 1066,
+      "bytes": 276248,
+      "status": "OK"
+    },
+    {
+      "file": "08_admin_dashboard.png",
+      "url": "/admin/dashboard.php",
+      "title": "Admin Dashboard - H-Sport",
+      "height": 924,
+      "bytes": 107127,
+      "status": "OK"
+    },
+    {
+      "file": "09_admin_orders.png",
+      "url": "/admin/orders.php",
+      "title": "Kelola Pesanan - Admin H-Sport",
+      "height": 2972,
+      "bytes": 676190,
+      "status": "OK"
+    },
+    {
+      "file": "10_admin_verify_verified.png",
+      "url": "http://127.0.0.1:8080/admin/orders.php",
+      "title": "Kelola Pesanan - Admin H-Sport",
+      "height": 2972,
+      "bytes": 680325,
+      "status": "OK"
+    },
+    {
+      "file": "11_admin_order_detail.png",
+      "url": "/admin/order-detail.php?id=46",
+      "title": "Detail Pesanan - Admin H-Sport",
+      "height": 1157,
+      "bytes": 179296,
+      "status": "OK"
+    },
+    {
+      "file": "12_blockchain_proof_onchain.png",
+      "url": "/blockchain-proof.php?order_id=46",
+      "title": "Bukti Blockchain - H-Sport Jersey",
+      "height": 900,
+      "bytes": 335881,
+      "status": "OK"
+    },
+    {
+      "file": "13_admin_performance.png",
+      "url": "/admin/performance.php",
+      "title": "Performance Dashboard - H-Sport Admin",
+      "height": 6000,
+      "bytes": 1777291,
+      "status": "OK"
+    },
+    {
+      "file": "14_admin_reports.png",
+      "url": "/admin/reports.php",
+      "title": "Laporan & Analitik - Admin H-Sport",
+      "height": 1704,
+      "bytes": 325295,
+      "status": "OK"
+    },
+    {
+      "file": "15_admin_products.png",
+      "url": "/admin/products.php",
+      "title": "Kelola Produk - Admin H-Sport",
+      "height": 1106,
+      "bytes": 305629,
+      "status": "OK"
+    }
+  ]
+}

@@ -97,6 +97,12 @@ Bukti: [`evidence/final_benchmark_matrix.md`](evidence/final_benchmark_matrix.md
 | Status verifikasi | `VERIFIED` |
 | Event | `OrderCreated` (tabel `blockchain_transactions`) |
 
+> **Sesi screenshot (16 Nov 2026, 12.00 WIB):** environment Ganache di-restart dan
+> di-migrate ulang, sehingga order ber-chain yang aktif saat capture adalah
+> **#46** `INV-INT-1819227328` (tx `0xb0c73e78…`, block **66**, `VERIFIED`).
+> Data #43 di atas tetap valid sebagai catatan sesi demo pukul 01.13 WIB; keduanya
+> membuktikan alur yang sama. Detail: [`evidence/screenshots/index.md`](evidence/screenshots/index.md).
+
 ---
 
 ## 5. Bukti Verifikasi Admin (REQ-11)
@@ -154,3 +160,32 @@ php -S 127.0.0.1:8080 -t .
 Log otomatis dapat dibuat ulang dengan skrip HTTP yang sama seperti pada
 `evidence/demo_http.log` (PowerShell `Invoke-WebRequest`, sesi cookie terpisah
 untuk customer dan admin).
+
+---
+
+## 9. Screenshot Demo (Bukti Visual)
+
+Tersedia **15 screenshot** hasil capture otomatis dengan Chrome + Playwright:
+
+| Kelompok | File | Isi |
+|---|---|---|
+| Customer | `01`–`07` | Home, katalog, detail produk, keranjang + form checkout, QRIS, riwayat, detail order |
+| Admin | `08`–`15` | Dashboard, manajemen order + kolom verifikasi, pesan VERIFIED, detail order, bukti blockchain, performance, laporan, produk |
+
+- Indeks & keterangan: [`evidence/screenshots/index.md`](evidence/screenshots/index.md)
+- Metadata (URL, ukuran, tinggi): [`evidence/screenshots/screenshots.json`](evidence/screenshots/screenshots.json)
+- Skrip reproduksi: [`evidence/screenshots/capture.js`](evidence/screenshots/capture.js)
+
+Order yang tampil: checkout demo **#49** `INV-20261116-8621` (QRIS, pending) dan
+order ber-chain **#46** `INV-INT-1819227328` (VERIFIED, block 66).
+
+**Bukti REQ-11** terlihat pada `10_admin_verify_verified.png`:
+`Verifikasi order #46: VERIFIED (data DB cocok dengan on-chain)`, sedangkan
+`09_admin_orders.png` menampilkan badge `VERIFIED` + receipt chain pada baris order
+dan badge `PENDING` pada order fiat.
+
+**Perbaikan saat capture:** `product-detail.php` menampilkan *deprecated notice*
+PHP 8.1 ketika produk tidak punya warna (`colors = NULL`). Blok pilihan warna
+sekarang hanya dirender bila ada warna, dan nilainya di-*cast* ke string sehingga
+halaman bersih dari notice. Perubahan ini view-only dan tidak mengubah kontrak,
+skema, maupun API.

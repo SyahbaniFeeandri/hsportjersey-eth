@@ -128,6 +128,7 @@ Panduan langkah demi langkah: [`03_DEPLOYMENT_GUIDE.md`](03_DEPLOYMENT_GUIDE.md)
 | [`08_WEEKLY_LOG.md`](08_WEEKLY_LOG.md) | Rekap log mingguan 9 anggota × 8 minggu |
 | [`09_DEMO_SLIDES.md`](09_DEMO_SLIDES.md) | Deck slide demo (16 slide) |
 | [`evidence/`](evidence/) | Log mentah: clean install, regresi, INT, demo, UAT, REQ-11 |
+| [`evidence/screenshots/`](evidence/screenshots/) | 15 screenshot demo (customer + admin) + `index.md`, `screenshots.json`, `capture.js` |
 
 ---
 
@@ -136,7 +137,7 @@ Panduan langkah demi langkah: [`03_DEPLOYMENT_GUIDE.md`](03_DEPLOYMENT_GUIDE.md)
 - Laporan final: [`01_FINAL_REPORT.md`](01_FINAL_REPORT.md)
 - Rilis & code freeze: [`02_RELEASE_NOTES_CODE_FREEZE.md`](02_RELEASE_NOTES_CODE_FREEZE.md)
 - Deployment: [`03_DEPLOYMENT_GUIDE.md`](03_DEPLOYMENT_GUIDE.md)
-- Demo: [`04_DEMO_PLAN_PER_ROLE.md`](04_DEMO_PLAN_PER_ROLE.md) · [`05_DEMO_EVIDENCE.md`](05_DEMO_EVIDENCE.md)
+- Demo: [`04_DEMO_PLAN_PER_ROLE.md`](04_DEMO_PLAN_PER_ROLE.md) · [`05_DEMO_EVIDENCE.md`](05_DEMO_EVIDENCE.md) · [`evidence/screenshots/index.md`](evidence/screenshots/index.md)
 - UAT: [`06_UAT_EVIDENCE.md`](06_UAT_EVIDENCE.md)
 - Traceability: [`07_TRACEABILITY_FINAL.md`](07_TRACEABILITY_FINAL.md)
 - Weekly log: [`08_WEEKLY_LOG.md`](08_WEEKLY_LOG.md)

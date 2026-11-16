@@ -139,6 +139,7 @@ Eksekusi final: `php tests/regression/run_all.php` → **21/21 PASS**, durasi 47
 | HTTP smoke dari DB bersih | 7/7 halaman HTTP 200 | `evidence/clean_install_http.log` |
 | UAT business flow | **16/16 PASS** | `evidence/uat_business_flow.log` |
 | Demo end-to-end | **13/13 langkah PASS** | `evidence/demo_http.log` |
+| Screenshot demo | **15 halaman** (customer + admin) | `evidence/screenshots/` |
 
 ### 5.4 Verifikasi admin (REQ-11)
 

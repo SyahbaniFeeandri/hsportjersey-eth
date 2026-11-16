@@ -168,22 +168,24 @@ $related = $stmt->fetchAll();
                     </div>
                 </div>
                 
-                <div class="mb-4">
+                <?php
+                $colorMap = [
+                    'Merah' => '#FF0000',
+                    'Biru' => '#0000FF',
+                    'Hijau' => '#00FF00',
+                    'Kuning' => '#FFFF00',
+                    'Hitam' => '#000000',
+                    'Putih' => '#FFFFFF',
+                    'Abu-abu' => '#808080',
+                    'Orange' => '#FFA500'
+                ];
+                $colors = array_filter(array_map('trim', explode(',', (string)($product['colors'] ?? ''))));
+                ?>
+                <div class="mb-4"<?php echo empty($colors) ? ' style="display: none;"' : ''; ?>>
                     <h5>Pilih Warna:</h5>
                     <div id="colorOptions">
-                        <?php 
-                        $colorMap = [
-                            'Merah' => '#FF0000',
-                            'Biru' => '#0000FF',
-                            'Hijau' => '#00FF00',
-                            'Kuning' => '#FFFF00',
-                            'Hitam' => '#000000',
-                            'Putih' => '#FFFFFF',
-                            'Abu-abu' => '#808080',
-                            'Orange' => '#FFA500'
-                        ];
-                        $colors = explode(',', $product['colors']);
-                        foreach($colors as $color):
+                        <?php foreach($colors as $color): ?>
+                        <?php
                             $colorName = trim($color);
                             $colorCode = isset($colorMap[$colorName]) ? $colorMap[$colorName] : '#CCCCCC';
                         ?>
