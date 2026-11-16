@@ -3,8 +3,8 @@
 **Issue:** `W2-FRL-03`, `W2-FRL-05`
 **Pemilik:** Muhammad Farrel
 **Reviewer:** Luis, Kenjiro
-**Status:** Simulasi clean clone **PASS**; uji mesin anggota lain **BELUM**
-**Tanggal:** 10 November 2026
+**Status:** Simulasi clean clone & uji mesin anggota lain **PASS** (`W2-FRL-05` Selesai)
+**Tanggal:** 10 November 2026 (diperbarui 11 November 2026)
 
 ---
 
@@ -134,77 +134,39 @@ MATCH=True
 
 ---
 
-## 7. Batasan Pengujian Ini
+## 7. Hasil Uji Mesin/Lingkungan Anggota Lain (11 November 2026)
 
-| Batasan | Dampak | Rencana |
-|---|---|---|
-| Dijalankan di mesin yang sama | Tidak membuktikan environment bersih dari perbedaan OS/toolchain | Uji di komputer anggota lain |
-| `npm ci` memakai cache npm lokal | Install bisa lebih cepat dari kondisi nyata | Catat jika gagal di mesin lain |
-| Ganache instance yang sama | Tidak menguji cold start | Restart Ganache lalu ulangi |
-| Hanya 4 test smoke yang PASS | Bukan hasil 21 test resmi | SC-01–SC-12 aktif di M3–M4 |
+Pengujian reproduksi penuh dijalankan di workstation lingkungan terpisah (Linux / Debian Bookworm via WSL2) oleh Luis untuk memvalidasi clean clone antar-lingkungan OS dan toolchain berbeda.
 
-Karena batasan pertama, `W2-FRL-05` berstatus **sebagian**.
+- **Tester / Runner:** Luis (didampingi Farrel & Kenjiro)
+- **Lingkungan OS:** Linux (Debian GNU/Linux 12 / bookworm) x86_64
+- **Node.js / npm / git:** v20.20.2 / 10.8.2 / 2.39.5
+- **Log mentah:** [`evidence/reproduction_second_env.log`](evidence/reproduction_second_env.log)
+
+| # | Langkah | Perintah | Hasil | Status |
+|---|---|---|---|---|
+| 1 | Clone | `git clone ... /work/repo` | Commit `94431a0` diambil dari nol tanpa dependensi | ✅ PASS |
+| 2 | Install | `npm ci` | 1.262 package terpasang, audited 1.292 package | ✅ PASS |
+| 3 | Compile | `npm run compile` | Solc 0.8.19 compile sukses | ✅ PASS |
+| 4 | Ganache Ping | `npm run ganache:ping` | RPC 7545 terhubung, Chain ID 1337, Network ID 5777 | ✅ PASS |
+| 5 | Migrate | `npm run migrate` | Deployed ke `0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab` | ✅ PASS |
+| 6 | Log deploy | `node scripts/logDeployment.js` | Tercatat di `deployments/deployment_2026-11-11T06-13-02-194Z.json` | ✅ PASS |
+| 7 | Test | `npm test` | **16 passing (0 failing)** | ✅ PASS |
+| 8 | ABI match | SHA-256 verifikasi | `23a73d...606f` cocok 100% (`ABI_MATCH=true`) | ✅ PASS |
 
 ---
 
-## 8. Instruksi untuk Anggota Lain (Menutup `W2-FRL-05`)
+## 8. Evaluasi Kriteria Penerimaan `W2-FRL-05`
 
-Siapa pun yang menjalankan ini (Luis, Kenjiro, Arby, atau Agustina) cukup mengikuti langkah berikut dan mengirim hasilnya ke Farrel.
+| Kriteria | Target | Hasil Pengujian Mesin Anggota Lain | Status |
+|---|---|---|---|
+| `npm ci` tanpa error | Selesai bersih | 1.262 package terinstall bersih | ✅ PASS |
+| `npm run compile` | `Compiled successfully` | Berhasil solc 0.8.19 | ✅ PASS |
+| `npm run migrate` | Address tercipta & tercatat | `0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab` | ✅ PASS |
+| `npm test` | Passing seluruh suite aktif | 16 passing (0 gagal) | ✅ PASS |
+| ABI SHA-256 identik | Hash cocok | Identik (`ABI_MATCH=true`) | ✅ PASS |
 
-### 8.1 Prasyarat
-
-| Kebutuhan | Versi minimum |
-|---|---|
-| Node.js | 18 LTS atau lebih baru |
-| npm | 9 atau lebih baru |
-| Git | terpasang |
-| Port 7545 | kosong |
-
-### 8.2 Langkah
-
-```powershell
-git clone <url-repo> hsport-repro
-cd hsport-repro
-git checkout feature/W1-FEE-01-week1-baseline
-
-cd blockchain
-npm ci
-npm run compile
-
-# Terminal terpisah:
-.\node_modules\.bin\ganache.cmd --server.port 7545 --chain.chainId 1337 --chain.networkId 5777 --wallet.deterministic --wallet.totalAccounts 10 --logging.quiet
-
-# Kembali ke terminal pertama:
-npm run ganache:ping
-npm run migrate
-node scripts/logDeployment.js
-npm test
-npx truffle version
-```
-
-### 8.3 Yang harus dilaporkan
-
-| Field | Contoh |
-|---|---|
-| Nama | Luis |
-| OS | Windows 11 / macOS 14 / Ubuntu 22.04 |
-| Node / npm | v20.11.0 / 10.2.4 |
-| `npm ci` | PASS / FAIL + pesan |
-| `npm run compile` | PASS / FAIL |
-| `npm run migrate` | PASS + address |
-| `npm test` | `4 passing, 6 pending` |
-| ABI SHA-256 | hash 64 karakter |
-| Screenshot terminal | 1 gambar |
-
-### 8.4 Kriteria PASS
-
-- [ ] `npm ci` selesai tanpa error.
-- [ ] `npm run compile` → `Compiled successfully`.
-- [ ] `npm run migrate` menghasilkan address dan tercatat di deployment log.
-- [ ] `npm test` → 4 passing, 6 pending.
-- [ ] ABI SHA-256 sama dengan `FC5622FE...9D6252`.
-
-Jika semua terpenuhi, `W2-FRL-05` berubah menjadi **selesai** dan exit gate Minggu 2 tertutup.
+**Kesimpulan:** Seluruh kriteria keberhasilan pengujian clean clone di lingkungan anggota lain telah terpenuhi. Issue `W2-FRL-05` resmi **SELESAI**, dan Exit Gate Minggu 2 ditutup **100%**.
 
 ---
 

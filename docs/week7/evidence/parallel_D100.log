@@ -1,0 +1,66 @@
+===============================================================
+ H-SPORT FINANCIAL dAPP - PARALLEL RUNNER (M6)
+ Dataset     : D100 (100 order)
+ Dataset hash: bf5073f852ccf622deca2f3100ac48dbfc573f309d55684c86514168b9b72532
+ Worker      : 1, 2, 4, 8
+ Latency     : 5000 us/order (simulasi RPC Mode A)
+ Waktu       : 2026-11-13 03:33:28
+===============================================================
+[baseline] Menjalankan sequential baseline (worker_count=1)...
+[baseline] checksum=6ae585e5f5bda4739162ad9607336c107d803cc024457429af2c2fa330cfe34a duration=529 ms throughput=189,01 order/detik
+[baseline] batch #60 (SEQ-D100-L5000-20261113033328-6985) checksum=6ae585e5f5bda4739162ad9607336c107d803cc024457429af2c2fa330cfe34a
+
+--- P=1 | batch #61 (PAR-D100-W1-20261113033328-0003) | 1 partisi ---
+[par-1-w1] Job #173 partisi 1 (1..100)
+[par-1-w1] Selesai partisi 1: 100 order | VERIFIED=70 MISMATCH=20 ERROR=10 | 530 ms
+ P=1  wall= 629 ms | checksum=6ae585e5f5bda4739162ad9607336c107d803cc024457429af2c2fa330cfe34a (MATCH) | jobs 1/1 | worker unik=1 | maxAttempts=1 | speedup=0,841
+
+--- P=2 | batch #62 (PAR-D100-W2-20261113033329-0196) | 2 partisi ---
+[par-2-w1] Job #174 partisi 1 (1..50)
+[par-2-w1] Selesai partisi 1: 50 order | VERIFIED=35 MISMATCH=10 ERROR=5 | 264 ms
+[par-2-w2] Job #175 partisi 2 (51..100)
+[par-2-w2] Selesai partisi 2: 50 order | VERIFIED=35 MISMATCH=10 ERROR=5 | 262 ms
+ P=2  wall= 385 ms | checksum=6ae585e5f5bda4739162ad9607336c107d803cc024457429af2c2fa330cfe34a (MATCH) | jobs 2/2 | worker unik=2 | maxAttempts=1 | speedup=1,374
+
+--- P=4 | batch #63 (PAR-D100-W4-20261113033329-8040) | 4 partisi ---
+[par-4-w1] Job #176 partisi 1 (1..25)
+[par-4-w1] Selesai partisi 1: 25 order | VERIFIED=19 MISMATCH=4 ERROR=2 | 130 ms
+[par-4-w2] Job #177 partisi 2 (26..50)
+[par-4-w2] Selesai partisi 2: 25 order | VERIFIED=16 MISMATCH=6 ERROR=3 | 131 ms
+[par-4-w3] Job #178 partisi 3 (51..75)
+[par-4-w3] Selesai partisi 3: 25 order | VERIFIED=19 MISMATCH=4 ERROR=2 | 131 ms
+[par-4-w4] Job #179 partisi 4 (76..100)
+[par-4-w4] Selesai partisi 4: 25 order | VERIFIED=16 MISMATCH=6 ERROR=3 | 130 ms
+ P=4  wall= 297 ms | checksum=6ae585e5f5bda4739162ad9607336c107d803cc024457429af2c2fa330cfe34a (MATCH) | jobs 4/4 | worker unik=4 | maxAttempts=1 | speedup=1,781
+
+--- P=8 | batch #64 (PAR-D100-W8-20261113033330-9973) | 8 partisi ---
+[par-8-w1] Job #180 partisi 1 (1..13)
+[par-8-w1] Selesai partisi 1: 13 order | VERIFIED=10 MISMATCH=2 ERROR=1 | 68 ms
+[par-8-w2] Job #181 partisi 2 (14..26)
+[par-8-w2] Selesai partisi 2: 13 order | VERIFIED=10 MISMATCH=2 ERROR=1 | 67 ms
+[par-8-w3] Job #182 partisi 3 (27..39)
+[par-8-w3] Selesai partisi 3: 13 order | VERIFIED=8 MISMATCH=4 ERROR=1 | 68 ms
+[par-8-w4] Job #183 partisi 4 (40..52)
+[par-8-w4] Selesai partisi 4: 13 order | VERIFIED=9 MISMATCH=2 ERROR=2 | 68 ms
+[par-8-w5] Job #184 partisi 5 (53..64)
+[par-8-w5] Selesai partisi 5: 12 order | VERIFIED=9 MISMATCH=2 ERROR=1 | 62 ms
+[par-8-w6] Job #185 partisi 6 (65..76)
+[par-8-w6] Selesai partisi 6: 12 order | VERIFIED=9 MISMATCH=2 ERROR=1 | 62 ms
+[par-8-w7] Job #186 partisi 7 (77..88)
+[par-8-w7] Selesai partisi 7: 12 order | VERIFIED=8 MISMATCH=3 ERROR=1 | 64 ms
+[par-8-w8] Job #187 partisi 8 (89..100)
+[par-8-w8] Selesai partisi 8: 12 order | VERIFIED=7 MISMATCH=3 ERROR=2 | 63 ms
+ P=8  wall= 305 ms | checksum=6ae585e5f5bda4739162ad9607336c107d803cc024457429af2c2fa330cfe34a (MATCH) | jobs 8/8 | worker unik=8 | maxAttempts=1 | speedup=1,734
+
+===============================================================
+ RINGKASAN PARALLEL
+===============================================================
+ P    Wall(ms)   Checksum     Match      Speedup  Jobs    
+ 1    629        6ae585e5f5bd MATCH      0,841    1/1
+ 2    385        6ae585e5f5bd MATCH      1,374    2/2
+ 4    297        6ae585e5f5bd MATCH      1,781    4/4
+ 8    305        6ae585e5f5bd MATCH      1,734    8/8
+---------------------------------------------------------------
+ Exit gate output sequential = parallel : PASS
+===============================================================
+ JSON report : C:\laragon\www\project_jersey/docs/week7/evidence/parallel_D100.json

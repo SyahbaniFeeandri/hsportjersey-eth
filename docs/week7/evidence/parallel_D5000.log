@@ -1,0 +1,66 @@
+===============================================================
+ H-SPORT FINANCIAL dAPP - PARALLEL RUNNER (M6)
+ Dataset     : D5000 (5000 order)
+ Dataset hash: 2bed91dfbc1608b563afa2951f51512488760e20ada22a8147d5c579dc518eed
+ Worker      : 1, 2, 4, 8
+ Latency     : 5000 us/order (simulasi RPC Mode A)
+ Waktu       : 2026-11-13 03:33:54
+===============================================================
+[baseline] Menjalankan sequential baseline (worker_count=1)...
+[baseline] checksum=972e6a4d1fe260f2d0c8126f8c52befe28563f3d09fae0e7f6209e161221547e duration=26387 ms throughput=189,49 order/detik
+[baseline] batch #75 (SEQ-D5000-L5000-20261113033354-8604) checksum=972e6a4d1fe260f2d0c8126f8c52befe28563f3d09fae0e7f6209e161221547e
+
+--- P=1 | batch #76 (PAR-D5000-W1-20261113033421-6497) | 1 partisi ---
+[par-1-w1] Job #221 partisi 1 (1..5000)
+[par-1-w1] Selesai partisi 1: 5000 order | VERIFIED=3500 MISMATCH=1000 ERROR=500 | 26411 ms
+ P=1  wall=26569 ms | checksum=972e6a4d1fe260f2d0c8126f8c52befe28563f3d09fae0e7f6209e161221547e (MATCH) | jobs 1/1 | worker unik=1 | maxAttempts=1 | speedup=0,993
+
+--- P=2 | batch #77 (PAR-D5000-W2-20261113033448-0069) | 2 partisi ---
+[par-2-w1] Job #222 partisi 1 (1..2500)
+[par-2-w1] Selesai partisi 1: 2500 order | VERIFIED=1750 MISMATCH=500 ERROR=250 | 13209 ms
+[par-2-w2] Job #223 partisi 2 (2501..5000)
+[par-2-w2] Selesai partisi 2: 2500 order | VERIFIED=1750 MISMATCH=500 ERROR=250 | 13206 ms
+ P=2  wall=13379 ms | checksum=972e6a4d1fe260f2d0c8126f8c52befe28563f3d09fae0e7f6209e161221547e (MATCH) | jobs 2/2 | worker unik=2 | maxAttempts=1 | speedup=1,972
+
+--- P=4 | batch #78 (PAR-D5000-W4-20261113033501-3464) | 4 partisi ---
+[par-4-w1] Job #224 partisi 1 (1..1250)
+[par-4-w1] Selesai partisi 1: 1250 order | VERIFIED=875 MISMATCH=250 ERROR=125 | 6589 ms
+[par-4-w2] Job #225 partisi 2 (1251..2500)
+[par-4-w2] Selesai partisi 2: 1250 order | VERIFIED=875 MISMATCH=250 ERROR=125 | 6587 ms
+[par-4-w3] Job #226 partisi 3 (2501..3750)
+[par-4-w3] Selesai partisi 3: 1250 order | VERIFIED=875 MISMATCH=250 ERROR=125 | 6584 ms
+[par-4-w4] Job #227 partisi 4 (3751..5000)
+[par-4-w4] Selesai partisi 4: 1250 order | VERIFIED=875 MISMATCH=250 ERROR=125 | 6589 ms
+ P=4  wall=6798 ms | checksum=972e6a4d1fe260f2d0c8126f8c52befe28563f3d09fae0e7f6209e161221547e (MATCH) | jobs 4/4 | worker unik=4 | maxAttempts=1 | speedup=3,882
+
+--- P=8 | batch #79 (PAR-D5000-W8-20261113033508-3968) | 8 partisi ---
+[par-8-w1] Job #228 partisi 1 (1..625)
+[par-8-w1] Selesai partisi 1: 625 order | VERIFIED=439 MISMATCH=124 ERROR=62 | 3276 ms
+[par-8-w2] Job #229 partisi 2 (626..1250)
+[par-8-w2] Selesai partisi 2: 625 order | VERIFIED=436 MISMATCH=126 ERROR=63 | 3274 ms
+[par-8-w3] Job #230 partisi 3 (1251..1875)
+[par-8-w3] Selesai partisi 3: 625 order | VERIFIED=439 MISMATCH=124 ERROR=62 | 3273 ms
+[par-8-w4] Job #231 partisi 4 (1876..2500)
+[par-8-w4] Selesai partisi 4: 625 order | VERIFIED=436 MISMATCH=126 ERROR=63 | 3278 ms
+[par-8-w5] Job #232 partisi 5 (2501..3125)
+[par-8-w5] Selesai partisi 5: 625 order | VERIFIED=439 MISMATCH=124 ERROR=62 | 3276 ms
+[par-8-w6] Job #233 partisi 6 (3126..3750)
+[par-8-w6] Selesai partisi 6: 625 order | VERIFIED=436 MISMATCH=126 ERROR=63 | 3278 ms
+[par-8-w7] Job #234 partisi 7 (3751..4375)
+[par-8-w7] Selesai partisi 7: 625 order | VERIFIED=439 MISMATCH=124 ERROR=62 | 3273 ms
+[par-8-w8] Job #235 partisi 8 (4376..5000)
+[par-8-w8] Selesai partisi 8: 625 order | VERIFIED=436 MISMATCH=126 ERROR=63 | 3274 ms
+ P=8  wall=3606 ms | checksum=972e6a4d1fe260f2d0c8126f8c52befe28563f3d09fae0e7f6209e161221547e (MATCH) | jobs 8/8 | worker unik=8 | maxAttempts=1 | speedup=7,318
+
+===============================================================
+ RINGKASAN PARALLEL
+===============================================================
+ P    Wall(ms)   Checksum     Match      Speedup  Jobs    
+ 1    26569      972e6a4d1fe2 MATCH      0,993    1/1
+ 2    13379      972e6a4d1fe2 MATCH      1,972    2/2
+ 4    6798       972e6a4d1fe2 MATCH      3,882    4/4
+ 8    3606       972e6a4d1fe2 MATCH      7,318    8/8
+---------------------------------------------------------------
+ Exit gate output sequential = parallel : PASS
+===============================================================
+ JSON report : C:\laragon\www\project_jersey/docs/week7/evidence/parallel_D5000.json

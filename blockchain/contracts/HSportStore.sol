@@ -3,8 +3,8 @@ pragma solidity ^0.8.19;
 
 /// @title HSportStore
 /// @notice Escrow dan audit trail on-chain untuk order H-Sport Jersey.
-/// @dev V1 (Minggu 3): enum 8 state, externalOrderHash, operator, alur kripto
-///      sampai confirmReceived. Cancel/refund diimplementasikan di V2 (Minggu 4).
+/// @dev V2 (Minggu 4): enum 8 state, externalOrderHash, operator, alur kripto
+///      lengkap termasuk cancel/refund. Interface V1 tetap dipertahankan.
 ///      Spesifikasi: docs/week2/02_CONTRACT_SPEC_FINAL.md
 contract HSportStore {
     /// @notice Status order sesuai state machine 8 state. Urutan tidak boleh berubah.
@@ -246,6 +246,48 @@ contract HSportStore {
 
         emit OrderCompleted(_orderId, msg.sender);
         emit EscrowReleased(_orderId, owner, escrow.amount);
+    }
+
+    /// @notice Membatalkan order dan mengembalikan escrow ke pembeli bila ada.
+    /// @dev Aturan aktor per state: Created/AwaitingPayment oleh buyer atau operator;
+    ///      Paid/InProduction/ReadyToShip hanya operator; Shipped tidak dapat dibatalkan.
+    /// @param _orderId ID order.
+    /// @param _reason Alasan pembatalan, maksimum 64 byte.
+    function cancelOrder(
+        uint256 _orderId,
+        string calldata _reason
+    ) external orderExists(_orderId) notFinal(_orderId) {
+        Order storage order = orders[_orderId];
+        PaymentEscrow storage escrow = escrows[_orderId];
+        OrderStatus current = order.status;
+
+        require(bytes(_reason).length <= 64, "Reason too long");
+
+        if (current == OrderStatus.Created || current == OrderStatus.AwaitingPayment) {
+            require(
+                msg.sender == order.buyer || msg.sender == owner || operators[msg.sender],
+                "Not authorized to cancel"
+            );
+        } else if (
+            current == OrderStatus.Paid ||
+            current == OrderStatus.InProduction ||
+            current == OrderStatus.ReadyToShip
+        ) {
+            require(msg.sender == owner || operators[msg.sender], "Not authorized to cancel");
+        } else {
+            revert("Invalid state transition");
+        }
+
+        // Effects sebelum interaction: status dan refunded dikunci lebih dulu.
+        _setStatus(_orderId, OrderStatus.Cancelled);
+
+        if (escrow.amount > 0 && !escrow.released && !escrow.refunded) {
+            escrow.refunded = true;
+            payable(escrow.buyer).transfer(escrow.amount);
+            emit EscrowRefunded(_orderId, escrow.buyer, escrow.amount);
+        }
+
+        emit OrderCancelled(_orderId, msg.sender, _reason);
     }
 
     /// @notice Menambahkan akun sebagai operator.

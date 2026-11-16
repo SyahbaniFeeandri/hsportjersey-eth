@@ -1,0 +1,22 @@
+﻿===============================================================
+ H-SPORT FINANCIAL dAPP ΓÇö SEQUENTIAL BASELINE (W4-FDR-05)
+ Dataset : D500 (500 order)
+ Seed    : HSPORT-2026
+ Mode    : SEQUENTIAL / worker_count=1
+ Waktu   : 2026-11-12 02:30:46
+===============================================================
+ Total orders      : 500
+ VERIFIED          : 350
+ MISMATCH          : 100
+ ERROR             : 50
+ Paid / Unpaid     : 428 / 72
+ Revenue all       : Rp 612.423.000
+ Revenue verified  : Rp 376.814.000
+ AOV               : Rp 1.224.846,00
+ Duration          : 1 ms (1077 us)
+ Throughput        : 464.252,55 order/detik
+ Checksum          : 61cfe1d0d9769ea1d3a737adc39e9a41c56ffbaadbb7f8855507f6bacb309939
+---------------------------------------------------------------
+ DB                : dilewati (--no-db)
+ JSON report       : docs/week4/evidence/sequential_baseline_D500.json
+===============================================================

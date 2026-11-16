@@ -8,6 +8,11 @@
 [![MetaMask](https://img.shields.io/badge/MetaMask-Web3-E2761B?logo=metamask)](https://metamask.io/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+> **Rilis final `v1.0.0`** — 112/112 issue selesai, 21/21 test PASS, UAT 16/16.
+> Lihat [laporan final](docs/week8/01_FINAL_REPORT.md),
+> [release notes](docs/week8/02_RELEASE_NOTES_CODE_FREEZE.md), dan
+> [panduan deployment](docs/week8/03_DEPLOYMENT_GUIDE.md).
+
 ---
 
 ## 📌 1. Ringkasan Proyek (Overview)
@@ -187,17 +192,32 @@ Pastikan software berikut telah terpasang di komputer Anda:
 4. Import file SQL utama:
    - Pilih database `h_sport_db` ➔ klik tab **Import**.
    - Unggah berkas `h_sport_db (1).sql` ➔ klik **Import**.
-5. Jalankan migrasi tabel review dan kolom blockchain:
+5. Jalankan seluruh migrasi (idempotent, aman diulang):
    - Klik tab **Import** atau tab **SQL**.
-   - Eksekusi berkas `migration_reviews.sql`.
-   - Eksekusi berkas `migration_blockchain.sql`.
-6. Pastikan konfigurasi koneksi di file [config/database.php](config/database.php) sudah sesuai dengan kredensial database lokal Anda:
+   - Eksekusi `migration_reviews.sql`.
+   - Eksekusi `migration_blockchain.sql` (kolom bukti & verifikasi order).
+   - Eksekusi `migration_parallel.sql` (tabel job/batch/worker/benchmark).
+6. **Seed data demo** (akun + 13 produk): import `seed_demo.sql`.
+   - Idempotent: aman dijalankan berulang tanpa menduplikasi data.
+   - Membuat akun admin & customer demo serta katalog 13 jersey yang mengacu ke folder `uploads/`.
+7. Pastikan konfigurasi koneksi di file [config/database.php](config/database.php) sudah sesuai dengan kredensial database lokal Anda. Nilai default dapat dioverride lewat environment variable `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`:
    ```php
    $host = 'localhost';
    $dbname = 'h_sport_db';
    $username = 'root';
    $password = ''; // Kosongkan jika default Laragon/XAMPP
    ```
+
+> **CLI alternatif (lebih cepat):**
+> ```bash
+> mysql -u root -e "CREATE DATABASE IF NOT EXISTS h_sport_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+> mysql -u root h_sport_db < "h_sport_db (1).sql"
+> mysql -u root h_sport_db < migration_reviews.sql
+> mysql -u root h_sport_db < migration_blockchain.sql
+> mysql -u root h_sport_db < migration_parallel.sql
+> mysql -u root h_sport_db < seed_demo.sql
+> ```
+> Panduan lengkap (termasuk verifikasi instalasi bersih) ada di [docs/week8/03_DEPLOYMENT_GUIDE.md](docs/week8/03_DEPLOYMENT_GUIDE.md).
 
 ---
 
@@ -270,7 +290,7 @@ Pastikan software berikut telah terpasang di komputer Anda:
      - Hak Akses: Manajemen produk, status pengiriman, verifikasi pembayaran, nomor resi, laporan.
    - **Akun Pelanggan (Customer):**
      - Email: `customer@example.com`
-     - Password: `password`
+     - Password: `customer123`
      *(Atau buat akun baru melalui menu [register.php](register.php))*
 
 ---

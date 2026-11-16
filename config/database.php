@@ -1,8 +1,13 @@
 <?php
-$host = 'localhost';
-$dbname = 'h_sport_db';
-$username = 'root';
-$password = '';
+/**
+ * Konfigurasi koneksi database.
+ * Nilai dapat dioverride lewat environment variable (mis. DB_NAME=h_sport_db_clean)
+ * agar instalasi bersih / CI dapat memakai database terpisah tanpa mengubah kode.
+ */
+$host = getenv('DB_HOST') ?: 'localhost';
+$dbname = getenv('DB_NAME') ?: 'h_sport_db';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -11,5 +16,7 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>

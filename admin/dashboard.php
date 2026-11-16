@@ -58,6 +58,7 @@ $pending_orders = $pdo->query("SELECT COUNT(*) FROM orders WHERE status='pending
                 <a href="products.php"><i class="fas fa-box me-2"></i> Kelola Produk</a>
                 <a href="orders.php"><i class="fas fa-shopping-cart me-2"></i> Kelola Pesanan</a>
                 <a href="customers.php"><i class="fas fa-users me-2"></i> Pelanggan</a>
+                <a href="performance.php"><i class="fas fa-gauge-high me-2"></i> Performance</a>
                 <a href="../logout.php"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
             </div>
             

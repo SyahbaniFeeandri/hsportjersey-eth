@@ -1,0 +1,49 @@
+{
+    "batch_id": 39,
+    "batch_code": "INT-M6-SMOKE-001",
+    "mode": "INTEGRATION",
+    "dataset_name": "orders-live",
+    "dataset_size": 21,
+    "worker_count": 2,
+    "status": "DONE",
+    "complete": true,
+    "expected_orders": 21,
+    "processed_orders": 21,
+    "verified_count": 0,
+    "mismatch_count": 1,
+    "error_count": 0,
+    "skipped_count": 20,
+    "paid_count": 19,
+    "unpaid_count": 2,
+    "revenue_all": 53139000,
+    "revenue_verified": 0,
+    "aov": 2530428.5714,
+    "checksum": "1b924c4a00b9e5dfe7f7a47da428e3c98b4515a3e86f18927839103f8f893d66",
+    "baseline_checksum": null,
+    "checksum_match": null,
+    "metrics_consistent": true,
+    "duplicate_ids": [],
+    "duration_ms": 0,
+    "throughput_per_sec": null,
+    "incomplete_jobs": [],
+    "partitions": [
+        {
+            "job_id": 106,
+            "partition_no": 1,
+            "range_start": 1,
+            "range_end": 20,
+            "status": "DONE",
+            "worker_id": "int-m6-w2",
+            "attempts": 1
+        },
+        {
+            "job_id": 107,
+            "partition_no": 2,
+            "range_start": 21,
+            "range_end": 40,
+            "status": "DONE",
+            "worker_id": "int-m6-w1",
+            "attempts": 1
+        }
+    ]
+}

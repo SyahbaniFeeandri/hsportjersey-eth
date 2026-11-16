@@ -1,0 +1,223 @@
+=== ENVIRONMENT ===
+Linux 259979221ae1 6.18.54.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Tue Oct  6 19:13:07 UTC 2026 x86_64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+v20.20.2
+10.8.2
+git version 2.39.5
+=== CLONE ===
+Cloning into '/work/repo'...
+commit 94431a07d3f8138eecd634e8b4e2845869739f7e
+subject fix(build): prune extraneous darwin fsevents from lockfile (W2-FRL-05)
+=== NPM CI ===
+npm warn deprecated yaeti@0.0.6: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated testrpc@0.0.1: testrpc has been renamed to ganache-cli, please use this package from now on.
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated mkdirp-promise@5.0.1: This package is broken and no longer maintained. 'mkdirp' itself supports promises now, please switch to that.
+npm warn deprecated memdown@1.4.1: Superseded by memory-level (https://github.com/Level/community#faq)
+npm warn deprecated tar@4.4.19: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated level-errors@2.0.1: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated level-concat-iterator@3.1.0: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm warn deprecated level-packager@5.1.1: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated level-js@5.0.2: Superseded by browser-level (https://github.com/Level/community#faq)
+npm warn deprecated level-codec@9.0.2: Superseded by level-transcoder (https://github.com/Level/community#faq)
+npm warn deprecated har-validator@5.1.5: this library is no longer supported
+npm warn deprecated levelup@4.4.0: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated glob@7.2.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated encoding-down@6.3.0: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated deferred-leveldown@5.3.0: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated clone-buffer@1.0.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated apollo-server-types@3.8.0: The `apollo-server-types` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated apollo-server-plugin-base@3.7.2: The `apollo-server-plugin-base` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated apollo-server-errors@3.3.1: The `apollo-server-errors` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated multibase@0.6.1: This module has been superseded by the multiformats module
+npm warn deprecated apollo-datasource@3.3.2: The `apollo-datasource` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated apollo-server@3.13.0: The `apollo-server` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated apollo-server-express@3.13.0: The `apollo-server-express` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated multicodec@0.5.7: This module has been superseded by the multiformats module
+npm warn deprecated @truffle/provider@0.3.13: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/spinners@0.2.5: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/error@0.2.2: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/promise-tracker@0.1.7: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/db-loader@0.2.36: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/dashboard-message-bus-common@0.1.7: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/source-map-utils@1.3.119: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated apollo-server-env@4.2.1: The `apollo-server-env` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/utils.fetcher` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated @truffle/events@0.1.25: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated apollo-reporting-protobuf@3.4.0: The `apollo-reporting-protobuf` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/usage-reporting-protobuf` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated @truffle/code-utils@3.0.4: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/config@1.3.61: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/dashboard-message-bus-client@0.1.12: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+npm warn deprecated @truffle/compile-common@0.9.8: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated abstract-leveldown@7.2.0: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated @truffle/abi-utils@1.0.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/interface-adapter@0.5.37: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated level-concat-iterator@2.0.1: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated level-concat-iterator@2.0.1: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated uuid@3.4.0: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+npm warn deprecated multibase@0.7.0: This module has been superseded by the multiformats module
+npm warn deprecated abstract-leveldown@2.7.2: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated abstract-leveldown@6.2.3: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated level-concat-iterator@2.0.1: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated abstract-leveldown@6.2.3: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated level-concat-iterator@2.0.1: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated multicodec@1.0.4: This module has been superseded by the multiformats module
+npm warn deprecated uuid@2.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+npm warn deprecated uuid@8.3.2: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+npm warn deprecated uuid@8.3.2: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+npm warn deprecated abstract-leveldown@6.2.3: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated abstract-leveldown@6.3.0: Superseded by abstract-level (https://github.com/Level/community#faq)
+npm warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+npm warn deprecated cids@0.7.5: This module has been superseded by the multiformats module
+npm warn deprecated apollo-server-core@3.13.0: The `apollo-server-core` package is part of Apollo Server v2 and v3, which are now end-of-life (as of October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm warn deprecated @truffle/debugger@12.1.5: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @ensdomains/ens@0.4.5: Please use @ensdomains/ens-contracts
+npm warn deprecated @ensdomains/resolver@0.2.4: Please use @ensdomains/ens-contracts
+npm warn deprecated leveldown@5.6.0: Superseded by classic-level (https://github.com/Level/community#faq)
+npm warn deprecated @truffle/db@2.0.36: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @truffle/codec@0.17.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+added 1262 packages, and audited 1292 packages in 2m
+
+132 packages are looking for funding
+  run `npm fund` for details
+
+129 vulnerabilities (17 low, 36 moderate, 64 high, 12 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+=== COMPILE ===
+
+> blockchain@1.0.0 compile
+> truffle compile
+
+Compiling your contracts...
+===========================
+- Fetching solc version list from solc-bin. Attempt #1
+- Fetching solc version list from solc-bin. Attempt #1
+- Fetching solc version list from solc-bin. Attempt #1
+- Downloading compiler. Attempt #1.
+- Fetching solc version list from solc-bin. Attempt #1
+- Downloading compiler. Attempt #1.
+> Compiling ./contracts/HSportStore.sol
+> Artifacts written to /work/repo/blockchain/build/contracts
+> Compiled successfully using:
+   - solc: 0.8.19+commit.7dd6d404.Emscripten.clang
+ABI_COMMITTED=23a73d09e75661576d3e42c932132c63242b33dcb0966608bdda5cc86014606f
+=== GANACHE ===
+ganache ready after 2s
+
+> blockchain@1.0.0 ganache:ping
+> node scripts/checkGanache.js
+
+Ganache connected: http://127.0.0.1:7545
+Chain ID: 1337
+Block number: 0
+Accounts: 10
+First account: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
+=== MIGRATE ===
+
+> blockchain@1.0.0 migrate
+> truffle migrate --network ganache --reset
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+Starting migrations...
+======================
+> Network name:    'ganache'
+> Network id:      5777
+> Block gas limit: 30000000 (0x1c9c380)
+
+1_deploy_hsportstore.js
+=======================
+
+   Deploying 'HSportStore'
+   -----------------------
+   > transaction hash:    0xf2934491bcfab23fbfa97620590d7e2874356d142f41d0a70fa5272e32de7eff
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab
+   > block number:        1
+   > block timestamp:     1794377582
+   > account:             0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
+   > balance:             999.99387077725
+   > gas used:            1816066 (0x1bb602)
+   > gas price:           3.375 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00612922275 ETH
+
+HSportStore deployed to: 0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab
+Address and ABI saved to config/
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:       0.00612922275 ETH
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.00612922275 ETH
+
+Deployment tercatat: /work/repo/blockchain/deployments/deployment_2026-11-11T06-13-02-194Z.json
+Address: 0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab
+Network ID: 5777 | Chain ID: 1337
+ABI_GENERATED=23a73d09e75661576d3e42c932132c63242b33dcb0966608bdda5cc86014606f
+ABI_MATCH=true
+=== TEST ===
+
+> blockchain@1.0.0 test
+> set HSPORT_TEST=1&& truffle test --network ganache
+
+Using network 'ganache'.
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+HSPORT_TEST=1: lewati deploy migration (mode test).
+
+  Contract: HSportStore — baseline smoke (V1, bukan 21 test)
+    ✔ SMOKE-01: owner adalah deployer
+    ✔ SMOKE-02: createOrder valid mengunci escrow dan memancarkan event (243ms)
+    ✔ SMOKE-03: createOrder amount 0 revert (281ms)
+    ✔ SMOKE-04: createOrder dengan msg.value tidak sesuai revert
+
+  Contract: HSportStore — SC-01 s.d. SC-06 (V1)
+    ✔ SC-01: inisialisasi contract, owner, dan akses owner (330ms)
+    ✔ SC-02: createOrder valid — escrow, state Created, event (223ms)
+    ✔ SC-03: createOrder amount tidak valid revert (43ms)
+    ✔ SC-04: duplicate externalOrderHash revert (189ms)
+    ✔ SC-05: getOrder ID valid mengembalikan data benar (201ms)
+    ✔ SC-06: getOrder ID tidak ada revert (57ms)
+
+  Contract: HSportStore — SC-07 s.d. SC-12 (V2)
+    ✔ SC-07: access control menolak non-operator, non-buyer, dan non-owner (253ms)
+    ✔ SC-08: recordPayment valid, event, dan double payment ditolak (570ms)
+    ✔ SC-09: transisi valid dan shipOrder memancarkan event (487ms)
+    ✔ SC-10: transisi tidak sah ditolak dan state tidak berubah (727ms)
+    ✔ SC-11: cancel valid, refund, unauthorized, terminal, dan batas reason (2198ms)
+    ✔ SC-12: confirmReceived merilis escrow sekali dan double release ditolak (1345ms)
+
+  16 passing (9s)
+
+=== TRUFFLE VERSION ===
+Truffle v5.11.5 (core: 5.11.5)
+Ganache v7.9.1
+Solidity - 0.8.19 (solc-js)
+Node v20.20.2
+Web3.js v1.10.0
+=== DEPLOYMENT RECORD ===
+deployment_2026-11-11T03-59-13-663Z.json
+deployment_2026-11-11T05-26-49-751Z.json
+deployment_2026-11-11T06-13-02-194Z.json
+=== RESULT ===
+CLEAN_CLONE_SECOND_ENV_PASS

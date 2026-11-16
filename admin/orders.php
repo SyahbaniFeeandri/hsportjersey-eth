@@ -1,12 +1,43 @@
 <?php
 require_once '../config/database.php';
 require_once '../config/functions.php';
+require_once '../api/services/BlockchainClient.php';
+require_once '../api/services/ContractService.php';
+require_once '../api/services/ProofRepository.php';
+require_once '../api/services/VerificationService.php';
 // Load contract configuration for Web3 interactions
 $contract_address = file_get_contents('../blockchain/config/contract_address.txt');
 $contract_abi = file_get_contents('../blockchain/config/contract_abi.json');
 
 if(!isAdmin()) {
     redirect('../login.php');
+}
+
+// Verifikasi ulang DB vs blockchain (REQ-11 / W8-LUI-14)
+if (isset($_POST['verify_order'])) {
+    $verifyOrderId = (int)($_POST['order_id'] ?? 0);
+    try {
+        $verificationService = new \HSport\Services\VerificationService();
+        $result = $verificationService->verifyOrder($verifyOrderId, true);
+        $status = $result['verification_status'] ?? 'PENDING';
+        $diffCount = count($result['differences'] ?? []);
+
+        if ($status === 'VERIFIED') {
+            $_SESSION['message'] = "Verifikasi order #{$verifyOrderId}: VERIFIED (data DB cocok dengan on-chain).";
+            $_SESSION['message_type'] = 'success';
+        } elseif ($status === 'MISMATCH') {
+            $_SESSION['message'] = "Verifikasi order #{$verifyOrderId}: MISMATCH — {$diffCount} perbedaan ditemukan.";
+            $_SESSION['message_type'] = 'warning';
+        } else {
+            $_SESSION['message'] = "Verifikasi order #{$verifyOrderId}: {$status} — "
+                . ($result['message'] ?? 'belum ada data on-chain.');
+            $_SESSION['message_type'] = 'warning';
+        }
+    } catch (Throwable $e) {
+        $_SESSION['message'] = 'Verifikasi gagal: ' . $e->getMessage();
+        $_SESSION['message_type'] = 'danger';
+    }
+    redirect('orders.php');
 }
 
 // Update order status
@@ -240,6 +271,7 @@ $completed_count = count(array_filter($orders, function($o) { return $o['status'
                                         <th>Status</th>
                                         <th>Pembayaran</th>
                                         <th>Blockchain Receipt</th>
+                                        <th>Verifikasi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -288,6 +320,32 @@ $completed_count = count(array_filter($orders, function($o) { return $o['status'
                                                 <?php endif; ?>
                                             <?php else: ?>
                                                 <span class="text-muted small">-</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            $verificationStatus = $order['verification_status'] ?? 'PENDING';
+                                            $verificationBadge = [
+                                                'VERIFIED' => 'success',
+                                                'MISMATCH' => 'danger',
+                                                'PENDING' => 'secondary',
+                                            ][$verificationStatus] ?? 'secondary';
+                                            ?>
+                                            <span class="badge bg-<?php echo $verificationBadge; ?>">
+                                                <?php echo htmlspecialchars($verificationStatus); ?>
+                                            </span>
+                                            <?php if (!empty($order['verified_at'])): ?>
+                                                <br><small class="text-muted"><?php echo date('d/m/Y H:i', strtotime($order['verified_at'])); ?></small>
+                                            <?php endif; ?>
+                                            <?php if (!empty($order['tx_hash']) || !empty($order['blockchain_order_id'])): ?>
+                                                <form method="POST" class="mt-1">
+                                                    <input type="hidden" name="order_id" value="<?php echo (int)$order['id']; ?>">
+                                                    <button type="submit" name="verify_order" value="1"
+                                                            class="btn btn-sm btn-outline-primary btn-action"
+                                                            title="Verifikasi ulang DB vs blockchain">
+                                                        <i class="fas fa-shield-halved"></i>
+                                                    </button>
+                                                </form>
                                             <?php endif; ?>
                                         </td>
                                         <td>

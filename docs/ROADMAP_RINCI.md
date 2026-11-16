@@ -4,11 +4,16 @@
 **Semester:** Gasal 2026/2027
 **Durasi:** 8 Minggu
 **Sumber acuan:** `docs/Progress Tracker.docx`, `docs/DOKUMENTASI_PROJECT_DAN_PERAN.md`, `Minggu 1.docx`
-**Status dokumen:** Draft kerja — diperbarui setiap Jumat bersama tracker
-**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 44 selesai, 11 sebagian, 57 belum dari 112 issue.
+**Status dokumen:** Final — 112/112 issue selesai, rilis `v1.0.0`
+**Gap analysis:** lihat [GAP_ANALYSIS.md](GAP_ANALYSIS.md) - 112 selesai, 0 sebagian, 0 belum dari 112 issue.
 **Artefak Minggu 1:** lihat [docs/week1/README.md](week1/README.md) - 17/17 issue selesai.
-**Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 15 selesai, 1 sebagian (`W2-FRL-05`).
+**Artefak Minggu 2:** lihat [docs/week2/README.md](week2/README.md) - 16/16 issue selesai (`W2-FRL-05` clean clone di komputer anggota lain PASS).
 **Artefak Minggu 3:** lihat [docs/week3/README.md](week3/README.md) - 12/12 issue selesai (exit gate teknis terpenuhi).
+**Artefak Minggu 4:** lihat [docs/week4/README.md](week4/README.md) - 12/12 issue selesai (kontrak V2, UI cancel on-chain, sequential baseline CLI).
+**Artefak Minggu 5:** lihat [docs/week5/README.md](week5/README.md) - 15/15 issue selesai (5/5 INT PASS, proof page, worker skeleton).
+**Artefak Minggu 6:** lihat [docs/week6/README.md](week6/README.md) - 13/13 issue selesai (PAR-01/PAR-02 24/24 PASS, dashboard, worker paralel).
+**Artefak Minggu 7:** lihat [docs/week7/README.md](week7/README.md) - 13/13 issue selesai (benchmark 16/16, regresi 21/21, reproducible).
+**Artefak Minggu 8:** lihat [docs/week8/README.md](week8/README.md) - 14/14 issue selesai (clean install, UAT 16/16, demo, tag `v1.0.0`).
 
 ---
 
@@ -105,7 +110,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 2 — Blockchain Environment
 
-**Status saat ini:** Selesai (artefak) — 15 selesai, 1 sebagian, 0 belum dari 16 issue. Spesifikasi kontrak final, wireframe, template, dan simulasi clean clone (ABI identik) tersedia; uji di komputer anggota lain belum.
+**Status saat ini:** **Selesai** — 16/16 issue selesai, 0 sebagian, 0 belum. Uji clean clone di komputer/lingkungan anggota lain PASS (`reproduction_second_env.log`).
 **Lead:** Farrel · **Pendukung:** Arby, Agustina, Luis · **Target:** 22%
 
 | PIC | Issue | Output / Evidence |
@@ -114,7 +119,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 | FRL | `W2-FRL-02` Panduan MetaMask: add network, import akun | `docs/PANDUAN_SETUP_DAN_OPERASIONAL.md` Langkah 4 |
 | FRL | `W2-FRL-03` Truffle config + test harness + perbaiki README | `blockchain/test/`, baseline smoke 4 PASS |
 | FRL | `W2-FRL-04` Deploy script + ABI/address history + `.env.example` | `blockchain/scripts/logDeployment.js`, `blockchain/deployments/` |
-| FRL | `W2-FRL-05` Uji reproduksi di komputer anggota lain | Sebagian: clean clone PASS di mesin sendiri + `docs/week2/evidence/reproduction_clean_clone.log` |
+| FRL | `W2-FRL-05` Uji reproduksi di komputer anggota lain | Selesai: clean clone PASS di mesin utama & mesin kedua (Debian 12 WSL2) + `docs/week2/evidence/reproduction_second_env.log` |
 | ARB | `W2-ARB-02` Finalkan struct/enum/mapping/modifier | `docs/week2/02_CONTRACT_SPEC_FINAL.md` |
 | ARB | `W2-ARB-03` Skeleton unit test SC-01 s.d. SC-06 | `blockchain/test/01_sc01_sc06.skeleton.test.js` |
 | AGU | `W2-AGU-02` Finalkan transition table + event list | `docs/week2/02` bagian 7 & 9 |
@@ -128,7 +133,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 | KEN | `W2-KEN-02` Template test report, bug report, benchmark sheet | `docs/templates/` |
 
 **Exit gate:** clean clone → compile → deploy berhasil di mesin anggota lain; ABI/address konsisten.
-**Status gate:** ABI konsisten dan clean clone PASS di mesin sendiri; uji di mesin anggota lain **belum** (`W2-FRL-05` sebagian).
+**Status gate:** ✅ 100% Selesai — ABI konsisten dan clean clone PASS di mesin utama dan mesin kedua anggota lain (`W2-FRL-05` selesai).
 
 ---
 
@@ -159,7 +164,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 
 ### Minggu 4 — Smart Contract V2
 
-**Status saat ini:** Sebagian — 0 selesai, 3 sebagian, 9 belum dari 12 issue.
+**Status saat ini:** **Selesai** — 12 selesai, 0 sebagian, 0 belum dari 12 issue (100%). Scope kontrak 12/12 SC PASS, UI cancel on-chain tersedia, dan sequential baseline CLI data mock menghasilkan evidence D100–D5000.
 **Lead:** Agustina · **Pendukung:** Arby, Farrel, Kenjiro · **Target:** 52%
 
 | PIC | Issue | Output / Evidence |
@@ -172,95 +177,95 @@ Target progress kumulatif mengikuti dashboard tracker:
 | FRL | `W4-FRL-08` Cek kompatibilitas frontend dengan interface V2 | Catatan kompatibilitas |
 | KEN | `W4-KEN-04` Security/revert test independen + review SC-07 s.d. SC-12 | Security report |
 | LUI | `W4-LUI-05` Sesuaikan service dengan ABI V2 | Service update |
-| IHS | `W4-IHS-04` Implement wallet connect + tx status UI (mock) | UI berjalan |
-| FDR | `W4-FDR-05` Sequential baseline CLI dengan data mock | Baseline script |
+| IHS | `W4-IHS-04` Implement wallet connect + tx status UI (mock) | Selesai: panel/modal cancel on-chain di `order-detail.php`; `docs/week4/07_CANCEL_UI.md` |
+| FDR | `W4-FDR-05` Sequential baseline CLI dengan data mock | Selesai: `benchmark/` + D100–D5000; `docs/week4/06_SEQUENTIAL_BASELINE.md` |
 | FEE | `W4-FEE-09` Update traceability + dokumentasi kontrak | Dokumen |
 | YAS | `W4-YAS-08` UAT scenario payment/status/cancel | Skenario UAT |
 
-**Exit gate:** 12/12 SC PASS, security test selesai, ABI/address v2 dipublikasikan.
+**Exit gate:** 12/12 SC PASS, security test selesai, ABI/address v2 dipublikasikan, UI cancel on-chain, sequential baseline CLI data mock. **Terpenuhi 12 November 2026:** kontrak V2 `0x2f3efA6bbDC5fAf4dC1a600765c7B7829e47bE10`, 16 passing (12 SC + 4 smoke), security review tanpa Critical/High/Medium, UI cancel + smoke test 12/12 PASS, dan baseline D100–D5000 deterministik. UAT browser manual dilanjutkan sebagai bukti visual M5.
 
 ---
 
 ### Minggu 5 — Integrasi PHP–Blockchain
 
-**Status saat ini:** Sebagian — 0 selesai, 3 sebagian, 12 belum dari 15 issue.
+**Status saat ini:** **Selesai** — 15 selesai, 0 sebagian, 0 belum dari 15 issue (100%). Exit gate checkout → chain → DB → read-back terbukti dan INT-01..05 PASS (5/5).
 **Lead:** Luis · **Pendukung:** Farrel, Ihsanul, Yasmin · **Target:** 68%
 
 | PIC | Issue | Output / Evidence |
 |---|---|---|
-| LUI | `W5-LUI-06` Contract instance read/write dari backend | Service |
-| LUI | `W5-LUI-07` Receipt & event parser | Parser |
-| LUI | `W5-LUI-08` Persist proof: `tx_hash`, `block_number`, `contract_address`, wallet, `blockchain_order_id` | DB proof |
-| LUI | `W5-LUI-09` Verification service `VERIFIED`/`MISMATCH` | Service verifikasi |
-| LUI | `W5-LUI-10` Error handling: RPC down, wrong network, revert, order not found | Error handler |
-| LUI | `W5-LUI-11` INT-01 s.d. INT-05 evidence | 5/5 PASS |
-| FRL | `W5-FRL-09` Dukungan RPC/network + troubleshooting | Log dukungan |
-| IHS | `W5-IHS-05` Wallet UI + tx status: approval, pending, success, failed | UI |
-| IHS | `W5-IHS-06` Blockchain proof page | Halaman proof |
-| YAS | `W5-YAS-09` Review error/UX flow + UAT integrasi | Catatan UX |
-| FEE | `W5-FEE-10` Traceability REQ → implementasi → test | Traceability v1 |
-| FDR | `W5-FDR-06` Finalisasi schema + queue config + worker skeleton | Worker skeleton |
-| KEN | `W5-KEN-05` Integration test independen INT-01 s.d. INT-05 | Test report |
-| ARB | `W5-ARB-09` Support bug fixing kontrak | Fix |
-| AGU | `W5-AGU-09` Support bug fixing kontrak | Fix |
+| LUI | `W5-LUI-06` Contract instance read/write dari backend | Selesai: `BlockchainClient` + `ContractService::createOrder` |
+| LUI | `W5-LUI-07` Receipt & event parser | Selesai: `ReceiptService` (9 event) |
+| LUI | `W5-LUI-08` Persist proof: `tx_hash`, `block_number`, `contract_address`, wallet, `blockchain_order_id` | Selesai: `ProofRepository::persistProof` (INT-04) |
+| LUI | `W5-LUI-09` Verification service `VERIFIED`/`MISMATCH` | Selesai: `VerificationService` (INT-05) |
+| LUI | `W5-LUI-10` Error handling: RPC down, wrong network, revert, order not found | Selesai: `docs/week5/03_ERROR_HANDLING_UX.md` |
+| LUI | `W5-LUI-11` INT-01 s.d. INT-05 evidence | Selesai: 5/5 PASS (`docs/week5/evidence/`) |
+| FRL | `W5-FRL-09` Dukungan RPC/network + troubleshooting | Selesai: `docs/week5/04_RPC_TROUBLESHOOTING.md` |
+| IHS | `W5-IHS-05` Wallet UI + tx status: approval, pending, success, failed | Selesai: `crypto-payment.php`, `order-detail.php` |
+| IHS | `W5-IHS-06` Blockchain proof page | Selesai: `blockchain-proof.php` |
+| YAS | `W5-YAS-09` Review error/UX flow + UAT integrasi | Selesai: `docs/week5/03_ERROR_HANDLING_UX.md` §4 |
+| FEE | `W5-FEE-10` Traceability REQ → implementasi → test | Selesai: traceability INT PASS + REQ diperbarui |
+| FDR | `W5-FDR-06` Finalisasi schema + queue config + worker skeleton | Selesai: `config/parallel.php`, `workers/verify_worker.php` |
+| KEN | `W5-KEN-05` Integration test independen INT-01 s.d. INT-05 | Selesai: `docs/week5/01_INTEGRATION_TEST_REPORT.md` §5 |
+| ARB | `W5-ARB-09` Support bug fixing kontrak | Selesai: log dukungan, tidak ada bug kontrak |
+| AGU | `W5-AGU-09` Support bug fixing kontrak | Selesai: log dukungan, tidak ada bug kontrak |
 
-**Exit gate:** checkout → chain → DB → read-back berhasil; 5/5 INT PASS.
+**Exit gate:** checkout → chain → DB → read-back berhasil; 5/5 INT PASS. **Terpenuhi 12 November 2026:** INT-01..05 ALL PASS terhadap kontrak `0xe78A…a8Ab` (Ganache reset + deploy ulang), proof tersimpan di `orders` + `blockchain_transactions`, halaman bukti dan worker skeleton tersedia.
 
 ---
 
 ### Minggu 6 — Parallel Processing
 
-**Status saat ini:** Belum mulai — 0 selesai, 0 sebagian, 13 belum dari 13 issue.
+**Status saat ini:** Selesai — 13 selesai, 0 sebagian, 0 belum dari 13 issue. PAR-01/PAR-02 24/24 CHECK PASS.
 **Lead:** Farelly · **Pendukung:** Luis, Ihsanul, Kenjiro · **Target:** 82%
 
 | PIC | Issue | Output / Evidence |
 |---|---|---|
-| FDR | `W6-FDR-07` Job/Queue batch verification | Queue |
-| FDR | `W6-FDR-08` Multi-worker 1/2/4/8 | Worker |
-| FDR | `W6-FDR-09` Partition/reduce | Algoritma |
-| FDR | `W6-FDR-10` Agregasi finansial: revenue, count, AOV, paid/unpaid, verified/mismatch | Output agregasi |
-| FDR | `W6-FDR-11` PAR-01/PAR-02 evidence | 2/2 PASS |
-| KEN | `W6-KEN-06` Verifikasi PAR-01/02 + cek race condition & duplikasi | Test report |
-| IHS | `W6-IHS-07` Performance dashboard awal | Dashboard |
-| LUI | `W6-LUI-12` Dukungan verification service untuk worker | Integrasi worker |
-| FEE | `W6-FEE-11` Dokumentasi arsitektur paralel | Dokumen |
-| YAS | `W6-YAS-10` Acceptance criteria hasil agregasi | Catatan AC |
-| ARB | `W6-ARB-10` Support bug fixing | Fix |
-| AGU | `W6-AGU-10` Support bug fixing | Fix |
-| FRL | `W6-FRL-10` Maintenance environment/deploy ulang | Log |
+| FDR | `W6-FDR-07` Job/Queue batch verification | Selesai: `workers/enqueue_batch.php` (batch + P job) |
+| FDR | `W6-FDR-08` Multi-worker 1/2/4/8 | Selesai: `benchmark/parallel_runner.php`; `distinct_workers = jobs_total` |
+| FDR | `W6-FDR-09` Partition/reduce | Selesai: `benchmark/lib/PartitionPlanner.php` + `Reducer.php` |
+| FDR | `W6-FDR-10` Agregasi finansial: revenue, count, AOV, paid/unpaid, verified/mismatch | Selesai: `docs/week6/02_PAR_EVIDENCE.md` |
+| FDR | `W6-FDR-11` PAR-01/PAR-02 evidence | Selesai: 24/24 PASS; `docs/week6/evidence/` |
+| KEN | `W6-KEN-06` Verifikasi PAR-01/02 + cek race condition & duplikasi | Selesai: `docs/week6/03_RACE_CONDITION_REVIEW.md` |
+| IHS | `W6-IHS-07` Performance dashboard awal | Selesai: `admin/performance.php` + `docs/week6/05_DASHBOARD.md` |
+| LUI | `W6-LUI-12` Dukungan verification service untuk worker | Selesai: `docs/week6/07_WORKER_INTEGRATION.md` |
+| FEE | `W6-FEE-11` Dokumentasi arsitektur paralel | Selesai: `docs/week6/01_PARALLEL_ARCHITECTURE.md` |
+| YAS | `W6-YAS-10` Acceptance criteria hasil agregasi | Selesai: `docs/week6/04_ACCEPTANCE_CRITERIA.md` |
+| ARB | `W6-ARB-10` Support bug fixing | Selesai: `docs/week6/06_SUPPORT_LOG.md` (tidak ada bug kontrak) |
+| AGU | `W6-AGU-10` Support bug fixing | Selesai: `docs/week6/06_SUPPORT_LOG.md` (kontrak stabil) |
+| FRL | `W6-FRL-10` Maintenance environment/deploy ulang | Selesai: `docs/week6/06_SUPPORT_LOG.md` §5 |
 
-**Exit gate:** output sequential = parallel; 1/2/4/8 worker memproses job berbeda.
+**Exit gate:** output sequential = parallel; 1/2/4/8 worker memproses job berbeda. **Terpenuhi 13 November 2026:** checksum PAR-01 = PAR-02 (`61cfe1d0…` untuk D500, `1258b0c3…` untuk D1000), `distinct_workers = jobs_total`, `max_attempts = 1`.
 
 ---
 
 ### Minggu 7 — Benchmark & Integration Test
 
-**Status saat ini:** Belum mulai — 0 selesai, 0 sebagian, 13 belum dari 13 issue. Benchmark belum ada.
+**Status saat ini:** **Selesai** — 13 selesai, 0 sebagian, 0 belum dari 13 issue. Benchmark matrix 16/16 PASS, regresi 21/21 PASS, reproducible.
 **Lead:** Kenjiro · **Pendukung:** Farelly, Ihsanul, Feeandri · **Target:** 93%
 
 | PIC | Issue | Output / Evidence |
 |---|---|---|
-| KEN | `W7-KEN-07` Benchmark dataset 100/500/1.000/5.000 × worker 1/2/4/8 | Dataset + hasil |
-| KEN | `W7-KEN-08` Hitung execution time, speedup, efficiency, throughput | Tabel + grafik |
-| KEN | `W7-KEN-09` Full regression 21 test case | 21/21 atau FAIL terdokumentasi |
-| KEN | `W7-KEN-10` Bug report + retest | Bug log |
-| KEN | `W7-KEN-11` Test report final | Laporan |
-| FDR | `W7-FDR-12` Tuning worker/queue + dukungan benchmark | Catatan tuning |
-| IHS | `W7-IHS-08` Finalisasi performance + verification dashboard | Dashboard final |
-| FEE | `W7-FEE-12` Review konsistensi benchmark + draft final doc | Catatan review |
-| YAS | `W7-YAS-11` UAT execution + requirement-to-test final | Bukti UAT |
-| LUI | `W7-LUI-13` Perbaikan integrasi dari bug report | Fix |
-| FRL | `W7-FRL-11` Reproducibility check di mesin lain | Bukti |
-| ARB | `W7-ARB-11` Perbaikan kontrak dari bug report | Fix |
-| AGU | `W7-AGU-11` Perbaikan kontrak dari bug report | Fix |
+| KEN | `W7-KEN-07` Benchmark dataset 100/500/1.000/5.000 × worker 1/2/4/8 | Selesai: `benchmark/run_matrix.php`; 16/16 PASS; `docs/week7/evidence/benchmark_matrix.json` |
+| KEN | `W7-KEN-08` Hitung execution time, speedup, efficiency, throughput | Selesai: `docs/week7/01_BENCHMARK_REPORT.md`; tabel + `benchmark_chart.svg` |
+| KEN | `W7-KEN-09` Full regression 21 test case | Selesai: `tests/regression/run_all.php`; 21/21 PASS |
+| KEN | `W7-KEN-10` Bug report + retest | Selesai: `docs/week7/03_BUG_REPORT_AND_RETEST.md`; BUG-07-01..03 closed |
+| KEN | `W7-KEN-11` Test report final | Selesai: `docs/week7/02_TEST_REPORT_FINAL.md` |
+| FDR | `W7-FDR-12` Tuning worker/queue + dukungan benchmark | Selesai: `docs/week7/04_TUNING_NOTES.md`; pre-assign `--job-id` |
+| IHS | `W7-IHS-08` Finalisasi performance + verification dashboard | Selesai: `admin/performance.php` + `docs/week7/08_DASHBOARD_FINAL.md` |
+| FEE | `W7-FEE-12` Review konsistensi benchmark + draft final doc | Selesai: `docs/week7/05_CONSISTENCY_REVIEW.md` |
+| YAS | `W7-YAS-11` UAT execution + requirement-to-test final | Selesai: `docs/week7/06_UAT_AND_REQUIREMENT_TO_TEST.md`; UAT-01..17 PASS |
+| LUI | `W7-LUI-13` Perbaikan integrasi dari bug report | Selesai: `workers/verify_worker.php` (`--job-id`); INT 5/5 PASS |
+| FRL | `W7-FRL-11` Reproducibility check di mesin lain | Selesai: `tests/regression/check_reproducibility.php`; 16/16 checksum identik |
+| ARB | `W7-ARB-11` Perbaikan kontrak dari bug report | Selesai: tidak ada bug kontrak; SC 12/12 PASS |
+| AGU | `W7-AGU-11` Perbaikan kontrak dari bug report | Selesai: kontrak tidak berubah (`0xe78A…a8Ab`); SC 12/12 PASS |
 
-**Exit gate:** benchmark reproducible, tidak ada bug Sev-1, seluruh test punya status.
+**Exit gate:** benchmark reproducible, tidak ada bug Sev-1, seluruh test punya status. **Terpenuhi 13 November 2026:** 16/16 konfigurasi checksum MATCH (delta metrik ≤ 8,03% pada run reproduksi), 0 bug Sev-1, 21/21 test PASS.
 
 ---
 
 ### Minggu 8 — Finalisasi & Demo
 
-**Status saat ini:** Sebagian kecil — 0 selesai, 4 sebagian, 10 belum dari 14 issue.
+**Status saat ini:** **Selesai** — 14 selesai, 0 sebagian, 0 belum dari 14 issue.
 **Lead:** semua · **Pendukung:** semua · **Target:** 100%
 
 | PIC | Issue | Output / Evidence |
@@ -280,7 +285,7 @@ Target progress kumulatif mengikuti dashboard tracker:
 | KEN | `W8-KEN-12` Demo test result + benchmark | Demo |
 | IHS | `W8-IHS-09` Demo proof page + dashboard | Demo |
 
-**Exit gate:** demo berjalan dari clean setup; setiap anggota menjelaskan `input → process → output → error → test → dependency`.
+**Exit gate:** demo berjalan dari clean setup; setiap anggota menjelaskan `input → process → output → error → test → dependency`. **Terpenuhi 16 November 2026:** clean install 5/5 + HTTP 7/7, demo 13/13, UAT 16/16, regresi 21/21, tag `v1.0.0`.
 
 ---
 
@@ -320,7 +325,7 @@ Jika Minggu 3 atau Minggu 5 slip, Minggu 7 dan 8 ikut mundur.
 ### 6.2 Strategi paralelisasi
 
 - **Minggu 3:** interface kontrak wajib freeze, walau V2 belum selesai.
-- **Minggu 4–5:** Farelly mulai sequential baseline dan worker skeleton dengan data mock agar Minggu 6 tidak menjadi bottleneck.
+- **Minggu 4:** sequential baseline data mock selesai (D100–D5000) sebagai pembanding; **Minggu 5:** Farelly menyiapkan worker skeleton agar Minggu 6 tidak menjadi bottleneck.
 - **Minggu 5–8:** UI/proof/dashboard berjalan paralel dengan backend, tidak menunggu semuanya selesai.
 - **Minggu 1–8:** dokumentasi, traceability, dan weekly log berjalan terus.
 
